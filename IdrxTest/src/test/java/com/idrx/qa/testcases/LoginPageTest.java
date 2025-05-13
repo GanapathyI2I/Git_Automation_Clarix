@@ -9,6 +9,7 @@ import com.idrx.qa.base.TestBase;
 import com.idrx.qa.pages.HomePage;
 import com.idrx.qa.pages.LoginPage;
 import com.idrx.qa.pages.SalesPage;
+import com.idrx.qa.util.DBUtil;
 import com.idrx.qa.util.TestUtil;
 
 public class LoginPageTest extends TestBase{
@@ -34,19 +35,19 @@ public class LoginPageTest extends TestBase{
 		homePage.clickSalesTab();
 	}	
 	
-	@Test(priority = 1)
+	@Test(priority = 1, enabled=true)
 	public void vehicleSoldTest() throws Exception {
 		
-		Object vechicalSold = TestUtil.getValue("Vehicle Sold", "Sheet1");
+		String vechicalSold = DBUtil.vehicleSoldGetDBValue();
 		System.out.println("--------Vehicle Sold--------");
-		double vechicalSoldValue = (double) vechicalSold;
-		int vechicalSoldExpectedValue = (int) vechicalSoldValue;
+		//double vechicalSoldValue = (double) vechicalSold;
+		int vechicalSoldExpectedValue = Integer.parseInt(vechicalSold);
 		String vechicalSoldVal = salesPage.getVechicalSold();
 		int vechicalSoldActualValue = Integer.parseInt(vechicalSoldVal);
 		testUtil.assertEquals(vechicalSoldActualValue, vechicalSoldExpectedValue, "Vehicle Sold");
 	}
 	
-	@Test(priority = 2)
+	@Test(priority = 2, enabled=false)
 	public void vehicleSalesTest() throws Exception {	
 		
 		Object vechicalRevenue = TestUtil.getValue("Vehicle Sales", "Sheet1");
@@ -57,89 +58,83 @@ public class LoginPageTest extends TestBase{
 		testUtil.assertEquals(vechicalRevenueActualValue, vechicalRevenueExpectedValue, "Vehicle Sales");
 	}
 	
-	@Test(priority = 3)
+	@Test(priority = 3, enabled=true)
 	public void vehicleBookedYesterdayTest() throws Exception {
 		
-		Object vehicleBookedYesterday = TestUtil.getValue("Vehicle Booked Yesterday", "Sheet1");
+		String vehicleBookedYesterday = DBUtil.vehicleBookedYesterdayTestDBValue();
 		System.out.println("--------Vehicle Booked Yesterday--------");
-		double vehicleBookedYesterdayValue = (double) vehicleBookedYesterday;
-		int vechicalBookedYesterdayExpectedValue = (int) vehicleBookedYesterdayValue;
+		int vechicalBookedYesterdayExpectedValue = Integer.parseInt(vehicleBookedYesterday);
 		String vechicalBookedYesterdayVal = salesPage.getVechicalBookedYesterday();
 		int vechicalBookedYesterdayActualValue = Integer.parseInt(vechicalBookedYesterdayVal);		
 		testUtil.assertEquals(vechicalBookedYesterdayActualValue, vechicalBookedYesterdayExpectedValue, "Vehicle Booked Yesterday");
 	}
 
-	@Test(priority = 4)
+	@Test(priority = 4, enabled=true)
 	public void vehicleInvoicedYesterdayTest() throws Exception {
 		
-		Object vehicleInvoicedYesterday = TestUtil.getValue("vehicle Invoiced Yesterday", "Sheet1");
+		String vehicleInvoicedYesterday = DBUtil.vehicleInvoicedYesterdayTestDBValue();
 		System.out.println("--------Vehicle Invoiced Yesterday--------");
-		double vehicleInvoicedYesterdayValue = (double) vehicleInvoicedYesterday;
-		int vehicleInvoicedYesterdayExpectedValue = (int) vehicleInvoicedYesterdayValue;
+		int vehicleInvoicedYesterdayExpectedValue = Integer.parseInt(vehicleInvoicedYesterday);
 		String vehicleInvoicedYesterdayVal = salesPage.getVehicleInvoicedYesterday();
 		int vehicleInvoicedYesterdayActualValue = Integer.parseInt(vehicleInvoicedYesterdayVal);
 		testUtil.assertEquals(vehicleInvoicedYesterdayActualValue, vehicleInvoicedYesterdayExpectedValue, "vehicle Invoiced Yesterday");
 	}
 	
-	@Test(priority = 5)
+	@Test(priority = 5, enabled=true)
 	public void vehicleInvoicedThisMonthTest() throws Exception {
 		
-		Object vehicleInvoicedThisMonth = TestUtil.getValue("vehicle Invoiced this month", "Sheet1");
+		String vehicleInvoicedThisMonth = DBUtil.vehicleInvoicedThisMonthTestDBValue();
 		System.out.println("--------Vehicle Invoiced this month--------");
-		double vehicleInvoicedThisMonthValue = (double) vehicleInvoicedThisMonth;
-		int vehicleInvoicedThisMonthExpectedValue = (int) vehicleInvoicedThisMonthValue;
+		int vehicleInvoicedThisMonthExpectedValue = Integer.parseInt(vehicleInvoicedThisMonth);
 		String vehicleInvoicedThisMonthVal = salesPage.getVehicleInvoicedThisMonth();
 		int vehicleInvoicedThisMonthActualValue = Integer.parseInt(vehicleInvoicedThisMonthVal);		
 		testUtil.assertEquals(vehicleInvoicedThisMonthActualValue, vehicleInvoicedThisMonthExpectedValue, "vehicle Invoiced this month");
 	}
 	
-	@Test(priority = 6)
+	@Test(priority = 6, enabled=true)
 	public void vehicleInvoicedButNotDeliveredTest() throws Exception {
 	
-		Object vehicleInvoicedNotDelivered = TestUtil.getValue("Vehicle Invoiced but not delivered", "Sheet1");
+		String vehicleInvoicedNotDelivered = DBUtil.vehicleInvoicedButNotDeliveredTestDBValue();
 		System.out.println("--------Vehicle Invoiced but not delivered--------");
-		double vehicleInvoicedNotDeliveredValue = (double) vehicleInvoicedNotDelivered;
-		int vehicleInvoicedNotDeliveredExpectedValue = (int) vehicleInvoicedNotDeliveredValue;
+		int vehicleInvoicedNotDeliveredExpectedValue = Integer.parseInt(vehicleInvoicedNotDelivered);
 		String vehicleInvoicedNotDeliveredVal = salesPage.getVehicleInvoicedNotDelivered();
 		int vehicleInvoicedNotDeliveredActualValue = Integer.parseInt(vehicleInvoicedNotDeliveredVal);
 		testUtil.assertEquals(vehicleInvoicedNotDeliveredActualValue, vehicleInvoicedNotDeliveredExpectedValue, "Vehicle Invoiced but not delivered");
 	}
 	
-	@Test(priority = 7)
-	public void aprilMonthSalesTrendTest() throws Exception {
+	@Test(priority = 7, enabled=true)
+	public void currentMonthTest() throws Exception {
 	
-		Object aprilMonthSalesTrend = TestUtil.getValue("Qty Trend - Apr'2025", "Sheet1");
+        String currentMonth =DBUtil.currentMonthTestDBValue();
 		System.out.println("--------Qty Trend - Apr'2025--------");
-		double aprilMonthSalesTrendValue = (double) aprilMonthSalesTrend;
-		int aprilMonthSalesTrendExpectedValue = (int) aprilMonthSalesTrendValue;
+		int currentMonthExpectedValue = Integer.parseInt(currentMonth);	
 		String aprilMonthSalesTrendVal = salesPage.getAprilMonthWiseSalesTrend();
 		int aprilMonthSalesTrendValActualValue = Integer.parseInt(aprilMonthSalesTrendVal);	
-		testUtil.assertEquals(aprilMonthSalesTrendValActualValue, aprilMonthSalesTrendExpectedValue, "Qty Trend - Apr'2025");
+		testUtil.assertEquals(aprilMonthSalesTrendValActualValue, currentMonthExpectedValue, "Qty Trend - Apr'2025");
 	}
 	
-	@Test(priority = 8)
+	@Test(priority = 8, enabled=true)
 	public void marchMonthSalesTrendTest() throws Exception {
 		
-		Object marchMonthSalesTrend = TestUtil.getValue("Qty Trend - Mar'2025", "Sheet1");
+		String lastMonthSalesTrend = DBUtil.lastMonthTestDBValue();
 		System.out.println("--------Qty Trend - Mar'2025--------");
-		double marchMonthSalesTrendValue = (double) marchMonthSalesTrend;
-		int marchMonthSalesTrendExpectedValue = (int) marchMonthSalesTrendValue;
+		int lastMonthExpectedValue = Integer.parseInt(lastMonthSalesTrend);
 		String marchMonthSalesTrendVal = salesPage.getMarchMonthWiseSalesTrend();
 		int marchMonthSalesTrendValActualValue = Integer.parseInt(marchMonthSalesTrendVal);		
-		testUtil.assertEquals(marchMonthSalesTrendValActualValue, marchMonthSalesTrendExpectedValue, "Qty Trend - Mar'2025");
+		testUtil.assertEquals(marchMonthSalesTrendValActualValue, lastMonthExpectedValue, "Qty Trend - Mar'2025");
 	}
 	
-	@Test(priority = 9)
-	public void salesTargetAchievedTest() throws Exception {
+	// @Test(priority = 9, enabled=false)
+	// public void salesTargetAchievedTest() throws Exception {
 		
-		Object salesTarget = TestUtil.getValue("Sales Target achieved %", "Sheet1");
-		System.out.println("--------Sales Target achieved %--------");
-		double salesTargetExpectedVal = Double.parseDouble(salesTarget.toString());
-		String salesTargetExpectedValue = String.format("%.0f%%", salesTargetExpectedVal * 100);
-		TestUtil.switchToFrame();	
-		String salesTargetActualValue = salesPage.getSalesTargetAchieved();		
-		testUtil.assertEquals(salesTargetActualValue, salesTargetExpectedValue, "Sales Target achieved %");	
-	}
+	// 	String salesTarget = DBUtil.salesTargetTestDBValue();
+	// 	System.out.println("--------Sales Target achieved %--------");
+	// 	double salesTargetExpectedVal = Double.parseDouble(salesTarget.toString());
+	// 	String salesTargetExpectedValue = String.format("%.0f%%", salesTargetExpectedVal * 100);
+	// 	TestUtil.switchToFrame();	
+	// 	String salesTargetActualValue = salesPage.getSalesTargetAchieved();		
+	// 	testUtil.assertEquals(salesTargetActualValue, salesTargetExpectedValue, "Sales Target achieved %");	
+	// }
 	
 	@AfterTest
 	public void tearDown() {

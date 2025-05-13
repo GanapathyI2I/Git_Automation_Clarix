@@ -76,12 +76,12 @@ public class SalesPage extends TestBase{
 			}
 			
 			public String getAprilMonthWiseSalesTrend() {
-				WebElement aprilMonthSales = this.monthWiseSalesTrend.get(5);		
+				WebElement aprilMonthSales = this.monthWiseSalesTrend.get(1);		
 				return aprilMonthSales.getText();
 			}
 			
 			public String getMarchMonthWiseSalesTrend() {
-				WebElement aprilMonthSales = this.monthWiseSalesTrend.get(2);			
+				WebElement aprilMonthSales = this.monthWiseSalesTrend.get(5);			
 				return aprilMonthSales.getText();
 			}
 
