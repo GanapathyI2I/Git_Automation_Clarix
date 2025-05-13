@@ -15,6 +15,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import com.idrx.qa.base.TestBase;
@@ -82,6 +84,35 @@ public class TestUtil extends TestBase{
 		 logger.info("Asserting values. Expected: [{}], Actual: [{}]", expected, actual);
 		 Assert.assertEquals(actual, expected, message);		 
 		 logger.info("Assertion passed: {}", message);		 
-	 }	 
+	 }
+	 
+	 public void sendKeys(WebElement element, String value, String description) {
+	        try {
+	            logger.info("Entering Value in {} → '{}'", description, value);
+	            element.clear();
+	            element.sendKeys(value);
+	            logger.info("✅ Entered Value successfully in: {}", description);
+	        } catch (Exception e) {
+	            logger.error("❌ Failed to type in: {} - {}", description, e.getMessage());
+	            throw e;
+	        }
+	 }
+	 
+	 public void clickElement(WebElement element, String description) {
+	        try {
+	            logger.info("Clicking on: {}", description);
+	            element.click();
+	            logger.info("✅ Clicked successfully on: {}", description);
+	        } catch (Exception e) {
+	            logger.error("❌ Failed to click on: {} - {}", description, e.getMessage());
+	            throw e;
+	        }
+	}
+	 
+	 public void launchURL(WebDriver driver, String url) {
+	        logger.info("🌐 Launching URL: {}", url);
+	        driver.get(url);
+	        logger.info("✅ URL launched successfully");
+	 }
 
 }

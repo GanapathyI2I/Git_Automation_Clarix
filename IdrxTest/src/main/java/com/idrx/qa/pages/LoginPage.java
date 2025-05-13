@@ -5,8 +5,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.idrx.qa.base.TestBase;
+import com.idrx.qa.util.TestUtil;
 
 public class LoginPage extends TestBase{
+	
+	TestUtil testUtil = new TestUtil();
 	
 	@FindBy(id = "username")
 	WebElement userName;
@@ -22,10 +25,10 @@ public class LoginPage extends TestBase{
 		PageFactory.initElements(driver, this);
 	}
 	
-	public void login(String userName, String password) {
-		this.userName.sendKeys(userName);
-		this.password.sendKeys(password);
-		submitButton.click();
+	public void login(String userName, String password) {		
+		testUtil.sendKeys(this.userName, userName, "Username Field");
+		testUtil.sendKeys(this.password, password, "Password Field");
+		testUtil.clickElement(this.submitButton, "Submit Button");	
 	}
 
 

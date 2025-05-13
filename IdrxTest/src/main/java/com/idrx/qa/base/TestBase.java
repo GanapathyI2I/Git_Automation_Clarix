@@ -5,14 +5,19 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+
+import com.idrx.qa.util.TestUtil;
 
 public class TestBase {
 
 	public static WebDriver driver;
 	public static Properties prop;
+	public final static Logger logger = LogManager.getLogger(TestUtil.class);
 
 	public TestBase() {
 		
@@ -31,8 +36,10 @@ public class TestBase {
 		ChromeOptions options = new ChromeOptions();
 		driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
-		driver.manage().deleteAllCookies();
+		driver.manage().deleteAllCookies();	
 		
+		logger.info("🌐 Launching URL: {}", prop.getProperty("url"));		
 		driver.get(prop.getProperty("url"));
+		logger.info("✅ URL launched successfully");
 	}
 }

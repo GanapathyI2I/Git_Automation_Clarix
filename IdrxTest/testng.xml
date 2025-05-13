@@ -1,0 +1,12 @@
+<suite name="Idrx Test Automation Suite">
+    <listeners>
+        <listener class-name="com.idrx.qa.ExtentReportListener.ExtentReporterNG"/>
+    </listeners>
+
+    <test name="Login Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.LoginPageTest"></class>
+        </classes>
+    </test>
+</suite>    
+    
