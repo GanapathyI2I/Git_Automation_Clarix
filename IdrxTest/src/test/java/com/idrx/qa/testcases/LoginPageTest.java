@@ -47,13 +47,13 @@ public class LoginPageTest extends TestBase{
 		testUtil.assertEquals(vechicalSoldActualValue, vechicalSoldExpectedValue, "Vehicle Sold");
 	}
 	
-	@Test(priority = 2, enabled=false)
+	@Test(priority = 2, enabled=true)
 	public void vehicleSalesTest() throws Exception {	
 		
-		Object vechicalRevenue = TestUtil.getValue("Vehicle Sales", "Sheet1");
+	//	Object vechicalRevenue = TestUtil.getValue("Vehicle Sales", "Sheet1");
+		String vechicalRevenue = DBUtil.vehicleSalesTestDBValue();
 		System.out.println("--------Vehicle Sales--------");
-		String vechicalRevenueValue = (String) vechicalRevenue;
-		String vechicalRevenueExpectedValue = "₹ " + vechicalRevenueValue;
+		String vechicalRevenueExpectedValue = "₹ " + vechicalRevenue;
 		String vechicalRevenueActualValue = salesPage.getSalesRevenue();	
 		testUtil.assertEquals(vechicalRevenueActualValue, vechicalRevenueExpectedValue, "Vehicle Sales");
 	}

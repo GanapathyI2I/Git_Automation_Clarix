@@ -25,7 +25,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite, 4 failed tests</span>
+      <span class="top-banner-font-1">1 suite, 3 failed tests</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -92,7 +92,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">7 methods, 4 failed,   3 passed</span>
+                    <span class="method-stats">8 methods, 3 failed,   5 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title failed">Failed methods</span>
@@ -116,11 +116,6 @@
                         <a href="#" panel-name="suite-Surefire_suite" title="com.idrx.qa.testcases.LoginPageTest" class="method navigator-link" hash-for-method="vehicleInvoicedThisMonthTest">vehicleInvoicedThisMonthTest</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                      <span>
-                        <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Surefire_suite" title="com.idrx.qa.testcases.LoginPageTest" class="method navigator-link" hash-for-method="vehicleInvoicedYesterdayTest">vehicleInvoicedYesterdayTest</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
                     </div> <!-- method-list-content failed suite-Surefire_suite -->
                   </li>
                   <li>
@@ -138,6 +133,16 @@
                       <span>
                         <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-Surefire_suite" title="com.idrx.qa.testcases.LoginPageTest" class="method navigator-link" hash-for-method="marchMonthSalesTrendTest">marchMonthSalesTrendTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.idrx.qa.testcases.LoginPageTest" class="method navigator-link" hash-for-method="vehicleInvoicedYesterdayTest">vehicleInvoicedYesterdayTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Surefire_suite" title="com.idrx.qa.testcases.LoginPageTest" class="method navigator-link" hash-for-method="vehicleSalesTest">vehicleSalesTest</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
@@ -168,14 +173,11 @@
                   <a name="vehicleBookedYesterdayTest">
                   </a> <!-- vehicleBookedYesterdayTest -->
                   <span class="method-name">vehicleBookedYesterdayTest</span>
-                  <div class="stack-trace">org.postgresql.util.PSQLException: The column name net_qty was not found in this ResultSet.
-	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:3085)
-	at org.postgresql.jdbc.PgResultSet.getString(PgResultSet.java:2921)
-	at com.idrx.qa.util.DBUtil.getExpectedValue(DBUtil.java:16)
-	at com.idrx.qa.util.DBUtil.vehicleBookedYesterdayTestDBValue(DBUtil.java:47)
-	at com.idrx.qa.testcases.LoginPageTest.vehicleBookedYesterdayTest(LoginPageTest.java:64)
+                  <div class="stack-trace">java.lang.AssertionError: Vehicle Booked Yesterday expected [5] but found [0]
+	at com.idrx.qa.util.TestUtil.assertEquals(TestUtil.java:85)
+	at com.idrx.qa.testcases.LoginPageTest.vehicleBookedYesterdayTest(LoginPageTest.java:69)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-... Removed 30 stack frames
+... Removed 34 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
@@ -184,14 +186,11 @@
                   <a name="vehicleInvoicedButNotDeliveredTest">
                   </a> <!-- vehicleInvoicedButNotDeliveredTest -->
                   <span class="method-name">vehicleInvoicedButNotDeliveredTest</span>
-                  <div class="stack-trace">org.postgresql.util.PSQLException: The column name net_qty was not found in this ResultSet.
-	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:3085)
-	at org.postgresql.jdbc.PgResultSet.getString(PgResultSet.java:2921)
-	at com.idrx.qa.util.DBUtil.getExpectedValue(DBUtil.java:16)
-	at com.idrx.qa.util.DBUtil.vehicleInvoicedButNotDeliveredTestDBValue(DBUtil.java:68)
-	at com.idrx.qa.testcases.LoginPageTest.vehicleInvoicedButNotDeliveredTest(LoginPageTest.java:97)
+                  <div class="stack-trace">java.lang.AssertionError: Vehicle Invoiced but not delivered expected [51] but found [69]
+	at com.idrx.qa.util.TestUtil.assertEquals(TestUtil.java:85)
+	at com.idrx.qa.testcases.LoginPageTest.vehicleInvoicedButNotDeliveredTest(LoginPageTest.java:102)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-... Removed 30 stack frames
+... Removed 34 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
@@ -200,30 +199,11 @@
                   <a name="vehicleInvoicedThisMonthTest">
                   </a> <!-- vehicleInvoicedThisMonthTest -->
                   <span class="method-name">vehicleInvoicedThisMonthTest</span>
-                  <div class="stack-trace">org.postgresql.util.PSQLException: The column name net_qty was not found in this ResultSet.
-	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:3085)
-	at org.postgresql.jdbc.PgResultSet.getString(PgResultSet.java:2921)
-	at com.idrx.qa.util.DBUtil.getExpectedValue(DBUtil.java:16)
-	at com.idrx.qa.util.DBUtil.vehicleInvoicedThisMonthTestDBValue(DBUtil.java:61)
-	at com.idrx.qa.testcases.LoginPageTest.vehicleInvoicedThisMonthTest(LoginPageTest.java:86)
+                  <div class="stack-trace">java.lang.AssertionError: vehicle Invoiced this month expected [8] but found [2]
+	at com.idrx.qa.util.TestUtil.assertEquals(TestUtil.java:85)
+	at com.idrx.qa.testcases.LoginPageTest.vehicleInvoicedThisMonthTest(LoginPageTest.java:91)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-... Removed 30 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="vehicleInvoicedYesterdayTest">
-                  </a> <!-- vehicleInvoicedYesterdayTest -->
-                  <span class="method-name">vehicleInvoicedYesterdayTest</span>
-                  <div class="stack-trace">org.postgresql.util.PSQLException: The column name net_qty was not found in this ResultSet.
-	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:3085)
-	at org.postgresql.jdbc.PgResultSet.getString(PgResultSet.java:2921)
-	at com.idrx.qa.util.DBUtil.getExpectedValue(DBUtil.java:16)
-	at com.idrx.qa.util.DBUtil.vehicleInvoicedYesterdayTestDBValue(DBUtil.java:54)
-	at com.idrx.qa.testcases.LoginPageTest.vehicleInvoicedYesterdayTest(LoginPageTest.java:75)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-... Removed 30 stack frames
+... Removed 34 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
@@ -247,6 +227,20 @@
                   <a name="marchMonthSalesTrendTest">
                   </a> <!-- marchMonthSalesTrendTest -->
                   <span class="method-name">marchMonthSalesTrendTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="vehicleInvoicedYesterdayTest">
+                  </a> <!-- vehicleInvoicedYesterdayTest -->
+                  <span class="method-name">vehicleInvoicedYesterdayTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="vehicleSalesTest">
+                  </a> <!-- vehicleSalesTest -->
+                  <span class="method-name">vehicleSalesTest</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
@@ -309,40 +303,44 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(7);
+data.addRows(8);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'vehicleSoldTest')
 data.setCell(0, 2, 'com.idrx.qa.testcases.LoginPageTest')
-data.setCell(0, 3, 2432);
+data.setCell(0, 3, 2800);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'currentMonthTest')
+data.setCell(1, 1, 'vehicleInvoicedThisMonthTest')
 data.setCell(1, 2, 'com.idrx.qa.testcases.LoginPageTest')
-data.setCell(1, 3, 204);
+data.setCell(1, 3, 358);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'marchMonthSalesTrendTest')
+data.setCell(2, 1, 'vehicleInvoicedYesterdayTest')
 data.setCell(2, 2, 'com.idrx.qa.testcases.LoginPageTest')
-data.setCell(2, 3, 201);
+data.setCell(2, 3, 317);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'vehicleBookedYesterdayTest')
+data.setCell(3, 1, 'currentMonthTest')
 data.setCell(3, 2, 'com.idrx.qa.testcases.LoginPageTest')
-data.setCell(3, 3, 201);
+data.setCell(3, 3, 317);
 data.setCell(4, 0, 4)
-data.setCell(4, 1, 'vehicleInvoicedThisMonthTest')
+data.setCell(4, 1, 'marchMonthSalesTrendTest')
 data.setCell(4, 2, 'com.idrx.qa.testcases.LoginPageTest')
-data.setCell(4, 3, 177);
+data.setCell(4, 3, 317);
 data.setCell(5, 0, 5)
-data.setCell(5, 1, 'vehicleInvoicedButNotDeliveredTest')
+data.setCell(5, 1, 'vehicleBookedYesterdayTest')
 data.setCell(5, 2, 'com.idrx.qa.testcases.LoginPageTest')
-data.setCell(5, 3, 176);
+data.setCell(5, 3, 307);
 data.setCell(6, 0, 6)
-data.setCell(6, 1, 'vehicleInvoicedYesterdayTest')
+data.setCell(6, 1, 'vehicleInvoicedButNotDeliveredTest')
 data.setCell(6, 2, 'com.idrx.qa.testcases.LoginPageTest')
-data.setCell(6, 3, 174);
+data.setCell(6, 3, 278);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'vehicleSalesTest')
+data.setCell(7, 2, 'com.idrx.qa.testcases.LoginPageTest')
+data.setCell(7, 3, 274);
 window.suiteTableData['Surefire_suite']= { tableData: data, tableDiv: 'times-div-Surefire_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 3 seconds</span>
+              <span class="suite-total-time">Total running time: 4 seconds</span>
               <div id="times-div-Surefire_suite">
               </div> <!-- times-div-Surefire_suite -->
             </div> <!-- times-div -->
@@ -357,16 +355,9 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Surefire_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">1 ignored method</span>
+            <span class="header-content">0 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
-            <div class="ignored-class-div">
-              <span class="ignored-class-name">com.idrx.qa.testcases.LoginPageTest</span>
-              <div class="ignored-methods-div">
-                <span class="ignored-method-name">vehicleSalesTest</span>
-                <br/>
-              </div> <!-- ignored-methods-div -->
-            </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="chronological-Surefire_suite" class="panel">
@@ -382,43 +373,45 @@ return data;
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">vehicleSoldTest</span>
-                <span class="method-start">14232 ms</span>
+                <span class="method-start">17301 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">vehicleSalesTest</span>
+                <span class="method-start">20107 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
                 <span class="method-name">vehicleBookedYesterdayTest</span>
-                <span class="method-start">16664 ms</span>
+                <span class="method-start">20383 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
                 <span class="method-name">vehicleInvoicedYesterdayTest</span>
-                <span class="method-start">16869 ms</span>
+                <span class="method-start">20706 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
                 <span class="method-name">vehicleInvoicedThisMonthTest</span>
-                <span class="method-start">17045 ms</span>
+                <span class="method-start">21025 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
                 <span class="method-name">vehicleInvoicedButNotDeliveredTest</span>
-                <span class="method-start">17224 ms</span>
+                <span class="method-start">21386 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">currentMonthTest</span>
-                <span class="method-start">17402 ms</span>
+                <span class="method-start">21667 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">marchMonthSalesTrendTest</span>
-                <span class="method-start">17607 ms</span>
+                <span class="method-start">21984 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">17809 ms</span>
+                <span class="method-start">22306 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

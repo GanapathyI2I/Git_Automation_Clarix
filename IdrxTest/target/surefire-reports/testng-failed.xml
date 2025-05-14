@@ -9,7 +9,6 @@
           <include name="tearDown"/>
           <include name="setUp"/>
           <include name="vehicleInvoicedButNotDeliveredTest"/>
-          <include name="vehicleInvoicedYesterdayTest"/>
           <include name="vehicleBookedYesterdayTest"/>
         </methods>
       </class> <!-- com.idrx.qa.testcases.LoginPageTest -->

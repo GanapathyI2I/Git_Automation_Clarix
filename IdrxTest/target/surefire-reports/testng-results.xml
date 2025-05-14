@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="1" total="8" passed="3" failed="4" skipped="0">
+<testng-results ignored="0" total="8" passed="5" failed="3" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-05-13T18:38:00 IST" name="Surefire suite" finished-at="2025-05-13T18:38:18 IST" duration-ms="18109">
+  <suite started-at="2025-05-14T16:49:29 IST" name="Surefire suite" finished-at="2025-05-14T16:49:52 IST" duration-ms="22731">
     <groups>
     </groups>
-    <test started-at="2025-05-13T18:38:00 IST" name="Surefire test" finished-at="2025-05-13T18:38:18 IST" duration-ms="18109">
+    <test started-at="2025-05-14T16:49:29 IST" name="Surefire test" finished-at="2025-05-14T16:49:52 IST" duration-ms="22731">
       <class name="com.idrx.qa.testcases.LoginPageTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.idrx.qa.testcases.LoginPageTest@3fed2870]" started-at="2025-05-13T18:38:00 IST" name="setUp" finished-at="2025-05-13T18:38:14 IST" duration-ms="14212" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.idrx.qa.testcases.LoginPageTest@3fed2870]" started-at="2025-05-14T16:49:29 IST" name="setUp" finished-at="2025-05-14T16:49:47 IST" duration-ms="17280" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="vehicleSoldTest()[pri:1, instance:com.idrx.qa.testcases.LoginPageTest@3fed2870]" started-at="2025-05-13T18:38:14 IST" name="vehicleSoldTest" finished-at="2025-05-13T18:38:16 IST" duration-ms="2432" status="PASS">
+        <test-method signature="vehicleSoldTest()[pri:1, instance:com.idrx.qa.testcases.LoginPageTest@3fed2870]" started-at="2025-05-14T16:49:47 IST" name="vehicleSoldTest" finished-at="2025-05-14T16:49:50 IST" duration-ms="2800" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- vehicleSoldTest -->
-        <test-method signature="vehicleBookedYesterdayTest()[pri:3, instance:com.idrx.qa.testcases.LoginPageTest@3fed2870]" started-at="2025-05-13T18:38:16 IST" name="vehicleBookedYesterdayTest" finished-at="2025-05-13T18:38:17 IST" duration-ms="201" status="FAIL">
-          <exception class="org.postgresql.util.PSQLException">
+        <test-method signature="vehicleSalesTest()[pri:2, instance:com.idrx.qa.testcases.LoginPageTest@3fed2870]" started-at="2025-05-14T16:49:50 IST" name="vehicleSalesTest" finished-at="2025-05-14T16:49:50 IST" duration-ms="274" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- vehicleSalesTest -->
+        <test-method signature="vehicleBookedYesterdayTest()[pri:3, instance:com.idrx.qa.testcases.LoginPageTest@3fed2870]" started-at="2025-05-14T16:49:50 IST" name="vehicleBookedYesterdayTest" finished-at="2025-05-14T16:49:50 IST" duration-ms="307" status="FAIL">
+          <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[The column name net_qty was not found in this ResultSet.]]>
+              <![CDATA[Vehicle Booked Yesterday expected [5] but found [0]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.postgresql.util.PSQLException: The column name net_qty was not found in this ResultSet.
-at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:3085)
-at org.postgresql.jdbc.PgResultSet.getString(PgResultSet.java:2921)
-at com.idrx.qa.util.DBUtil.getExpectedValue(DBUtil.java:16)
-at com.idrx.qa.util.DBUtil.vehicleBookedYesterdayTestDBValue(DBUtil.java:47)
-at com.idrx.qa.testcases.LoginPageTest.vehicleBookedYesterdayTest(LoginPageTest.java:64)
+              <![CDATA[java.lang.AssertionError: Vehicle Booked Yesterday expected [5] but found [0]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1590)
+at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+at org.testng.Assert.assertEquals(Assert.java:132)
+at com.idrx.qa.util.TestUtil.assertEquals(TestUtil.java:85)
+at com.idrx.qa.testcases.LoginPageTest.vehicleBookedYesterdayTest(LoginPageTest.java:69)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -60,71 +65,27 @@ at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.postgresql.util.PSQLException -->
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- vehicleBookedYesterdayTest -->
-        <test-method signature="vehicleInvoicedYesterdayTest()[pri:4, instance:com.idrx.qa.testcases.LoginPageTest@3fed2870]" started-at="2025-05-13T18:38:17 IST" name="vehicleInvoicedYesterdayTest" finished-at="2025-05-13T18:38:17 IST" duration-ms="174" status="FAIL">
-          <exception class="org.postgresql.util.PSQLException">
-            <message>
-              <![CDATA[The column name net_qty was not found in this ResultSet.]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.postgresql.util.PSQLException: The column name net_qty was not found in this ResultSet.
-at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:3085)
-at org.postgresql.jdbc.PgResultSet.getString(PgResultSet.java:2921)
-at com.idrx.qa.util.DBUtil.getExpectedValue(DBUtil.java:16)
-at com.idrx.qa.util.DBUtil.vehicleInvoicedYesterdayTestDBValue(DBUtil.java:54)
-at com.idrx.qa.testcases.LoginPageTest.vehicleInvoicedYesterdayTest(LoginPageTest.java:75)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:155)
-at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeSingleClass(TestNGDirectoryTestSuite.java:102)
-at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:91)
-at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:137)
-at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
-at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
-at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
-at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.postgresql.util.PSQLException -->
+        <test-method signature="vehicleInvoicedYesterdayTest()[pri:4, instance:com.idrx.qa.testcases.LoginPageTest@3fed2870]" started-at="2025-05-14T16:49:50 IST" name="vehicleInvoicedYesterdayTest" finished-at="2025-05-14T16:49:51 IST" duration-ms="317" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- vehicleInvoicedYesterdayTest -->
-        <test-method signature="vehicleInvoicedThisMonthTest()[pri:5, instance:com.idrx.qa.testcases.LoginPageTest@3fed2870]" started-at="2025-05-13T18:38:17 IST" name="vehicleInvoicedThisMonthTest" finished-at="2025-05-13T18:38:17 IST" duration-ms="177" status="FAIL">
-          <exception class="org.postgresql.util.PSQLException">
+        <test-method signature="vehicleInvoicedThisMonthTest()[pri:5, instance:com.idrx.qa.testcases.LoginPageTest@3fed2870]" started-at="2025-05-14T16:49:51 IST" name="vehicleInvoicedThisMonthTest" finished-at="2025-05-14T16:49:51 IST" duration-ms="358" status="FAIL">
+          <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[The column name net_qty was not found in this ResultSet.]]>
+              <![CDATA[vehicle Invoiced this month expected [8] but found [2]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.postgresql.util.PSQLException: The column name net_qty was not found in this ResultSet.
-at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:3085)
-at org.postgresql.jdbc.PgResultSet.getString(PgResultSet.java:2921)
-at com.idrx.qa.util.DBUtil.getExpectedValue(DBUtil.java:16)
-at com.idrx.qa.util.DBUtil.vehicleInvoicedThisMonthTestDBValue(DBUtil.java:61)
-at com.idrx.qa.testcases.LoginPageTest.vehicleInvoicedThisMonthTest(LoginPageTest.java:86)
+              <![CDATA[java.lang.AssertionError: vehicle Invoiced this month expected [8] but found [2]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1590)
+at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+at org.testng.Assert.assertEquals(Assert.java:132)
+at com.idrx.qa.util.TestUtil.assertEquals(TestUtil.java:85)
+at com.idrx.qa.testcases.LoginPageTest.vehicleInvoicedThisMonthTest(LoginPageTest.java:91)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -158,22 +119,23 @@ at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.postgresql.util.PSQLException -->
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- vehicleInvoicedThisMonthTest -->
-        <test-method signature="vehicleInvoicedButNotDeliveredTest()[pri:6, instance:com.idrx.qa.testcases.LoginPageTest@3fed2870]" started-at="2025-05-13T18:38:17 IST" name="vehicleInvoicedButNotDeliveredTest" finished-at="2025-05-13T18:38:17 IST" duration-ms="176" status="FAIL">
-          <exception class="org.postgresql.util.PSQLException">
+        <test-method signature="vehicleInvoicedButNotDeliveredTest()[pri:6, instance:com.idrx.qa.testcases.LoginPageTest@3fed2870]" started-at="2025-05-14T16:49:51 IST" name="vehicleInvoicedButNotDeliveredTest" finished-at="2025-05-14T16:49:51 IST" duration-ms="278" status="FAIL">
+          <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[The column name net_qty was not found in this ResultSet.]]>
+              <![CDATA[Vehicle Invoiced but not delivered expected [51] but found [69]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.postgresql.util.PSQLException: The column name net_qty was not found in this ResultSet.
-at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:3085)
-at org.postgresql.jdbc.PgResultSet.getString(PgResultSet.java:2921)
-at com.idrx.qa.util.DBUtil.getExpectedValue(DBUtil.java:16)
-at com.idrx.qa.util.DBUtil.vehicleInvoicedButNotDeliveredTestDBValue(DBUtil.java:68)
-at com.idrx.qa.testcases.LoginPageTest.vehicleInvoicedButNotDeliveredTest(LoginPageTest.java:97)
+              <![CDATA[java.lang.AssertionError: Vehicle Invoiced but not delivered expected [51] but found [69]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1590)
+at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+at org.testng.Assert.assertEquals(Assert.java:132)
+at com.idrx.qa.util.TestUtil.assertEquals(TestUtil.java:85)
+at com.idrx.qa.testcases.LoginPageTest.vehicleInvoicedButNotDeliveredTest(LoginPageTest.java:102)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -207,19 +169,19 @@ at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.postgresql.util.PSQLException -->
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- vehicleInvoicedButNotDeliveredTest -->
-        <test-method signature="currentMonthTest()[pri:7, instance:com.idrx.qa.testcases.LoginPageTest@3fed2870]" started-at="2025-05-13T18:38:17 IST" name="currentMonthTest" finished-at="2025-05-13T18:38:17 IST" duration-ms="204" status="PASS">
+        <test-method signature="currentMonthTest()[pri:7, instance:com.idrx.qa.testcases.LoginPageTest@3fed2870]" started-at="2025-05-14T16:49:51 IST" name="currentMonthTest" finished-at="2025-05-14T16:49:51 IST" duration-ms="317" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- currentMonthTest -->
-        <test-method signature="marchMonthSalesTrendTest()[pri:8, instance:com.idrx.qa.testcases.LoginPageTest@3fed2870]" started-at="2025-05-13T18:38:17 IST" name="marchMonthSalesTrendTest" finished-at="2025-05-13T18:38:18 IST" duration-ms="201" status="PASS">
+        <test-method signature="marchMonthSalesTrendTest()[pri:8, instance:com.idrx.qa.testcases.LoginPageTest@3fed2870]" started-at="2025-05-14T16:49:51 IST" name="marchMonthSalesTrendTest" finished-at="2025-05-14T16:49:52 IST" duration-ms="317" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- marchMonthSalesTrendTest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.idrx.qa.testcases.LoginPageTest@3fed2870]" started-at="2025-05-13T18:38:18 IST" name="tearDown" finished-at="2025-05-13T18:38:18 IST" duration-ms="300" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.idrx.qa.testcases.LoginPageTest@3fed2870]" started-at="2025-05-14T16:49:52 IST" name="tearDown" finished-at="2025-05-14T16:49:52 IST" duration-ms="422" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

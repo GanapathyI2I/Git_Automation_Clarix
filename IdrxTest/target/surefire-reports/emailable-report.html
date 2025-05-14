@@ -9,44 +9,29 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Surefire suite</th></tr>
-<tr><td><a href="#t0">Surefire test</a></td><td class="num">3</td><td class="num">0</td><td class="num">0</td><td class="num attn">4</td><td class="num">18,109</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Surefire test</a></td><td class="num">5</td><td class="num">0</td><td class="num">0</td><td class="num attn">3</td><td class="num">22,731</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Surefire suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Surefire test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="4">com.idrx.qa.testcases.LoginPageTest</td><td><a href="#m0">vehicleBookedYesterdayTest</a></td><td rowspan="1">1747141696925</td><td rowspan="1">201</td></tr><tr class="failedeven"><td><a href="#m1">vehicleInvoicedButNotDeliveredTest</a></td><td rowspan="1">1747141697485</td><td rowspan="1">176</td></tr><tr class="failedeven"><td><a href="#m2">vehicleInvoicedThisMonthTest</a></td><td rowspan="1">1747141697306</td><td rowspan="1">177</td></tr><tr class="failedeven"><td><a href="#m3">vehicleInvoicedYesterdayTest</a></td><td rowspan="1">1747141697130</td><td rowspan="1">174</td></tr><tr><th colspan="4">Surefire test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="3">com.idrx.qa.testcases.LoginPageTest</td><td><a href="#m4">currentMonthTest</a></td><td rowspan="1">1747141697663</td><td rowspan="1">204</td></tr><tr class="passedeven"><td><a href="#m5">marchMonthSalesTrendTest</a></td><td rowspan="1">1747141697868</td><td rowspan="1">201</td></tr><tr class="passedeven"><td><a href="#m6">vehicleSoldTest</a></td><td rowspan="1">1747141694493</td><td rowspan="1">2432</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Surefire suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Surefire test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="3">com.idrx.qa.testcases.LoginPageTest</td><td><a href="#m0">vehicleBookedYesterdayTest</a></td><td rowspan="1">1747221590378</td><td rowspan="1">307</td></tr><tr class="failedeven"><td><a href="#m1">vehicleInvoicedButNotDeliveredTest</a></td><td rowspan="1">1747221591381</td><td rowspan="1">278</td></tr><tr class="failedeven"><td><a href="#m2">vehicleInvoicedThisMonthTest</a></td><td rowspan="1">1747221591020</td><td rowspan="1">358</td></tr><tr><th colspan="4">Surefire test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="5">com.idrx.qa.testcases.LoginPageTest</td><td><a href="#m3">currentMonthTest</a></td><td rowspan="1">1747221591662</td><td rowspan="1">317</td></tr><tr class="passedeven"><td><a href="#m4">marchMonthSalesTrendTest</a></td><td rowspan="1">1747221591979</td><td rowspan="1">317</td></tr><tr class="passedeven"><td><a href="#m5">vehicleInvoicedYesterdayTest</a></td><td rowspan="1">1747221590701</td><td rowspan="1">317</td></tr><tr class="passedeven"><td><a href="#m6">vehicleSalesTest</a></td><td rowspan="1">1747221590102</td><td rowspan="1">274</td></tr><tr class="passedeven"><td><a href="#m7">vehicleSoldTest</a></td><td rowspan="1">1747221587296</td><td rowspan="1">2800</td></tr></tbody>
 </table>
-<h2>Surefire test</h2><h3 id="m0">com.idrx.qa.testcases.LoginPageTest#vehicleBookedYesterdayTest</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.postgresql.util.PSQLException: The column name net_qty was not found in this ResultSet.
-	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:3085)
-	at org.postgresql.jdbc.PgResultSet.getString(PgResultSet.java:2921)
-	at com.idrx.qa.util.DBUtil.getExpectedValue(DBUtil.java:16)
-	at com.idrx.qa.util.DBUtil.vehicleBookedYesterdayTestDBValue(DBUtil.java:47)
-	at com.idrx.qa.testcases.LoginPageTest.vehicleBookedYesterdayTest(LoginPageTest.java:64)
+<h2>Surefire test</h2><h3 id="m0">com.idrx.qa.testcases.LoginPageTest#vehicleBookedYesterdayTest</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: Vehicle Booked Yesterday expected [5] but found [0]
+	at com.idrx.qa.util.TestUtil.assertEquals(TestUtil.java:85)
+	at com.idrx.qa.testcases.LoginPageTest.vehicleBookedYesterdayTest(LoginPageTest.java:69)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-... Removed 30 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">com.idrx.qa.testcases.LoginPageTest#vehicleInvoicedButNotDeliveredTest</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.postgresql.util.PSQLException: The column name net_qty was not found in this ResultSet.
-	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:3085)
-	at org.postgresql.jdbc.PgResultSet.getString(PgResultSet.java:2921)
-	at com.idrx.qa.util.DBUtil.getExpectedValue(DBUtil.java:16)
-	at com.idrx.qa.util.DBUtil.vehicleInvoicedButNotDeliveredTestDBValue(DBUtil.java:68)
-	at com.idrx.qa.testcases.LoginPageTest.vehicleInvoicedButNotDeliveredTest(LoginPageTest.java:97)
+... Removed 34 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">com.idrx.qa.testcases.LoginPageTest#vehicleInvoicedButNotDeliveredTest</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: Vehicle Invoiced but not delivered expected [51] but found [69]
+	at com.idrx.qa.util.TestUtil.assertEquals(TestUtil.java:85)
+	at com.idrx.qa.testcases.LoginPageTest.vehicleInvoicedButNotDeliveredTest(LoginPageTest.java:102)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-... Removed 30 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m2">com.idrx.qa.testcases.LoginPageTest#vehicleInvoicedThisMonthTest</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.postgresql.util.PSQLException: The column name net_qty was not found in this ResultSet.
-	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:3085)
-	at org.postgresql.jdbc.PgResultSet.getString(PgResultSet.java:2921)
-	at com.idrx.qa.util.DBUtil.getExpectedValue(DBUtil.java:16)
-	at com.idrx.qa.util.DBUtil.vehicleInvoicedThisMonthTestDBValue(DBUtil.java:61)
-	at com.idrx.qa.testcases.LoginPageTest.vehicleInvoicedThisMonthTest(LoginPageTest.java:86)
+... Removed 34 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m2">com.idrx.qa.testcases.LoginPageTest#vehicleInvoicedThisMonthTest</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: vehicle Invoiced this month expected [8] but found [2]
+	at com.idrx.qa.util.TestUtil.assertEquals(TestUtil.java:85)
+	at com.idrx.qa.testcases.LoginPageTest.vehicleInvoicedThisMonthTest(LoginPageTest.java:91)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-... Removed 30 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m3">com.idrx.qa.testcases.LoginPageTest#vehicleInvoicedYesterdayTest</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.postgresql.util.PSQLException: The column name net_qty was not found in this ResultSet.
-	at org.postgresql.jdbc.PgResultSet.findColumn(PgResultSet.java:3085)
-	at org.postgresql.jdbc.PgResultSet.getString(PgResultSet.java:2921)
-	at com.idrx.qa.util.DBUtil.getExpectedValue(DBUtil.java:16)
-	at com.idrx.qa.util.DBUtil.vehicleInvoicedYesterdayTestDBValue(DBUtil.java:54)
-	at com.idrx.qa.testcases.LoginPageTest.vehicleInvoicedYesterdayTest(LoginPageTest.java:75)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-... Removed 30 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m4">com.idrx.qa.testcases.LoginPageTest#currentMonthTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m5">com.idrx.qa.testcases.LoginPageTest#marchMonthSalesTrendTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m6">com.idrx.qa.testcases.LoginPageTest#vehicleSoldTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+... Removed 34 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m3">com.idrx.qa.testcases.LoginPageTest#currentMonthTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m4">com.idrx.qa.testcases.LoginPageTest#marchMonthSalesTrendTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m5">com.idrx.qa.testcases.LoginPageTest#vehicleInvoicedYesterdayTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m6">com.idrx.qa.testcases.LoginPageTest#vehicleSalesTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m7">com.idrx.qa.testcases.LoginPageTest#vehicleSoldTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>
