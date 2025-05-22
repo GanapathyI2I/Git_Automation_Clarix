@@ -1,0 +1,25 @@
+<suite name="Idrx Test Automation Suite">
+    <listeners>
+        <listener class-name="com.idrx.qa.ExtentReportListener.ExtentReporterNG"/>
+    </listeners>
+
+    <test name="Retail Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.RetailPageTest"></class>
+        </classes>
+    </test>
+
+    <test name="Discount Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.DiscountPageTest"></class>
+        </classes>
+    </test>
+
+    <test name="Finance Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.FinancePageTest"></class>
+        </classes>
+    </test>
+
+</suite>    
+    
