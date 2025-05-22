@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.idrx.qa.testcases.ServiceUnitsTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 6, Errors: 0, Skipped: 0, Time elapsed: 28.00 s <<< FAILURE! -- in com.idrx.qa.testcases.ServiceUnitsTest
-com.idrx.qa.testcases.ServiceUnitsTest.noOfVehicleInflowTest -- Time elapsed: 3.760 s <<< FAILURE!
+Tests run: 6, Failures: 6, Errors: 0, Skipped: 0, Time elapsed: 31.97 s <<< FAILURE! -- in com.idrx.qa.testcases.ServiceUnitsTest
+com.idrx.qa.testcases.ServiceUnitsTest.noOfVehicleInflowTest -- Time elapsed: 3.870 s <<< FAILURE!
 java.lang.NullPointerException: Cannot invoke "com.idrx.qa.util.TestUtil.assertEquals(Object, Object, String)" because "this.testUtil" is null
 	at com.idrx.qa.testcases.ServiceUnitsTest.noOfVehicleInflowTest(ServiceUnitsTest.java:45)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
@@ -37,7 +37,7 @@ java.lang.NullPointerException: Cannot invoke "com.idrx.qa.util.TestUtil.assertE
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 
-com.idrx.qa.testcases.ServiceUnitsTest.noOfVehicleOutflowTest -- Time elapsed: 0.328 s <<< FAILURE!
+com.idrx.qa.testcases.ServiceUnitsTest.noOfVehicleOutflowTest -- Time elapsed: 0.269 s <<< FAILURE!
 java.lang.NullPointerException: Cannot invoke "com.idrx.qa.util.TestUtil.assertEquals(Object, Object, String)" because "this.testUtil" is null
 	at com.idrx.qa.testcases.ServiceUnitsTest.noOfVehicleOutflowTest(ServiceUnitsTest.java:57)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
@@ -72,7 +72,7 @@ java.lang.NullPointerException: Cannot invoke "com.idrx.qa.util.TestUtil.assertE
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 
-com.idrx.qa.testcases.ServiceUnitsTest.noOfVehicleInflowYesterdayTest -- Time elapsed: 0.279 s <<< FAILURE!
+com.idrx.qa.testcases.ServiceUnitsTest.noOfVehicleInflowYesterdayTest -- Time elapsed: 0.249 s <<< FAILURE!
 java.lang.NullPointerException: Cannot invoke "com.idrx.qa.util.TestUtil.assertEquals(Object, Object, String)" because "this.testUtil" is null
 	at com.idrx.qa.testcases.ServiceUnitsTest.noOfVehicleInflowYesterdayTest(ServiceUnitsTest.java:69)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
@@ -107,7 +107,7 @@ java.lang.NullPointerException: Cannot invoke "com.idrx.qa.util.TestUtil.assertE
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 
-com.idrx.qa.testcases.ServiceUnitsTest.noOfVehicleOutflowYesterdayTest -- Time elapsed: 0.265 s <<< FAILURE!
+com.idrx.qa.testcases.ServiceUnitsTest.noOfVehicleOutflowYesterdayTest -- Time elapsed: 0.225 s <<< FAILURE!
 java.lang.NullPointerException: Cannot invoke "com.idrx.qa.util.TestUtil.assertEquals(Object, Object, String)" because "this.testUtil" is null
 	at com.idrx.qa.testcases.ServiceUnitsTest.noOfVehicleOutflowYesterdayTest(ServiceUnitsTest.java:82)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
@@ -142,7 +142,7 @@ java.lang.NullPointerException: Cannot invoke "com.idrx.qa.util.TestUtil.assertE
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 
-com.idrx.qa.testcases.ServiceUnitsTest.noOfVehicleOutflowCurrentMonthTest -- Time elapsed: 0.282 s <<< FAILURE!
+com.idrx.qa.testcases.ServiceUnitsTest.noOfVehicleOutflowCurrentMonthTest -- Time elapsed: 0.271 s <<< FAILURE!
 java.lang.NullPointerException: Cannot invoke "com.idrx.qa.util.TestUtil.assertEquals(Object, Object, String)" because "this.testUtil" is null
 	at com.idrx.qa.testcases.ServiceUnitsTest.noOfVehicleOutflowCurrentMonthTest(ServiceUnitsTest.java:95)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
@@ -177,7 +177,7 @@ java.lang.NullPointerException: Cannot invoke "com.idrx.qa.util.TestUtil.assertE
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 
-com.idrx.qa.testcases.ServiceUnitsTest.noOfVehicleOutflowLastMonthTest -- Time elapsed: 0.330 s <<< FAILURE!
+com.idrx.qa.testcases.ServiceUnitsTest.noOfVehicleOutflowLastMonthTest -- Time elapsed: 0.281 s <<< FAILURE!
 java.lang.NullPointerException: Cannot invoke "com.idrx.qa.util.TestUtil.assertEquals(Object, Object, String)" because "this.testUtil" is null
 	at com.idrx.qa.testcases.ServiceUnitsTest.noOfVehicleOutflowLastMonthTest(ServiceUnitsTest.java:108)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)

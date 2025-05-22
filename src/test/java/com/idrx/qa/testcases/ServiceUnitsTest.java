@@ -107,6 +107,7 @@ public class ServiceUnitsTest extends TestBase {
         System.out.println("Actual Value: " + noOfVehicleOutflowLastMonthActualValue);
         testUtil.assertEquals(noOfVehicleOutflowLastMonthActualValue, noOfVehicleOutflowLastMonthExpectedValue,
                 "No Of Vehicle Outflow Last Month");
+        System.out.println("Git check");
     }
 
     @AfterClass
