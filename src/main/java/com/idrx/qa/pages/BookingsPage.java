@@ -68,6 +68,7 @@ public class BookingsPage extends TestBase {
     
     public String getSalesmanWisePendingBookings() {
         String salesmanWisePendingBookings = this.salesmanWisePendingBookings.get(8).getText();
+	System.out.println("get Salesman wise peding bookings")
         return salesmanWisePendingBookings;
     }
 
