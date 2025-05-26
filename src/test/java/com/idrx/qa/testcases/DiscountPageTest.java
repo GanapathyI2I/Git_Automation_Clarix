@@ -1,8 +1,5 @@
 package com.idrx.qa.testcases;
 
-
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.idrx.qa.base.TestBase;
@@ -12,16 +9,10 @@ import com.idrx.qa.pages.SalesPage;
 import com.idrx.qa.util.DBUtil;
 import com.idrx.qa.util.TestUtil;
 import com.idrx.qa.pages.DiscountPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-public class DiscountPageTest extends TestBase{
+public class DiscountPageTest extends TestBase {
 	LoginPage loginPage;
 	HomePage homePage;
 	SalesPage salesPage;
@@ -31,7 +22,7 @@ public class DiscountPageTest extends TestBase{
 	public DiscountPageTest() {
 		super();
 	}
-	
+
 	@BeforeClass
 	public void setUp() throws Exception {
 		initialization();
@@ -42,14 +33,14 @@ public class DiscountPageTest extends TestBase{
 		discountPage = new DiscountPage();
 		loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
 		Thread.sleep(10000);
-		TestUtil.switchToFrame();		
+		TestUtil.switchToFrame();
 		homePage.clickSalesTab();
 		salesPage.clickDiscountTab();
-	}	
-	
-	@Test(priority = 1, enabled=true)
+	}
+
+	@Test(priority = 1, enabled = true)
 	public void noOfDiscountUnitsTest() throws Exception {
-		
+
 		String noOfDiscountUnits = DBUtil.noOfDiscountUnitsGetDBValue();
 		System.out.println("--------No. of Discount Units--------");
 		int noOfDiscountUnitsExpectedValue = Integer.parseInt(noOfDiscountUnits);
@@ -60,20 +51,20 @@ public class DiscountPageTest extends TestBase{
 		testUtil.assertEquals(noOfDiscountUnitsActualValue, noOfDiscountUnitsExpectedValue, "No. of Discount Units");
 	}
 
-	@Test(priority = 2, enabled=true)
+	@Test(priority = 2, enabled = true)
 	public void totalDiscountValueTest() throws Exception {
 		String totalDiscountValue = DBUtil.totalDiscountValueGetDBValue();
 		System.out.println("--------Total Discount Value--------");
 		String totalDiscountValueExpectedValue = "₹ " + totalDiscountValue;
 		System.out.println("Expected Value: " + totalDiscountValueExpectedValue);
-		String totalDiscountValueActualValue = discountPage.getTotalDiscountValue();	
+		String totalDiscountValueActualValue = discountPage.getTotalDiscountValue();
 		System.out.println("Actual Value: " + totalDiscountValueActualValue);
 		testUtil.assertEquals(totalDiscountValueActualValue, totalDiscountValueExpectedValue, "Total Discount Value");
 	}
 
-	@Test(priority = 3, enabled=true)
+	@Test(priority = 3, enabled = true)
 	public void totalDiscountQtyTest() throws Exception {
-		
+
 		String totalDiscountQty = DBUtil.totalDiscountQtyGetDBValue();
 		System.out.println("--------Total Discount Qty--------");
 		int totalDiscountQtyExpectedValue = Integer.parseInt(totalDiscountQty);
@@ -84,7 +75,7 @@ public class DiscountPageTest extends TestBase{
 		testUtil.assertEquals(totalDiscountQtyActualValue, totalDiscountQtyExpectedValue, "Total Discount Qty");
 	}
 
-	@Test(priority = 4, enabled=true)
+	@Test(priority = 4, enabled = true)
 	public void totalDiscountAmountTest() throws Exception {
 		String totalDiscountAmount = DBUtil.totalDiscountAmountGetDBValue();
 		System.out.println("--------Total Discount Amount--------");
@@ -92,12 +83,13 @@ public class DiscountPageTest extends TestBase{
 		System.out.println("Expected Value: " + totalDiscountAmountExpectedValue);
 		String totalDiscountAmountActualValue = discountPage.getTotalDiscountAmount();
 		System.out.println("Actual Value: " + totalDiscountAmountActualValue);
-		testUtil.assertEquals(totalDiscountAmountActualValue, totalDiscountAmountExpectedValue, "Total Discount Amount");
+		testUtil.assertEquals(totalDiscountAmountActualValue, totalDiscountAmountExpectedValue,
+				"Total Discount Amount");
 	}
 
-	@Test(priority = 7, enabled=true)
+	@Test(priority = 7, enabled = true)
 	public void currentMonthUnitsTest() throws Exception {
-		
+
 		String currentMonthUnits = DBUtil.currentMonthUnitsGetDBValue();
 		System.out.println("--------Current Month Units--------");
 		int currentMonthUnitsExpectedValue = Integer.parseInt(currentMonthUnits);
@@ -110,7 +102,7 @@ public class DiscountPageTest extends TestBase{
 		testUtil.assertEquals(currentMonthUnitsActualValue, currentMonthUnitsExpectedValue, "Current Month Units");
 	}
 
-	@Test(priority = 8, enabled=true)
+	@Test(priority = 8, enabled = true)
 	public void previousMonthUnitsTest() throws Exception {
 		String previousMonthUnits = DBUtil.previousMonthUnitsGetDBValue();
 		System.out.println("--------Previous Month Units--------");
@@ -122,7 +114,7 @@ public class DiscountPageTest extends TestBase{
 		testUtil.assertEquals(previousMonthUnitsActualValue, previousMonthUnitsExpectedValue, "Previous Month Units");
 	}
 
-	@Test(priority = 5, enabled=true)
+	@Test(priority = 5, enabled = true)
 	public void currentMonthValueTest() throws Exception {
 		String currentMonthValue = DBUtil.currentMonthValueGetDBValue();
 		System.out.println("--------Current Month Value--------");
@@ -133,7 +125,7 @@ public class DiscountPageTest extends TestBase{
 		testUtil.assertEquals(currentMonthValueActualValue, currentMonthValueExpectedValue, "Current Month Value");
 	}
 
-	@Test(priority = 6, enabled=true)
+	@Test(priority = 6, enabled = true)
 	public void previousMonthValueTest() throws Exception {
 		String previousMonthValue = DBUtil.previousMonthValueGetDBValue();
 		System.out.println("--------Previous Month Value--------");
@@ -143,7 +135,6 @@ public class DiscountPageTest extends TestBase{
 		System.out.println("Actual Value: " + previousMonthValueActualValue);
 		testUtil.assertEquals(previousMonthValueActualValue, previousMonthValueExpectedValue, "Previous Month Value");
 	}
-
 
 	@AfterClass
 	public void tearDown() {

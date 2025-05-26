@@ -9,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 import com.idrx.qa.base.TestBase;
 
 public class BookingsPage extends TestBase {
-        
 
     @FindBy(xpath = "//*[local-name()='svg' and contains(@aria-label, \"Yesterday's Booking\")]//*[local-name()='tspan']")
     WebElement yesterdayBooking;
@@ -26,20 +25,15 @@ public class BookingsPage extends TestBase {
     @FindBy(xpath = "//*[@class = 'labelContainerGraphicsContext']//*[@class='label-container']//*[@class='label-tspan']")
     List<WebElement> currentMonth;
 
-    //Need to change xpath to get the correct value
+    // Need to change xpath to get the correct value
     @FindBy(xpath = "//div[@class='scrollable-cells-viewport ']//div[text()='Total']/../div")
     List<WebElement> salesmanWisePendingBookings;
 
-    
-    
+    // initializing the page objects
 
-    //initializing the page objects
-    
     public BookingsPage() {
         PageFactory.initElements(driver, this);
     }
-
-    
 
     public String getYesterdayBooking() {
         String yesterdayBooking = this.yesterdayBooking.getText();
@@ -55,7 +49,7 @@ public class BookingsPage extends TestBase {
         String pendingBookings = this.pendingBookings.get(4).getText();
         return pendingBookings;
     }
-    
+
     public String getPreviousMonth() {
         String previousMonth = this.previousMonth.get(5).getText();
         return previousMonth;
@@ -65,12 +59,11 @@ public class BookingsPage extends TestBase {
         String currentMonth = this.currentMonth.get(2).getText();
         return currentMonth;
     }
-    
+
     public String getSalesmanWisePendingBookings() {
         String salesmanWisePendingBookings = this.salesmanWisePendingBookings.get(8).getText();
-	System.out.println("get Salesman wise peding bookings")
+        System.out.println("get Salesman wise peding bookings");
         return salesmanWisePendingBookings;
     }
 
-    
 }

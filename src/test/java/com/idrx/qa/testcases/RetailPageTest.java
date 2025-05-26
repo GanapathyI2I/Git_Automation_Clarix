@@ -29,10 +29,10 @@ public class RetailPageTest extends TestBase {
 		salesPage = new SalesPage();
 		testUtil = new TestUtil();
 		loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-		Thread.sleep(10000);
+		Thread.sleep(20000);
 		TestUtil.switchToFrame();
 		homePage.clickSalesTab();
-		Thread.sleep(5000);
+
 	}
 
 	@Test(priority = 1, enabled = true)
