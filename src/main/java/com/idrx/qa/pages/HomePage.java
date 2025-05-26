@@ -28,4 +28,9 @@ public class HomePage extends TestBase {
 		WebElement serviceTab = this.menuButton.get(11);
 		serviceTab.click();
 	}
+
+	public void clickStocksTab() {
+		WebElement stocksTab = this.menuButton.get(19);
+		stocksTab.click();
+	}
 }
