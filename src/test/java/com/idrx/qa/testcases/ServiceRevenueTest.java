@@ -30,6 +30,7 @@ public class ServiceRevenueTest extends TestBase {
         TestUtil.switchToFrame();
         homePage.clickServiceTab();
         servicePage.clickServiceRevenueTab();
+        Thread.sleep(5000);
     }
 
     @Test(priority = 1, enabled = true)
