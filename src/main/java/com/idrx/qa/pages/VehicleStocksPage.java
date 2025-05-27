@@ -67,22 +67,22 @@ public class VehicleStocksPage extends TestBase {
     }
 
     public String getGreaterThan30DaysStocksValue() {
-        WebElement greaterThan30DaysStocksValue = this.monthWiseStock.get(2);
+        WebElement greaterThan30DaysStocksValue = this.value.get(2);
         return greaterThan30DaysStocksValue.getText();
     }
 
     public String getGreaterThan60DaysStocksValue() {
-        WebElement greaterThan60DaysStocksValue = this.monthWiseStock.get(3);
+        WebElement greaterThan60DaysStocksValue = this.value.get(3);
         return greaterThan60DaysStocksValue.getText();
     }
 
     public String getGreaterThan30DaysStocksUnits() {
-        WebElement greaterThan30DaysStocksunits = this.monthWiseStock.get(3);
+        WebElement greaterThan30DaysStocksunits = this.stockQty.get(3);
         return greaterThan30DaysStocksunits.getText();
     }
 
     public String getGreaterThan60DaysStocksUnits() {
-        WebElement greaterThan60DaysStocksUnits = this.monthWiseStock.get(4);
+        WebElement greaterThan60DaysStocksUnits = this.stockQty.get(4);
         return greaterThan60DaysStocksUnits.getText();
     }
 
