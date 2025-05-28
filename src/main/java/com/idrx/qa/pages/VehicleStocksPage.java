@@ -32,6 +32,9 @@ public class VehicleStocksPage extends TestBase {
     @FindBy(xpath = "//*[local-name()='svg' and starts-with(@aria-label, 'Vehicle Value')]//*[local-name()='tspan']")
     WebElement accessoriesAndPartsValue;
 
+    @FindBys({ @FindBy(css = "svg.tileSVG") })
+    List<WebElement> menuButton;
+
     // Initializing the page objects
 
     public VehicleStocksPage() {
@@ -84,6 +87,11 @@ public class VehicleStocksPage extends TestBase {
     public String getGreaterThan60DaysStocksUnits() {
         WebElement greaterThan60DaysStocksUnits = this.stockQty.get(4);
         return greaterThan60DaysStocksUnits.getText();
+    }
+
+    public void clickPartsStocksTab() {
+        WebElement partsStocksTab = this.menuButton.get(7);
+        partsStocksTab.click();
     }
 
 }

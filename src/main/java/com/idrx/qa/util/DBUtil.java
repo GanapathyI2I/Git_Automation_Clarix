@@ -781,4 +781,215 @@ public class DBUtil {
             return String.valueOf(num);
         }
     }
+
+    // PartStocks Page DB Values
+
+    public static String partsQtyGetDbValue() throws Exception {
+        String sql = "SELECT (COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_date >= date_trunc('month', CURRENT_DATE) AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty = 1), 0) + COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty IN (-1, 0)), 0)) AS net_qty;";
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        return dbValue;
+    }
+
+    public static String totalStockValueGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        if (num >= 10000000) {
+            double value = num / 10000000.0;
+            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
+            System.out.println("finalValueCr: " + finalValueCr);
+            return finalValueCr;
+        } else if (num >= 100000) {
+            double value = num / 100000.0;
+            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
+            System.out.println("finalValueL: " + finalValueL);
+            return finalValueL;
+        } else if (num >= 1000) {
+            double value = num / 1000.0;
+            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
+            System.out.println("finalValueK: " + finalValueK);
+            return finalValueK;
+        } else {
+            return String.valueOf(num);
+        }
+    }
+
+    public static String accessoriesAndPartsValueGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        if (num >= 10000000) {
+            double value = num / 10000000.0;
+            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
+            System.out.println("finalValueCr: " + finalValueCr);
+            return finalValueCr;
+        } else if (num >= 100000) {
+            double value = num / 100000.0;
+            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
+            System.out.println("finalValueL: " + finalValueL);
+            return finalValueL;
+        } else if (num >= 1000) {
+            double value = num / 1000.0;
+            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
+            System.out.println("finalValueK: " + finalValueK);
+            return finalValueK;
+        } else {
+            return String.valueOf(num);
+        }
+    }
+
+    public static String excessStockQtyGetDBValue() throws Exception {
+        String sql = "SELECT (COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_date >= date_trunc('month', CURRENT_DATE) AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty = 1), 0) + COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty IN (-1, 0)), 0)) AS net_qty;";
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        return dbValue;
+    }
+
+    public static String excessStockValueGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        if (num >= 10000000) {
+            double value = num / 10000000.0;
+            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
+            System.out.println("finalValueCr: " + finalValueCr);
+            return finalValueCr;
+        } else if (num >= 100000) {
+            double value = num / 100000.0;
+            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
+            System.out.println("finalValueL: " + finalValueL);
+            return finalValueL;
+        } else if (num >= 1000) {
+            double value = num / 1000.0;
+            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
+            System.out.println("finalValueK: " + finalValueK);
+            return finalValueK;
+        } else {
+            return String.valueOf(num);
+        }
+    }
+
+    public static String currentMonthPartsQtyTrendGetDBValue() throws Exception {
+        String sql = "SELECT (COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_date >= date_trunc('month', CURRENT_DATE) AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty = 1), 0) + COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty IN (-1, 0)), 0)) AS net_qty;";
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        return dbValue;
+    }
+
+    public static String lastMonthPartsQtyTrendGetDBValue() throws Exception {
+        String sql = "SELECT (COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_date >= date_trunc('month', CURRENT_DATE) AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty = 1), 0) + COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty IN (-1, 0)), 0)) AS net_qty;";
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        return dbValue;
+    }
+
+    public static String currentMonthPartsValueTrendGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        if (num >= 10000000) {
+            double value = num / 10000000.0;
+            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
+            System.out.println("finalValueCr: " + finalValueCr);
+            return finalValueCr;
+        } else if (num >= 100000) {
+            double value = num / 100000.0;
+            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
+            System.out.println("finalValueL: " + finalValueL);
+            return finalValueL;
+        } else if (num >= 1000) {
+            double value = num / 1000.0;
+            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
+            System.out.println("finalValueK: " + finalValueK);
+            return finalValueK;
+        } else {
+            return String.valueOf(num);
+        }
+    }
+
+    public static String lastMonthPartsValueTrendGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        if (num >= 10000000) {
+            double value = num / 10000000.0;
+            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
+            System.out.println("finalValueCr: " + finalValueCr);
+            return finalValueCr;
+        } else if (num >= 100000) {
+            double value = num / 100000.0;
+            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
+            System.out.println("finalValueL: " + finalValueL);
+            return finalValueL;
+        } else if (num >= 1000) {
+            double value = num / 1000.0;
+            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
+            System.out.println("finalValueK: " + finalValueK);
+            return finalValueK;
+        } else {
+            return String.valueOf(num);
+        }
+    }
 }
