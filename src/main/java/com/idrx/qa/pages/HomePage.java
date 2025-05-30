@@ -32,4 +32,9 @@ public class HomePage extends TestBase {
 		WebElement stocksTab = this.menuButton.get(24);
 		stocksTab.click();
 	}
+
+	public void clickPayablesTab() {
+		WebElement payablesTab = this.menuButton.get(28);
+		payablesTab.click();
+	}
 }

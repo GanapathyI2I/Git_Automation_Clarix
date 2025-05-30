@@ -3,6 +3,7 @@ package com.idrx.qa.util;
 import java.sql.*;
 
 import com.idrx.qa.base.TestBase;
+import com.idrx.qa.util.TestUtil;
 
 public class DBUtil {
     public static String getExpectedValue(String sql, String column) throws Exception {
@@ -64,24 +65,8 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
 
     public static String vehicleBookedYesterdayTestDBValue() throws Exception {
@@ -148,24 +133,8 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
 
     public static String totalDiscountQtyGetDBValue() throws Exception {
@@ -191,24 +160,8 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
 
     public static String currentMonthUnitsGetDBValue() throws Exception {
@@ -240,24 +193,8 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
 
     public static String previousMonthValueGetDBValue() throws Exception {
@@ -277,24 +214,8 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
 
     // Finance Page DB Values
@@ -359,24 +280,8 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
 
     public static String avgRevPerVehicleGetDBValue() throws Exception {
@@ -396,24 +301,8 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
 
     public static String currentMonthRevenueGetDBValue() throws Exception {
@@ -433,24 +322,8 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
 
     public static String previousMonthRevenueGetDBValue() throws Exception {
@@ -470,24 +343,8 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
 
     // ServiceUnits Page DB Values
@@ -553,24 +410,8 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
 
     public static String accessoriesAndPartsGetDBValue() throws Exception {
@@ -590,24 +431,8 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
 
     public static String greaterThan30DaysStocksUnitsGetDbValue() throws Exception {
@@ -639,24 +464,8 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
 
     public static String greaterThan60DaysStockValueGetDBValue() throws Exception {
@@ -676,24 +485,8 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
 
     public static String currentMonthStocksUnitsGetDbValue() throws Exception {
@@ -725,24 +518,8 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
 
     public static String lastMonthStockValueGetDBValue() throws Exception {
@@ -762,24 +539,8 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
 
     // PartStocks Page DB Values
@@ -807,24 +568,8 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
 
     public static String accessoriesAndPartsValueGetDBValue() throws Exception {
@@ -844,24 +589,8 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
 
     public static String excessStockQtyGetDBValue() throws Exception {
@@ -887,24 +616,8 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
 
     public static String currentMonthPartsQtyTrendGetDBValue() throws Exception {
@@ -936,24 +649,8 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
 
     public static String lastMonthPartsValueTrendGetDBValue() throws Exception {
@@ -973,23 +670,220 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        if (num >= 10000000) {
-            double value = num / 10000000.0;
-            String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
-            System.out.println("finalValueCr: " + finalValueCr);
-            return finalValueCr;
-        } else if (num >= 100000) {
-            double value = num / 100000.0;
-            String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
-            System.out.println("finalValueL: " + finalValueL);
-            return finalValueL;
-        } else if (num >= 1000) {
-            double value = num / 1000.0;
-            String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
-            System.out.println("finalValueK: " + finalValueK);
-            return finalValueK;
-        } else {
-            return String.valueOf(num);
-        }
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
     }
+
+    // Payables Page DB Values
+
+    public static String totalPayablesGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
+    }
+
+    public static String mahindraPayablesGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
+    }
+
+    public static String salesPayablesGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
+    }
+
+    public static String sparesPayablesGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
+    }
+
+    public static String othersPayablesGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
+    }
+
+    public static String greaterThan60DaysPendingPayablesGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
+    }
+
+    public static String greaterThan30DaysPendingPayablesGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
+    }
+
+    public static String servicePayablesGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
+    }
+
+    public static String currentMonthPayablesTrendGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
+    }
+
+    public static String lastMonthPayablesTrendGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
+    }
+
 }
