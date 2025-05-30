@@ -41,13 +41,13 @@ public class VehicleStocksTest extends TestBase {
     }
 
     @Test(priority = 2, enabled = true)
-    public void stockValueTest() throws Exception {
-        String stockValueExpectedValue = DBUtil.stockValueGetDBValue();
-        System.out.println("--------Stock Value--------");
-        System.out.println("Expected Value: " + stockValueExpectedValue);
-        String stockValueActualValue = vehicleStocksPage.getStockValue();
-        System.out.println("Actual Value: " + stockValueActualValue);
-        testUtil.assertEquals(stockValueActualValue, stockValueExpectedValue, "Stock Value");
+    public void getTotalStockValueTest() throws Exception {
+        String totalStockValueExpectedValue = DBUtil.totalStockValueGetDBValue();
+        System.out.println("--------Total Stock Value--------");
+        System.out.println("Expected Value: " + totalStockValueExpectedValue);
+        String totalStockValueActualValue = vehicleStocksPage.getStockValue();
+        System.out.println("Actual Value: " + totalStockValueActualValue);
+        testUtil.assertEquals(totalStockValueActualValue, totalStockValueExpectedValue, "Stock Value");
     }
 
     @Test(priority = 3, enabled = true)
