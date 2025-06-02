@@ -156,4 +156,9 @@ public class TestUtil extends TestBase {
 	public static void scrollDownBy(WebDriver driver, int pixels) {
 		((JavascriptExecutor) driver).executeScript("window.scrollBy(0, arguments[0]);", pixels);
 	}
+
+	// Scroll to particular element
+	public static void scrollToElement(WebDriver driver, WebElement element) {
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+	}
 }

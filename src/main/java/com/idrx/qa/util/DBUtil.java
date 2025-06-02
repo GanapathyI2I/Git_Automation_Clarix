@@ -886,4 +886,128 @@ public class DBUtil {
         return numConversion;
     }
 
+    public static String netProfitGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
+    }
+
+    public static String profitPercentageGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
+    }
+
+    public static String currentMonthProfitValueGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
+    }
+
+    public static String lastMonthProfitValueGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
+    }
+
+    public static String currentMonthProfitPercentageGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
+    }
+
+    public static String lastMonthProfitPercentageGetDBValue() throws Exception {
+        String sql = "SELECT " +
+                "(COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = 1), 0) - " +
+                "COALESCE((SELECT SUM(invoice_amount) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
+                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                +
+                "AND qty = -1), 0)) AS net_qty;";
+        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        double num = Double.parseDouble(dbValue);
+        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        return numConversion;
+    }
+
 }
