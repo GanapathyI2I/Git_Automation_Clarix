@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import com.idrx.qa.base.TestBase;
+import com.idrx.qa.util.TestUtil;
 
 public class HomePage extends TestBase {
 
@@ -36,5 +37,12 @@ public class HomePage extends TestBase {
 	public void clickPayablesTab() {
 		WebElement payablesTab = this.menuButton.get(28);
 		payablesTab.click();
+	}
+
+	public void clickProfitTab() throws InterruptedException {
+		Thread.sleep(5000);
+		TestUtil.scrollToElement(driver, this.menuButton.get(48));
+		WebElement profitTab = this.menuButton.get(48);
+		profitTab.click();
 	}
 }
