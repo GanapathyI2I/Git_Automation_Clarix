@@ -350,37 +350,74 @@ public class DBUtil {
     // ServiceUnits Page DB Values
 
     public static String noOfVehicleInflowGetDbValue() throws Exception {
-        String sql = "SELECT (COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_date >= date_trunc('month', CURRENT_DATE) AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty = 1), 0) + COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty IN (-1, 0)), 0)) AS net_qty;";
+        String sql = "SELECT " +
+                "(SELECT COUNT(DISTINCT jobcard_no) " +
+                "FROM commondatamodel.service_inflow_outflow " +
+                "WHERE service_category_type = 'Service Inflow' " +
+                "AND EXTRACT(MONTH FROM jobcard_date) = EXTRACT(MONTH FROM CURRENT_DATE) " +
+                "AND EXTRACT(YEAR FROM jobcard_date) = EXTRACT(YEAR FROM CURRENT_DATE) " +
+                ") AS net_qty;";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
     }
 
     public static String noOfVehicleOutflowGetDbValue() throws Exception {
-        String sql = "SELECT (COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_date >= date_trunc('month', CURRENT_DATE) AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty = 1), 0) + COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty IN (-1, 0)), 0)) AS net_qty;";
+        String sql = "SELECT " +
+                "(SELECT COUNT(DISTINCT jobcard_no) " +
+                "FROM commondatamodel.service_inflow_outflow " +
+                "WHERE service_category_type = 'Service Outflow' " +
+                "AND Bill_status = 'Billed' " +
+                "AND EXTRACT(MONTH FROM bill_date) = EXTRACT(MONTH FROM CURRENT_DATE) " +
+                "AND EXTRACT(YEAR FROM bill_date) = EXTRACT(YEAR FROM CURRENT_DATE) " +
+                ") AS net_qty;";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
     }
 
     public static String noOfVehicleInflowYesterdayGetDbValue() throws Exception {
-        String sql = "SELECT (COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_date >= date_trunc('month', CURRENT_DATE) AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty = 1), 0) + COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty IN (-1, 0)), 0)) AS net_qty;";
+        String sql = "SELECT " +
+                "(SELECT COUNT(DISTINCT jobcard_no) " +
+                "FROM commondatamodel.service_inflow_outflow " +
+                "WHERE service_category_type = 'Service Inflow' " +
+                "AND DATE(jobcard_date) = CURRENT_DATE - INTERVAL '1 day' " +
+                ") AS net_qty;";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
     }
 
     public static String noOfVehicleOutflowYesterdayGetDbValue() throws Exception {
-        String sql = "SELECT (COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_date >= date_trunc('month', CURRENT_DATE) AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty = 1), 0) + COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty IN (-1, 0)), 0)) AS net_qty;";
+        String sql = "SELECT " +
+                "(SELECT COUNT(DISTINCT jobcard_no) " +
+                "FROM commondatamodel.service_inflow_outflow " +
+                "WHERE service_category_type = 'Service Outflow' " +
+                "AND Bill_status = 'Billed' " +
+                "AND DATE(bill_date) = CURRENT_DATE - INTERVAL '1 day' " +
+                ") AS net_qty;";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
     }
 
     public static String outflowCurrentMonthGetDbValue() throws Exception {
-        String sql = "SELECT (COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_date >= date_trunc('month', CURRENT_DATE) AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty = 1), 0) + COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty IN (-1, 0)), 0)) AS net_qty;";
+        String sql = "SELECT " +
+                "(SELECT COUNT(DISTINCT jobcard_no) " +
+                "FROM commondatamodel.service_inflow_outflow " +
+                "WHERE service_category_type = 'Service Outflow' " +
+                "AND Bill_status = 'Billed' " +
+                "AND EXTRACT(MONTH FROM bill_date) = EXTRACT(MONTH FROM CURRENT_DATE) " +
+                "AND EXTRACT(YEAR FROM bill_date) = EXTRACT(YEAR FROM CURRENT_DATE) " +
+                ") AS net_qty;";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
     }
 
     public static String outflowLastMonthGetDbValue() throws Exception {
-        String sql = "SELECT (COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_date >= date_trunc('month', CURRENT_DATE) AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty = 1), 0) + COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty IN (-1, 0)), 0)) AS net_qty;";
+        String sql = "SELECT " +
+                "(SELECT COUNT(DISTINCT jobcard_no) " +
+                "FROM commondatamodel.service_inflow_outflow " +
+                "WHERE service_category_type = 'Service Outflow' " +
+                "AND Bill_status = 'Billed' " +
+                "AND DATE_TRUNC('month', bill_date) = DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month' " +
+                ") AS net_qty;";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
     }

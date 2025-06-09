@@ -85,14 +85,14 @@ public class SalesPage extends TestBase {
         return salesTargetAchieved;
     }
 
-    public String getAprilMonthWiseSalesTrend() {
-        WebElement aprilMonthSales = this.monthWiseSalesTrend.get(1);
-        return aprilMonthSales.getText();
+    public String getCurrentMonthWiseSalesTrend() {
+        WebElement currentMonthSales = this.monthWiseSalesTrend.get(1);
+        return currentMonthSales.getText();
     }
 
-    public String getMarchMonthWiseSalesTrend() {
-        WebElement aprilMonthSales = this.monthWiseSalesTrend.get(5);
-        return aprilMonthSales.getText();
+    public String getLastMonthWiseSalesTrend() {
+        WebElement lastMonthSales = this.monthWiseSalesTrend.get(3);
+        return lastMonthSales.getText();
     }
 
     public void clickBookingsTab() {

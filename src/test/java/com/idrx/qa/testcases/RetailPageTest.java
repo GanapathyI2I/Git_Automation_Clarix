@@ -112,22 +112,23 @@ public class RetailPageTest extends TestBase {
 	public void currentMonthTest() throws Exception {
 
 		String currentMonth = DBUtil.currentMonthTestDBValue();
-		System.out.println("--------Qty Trend - Apr'2025--------");
+		System.out.println("--------Qty Trend - Current Month--------");
 		int currentMonthExpectedValue = Integer.parseInt(currentMonth);
-		String aprilMonthSalesTrendVal = salesPage.getAprilMonthWiseSalesTrend();
-		int aprilMonthSalesTrendValActualValue = Integer.parseInt(aprilMonthSalesTrendVal);
-		testUtil.assertEquals(aprilMonthSalesTrendValActualValue, currentMonthExpectedValue, "Qty Trend - Apr'2025");
+		String currentMonthSalesTrendVal = salesPage.getCurrentMonthWiseSalesTrend();
+		int currentMonthSalesTrendValActualValue = Integer.parseInt(currentMonthSalesTrendVal);
+		testUtil.assertEquals(currentMonthSalesTrendValActualValue, currentMonthExpectedValue,
+				"Qty Trend - Current Month");
 	}
 
 	@Test(priority = 8, enabled = true)
 	public void marchMonthSalesTrendTest() throws Exception {
 
 		String lastMonthSalesTrend = DBUtil.lastMonthTestDBValue();
-		System.out.println("--------Qty Trend - Mar'2025--------");
+		System.out.println("--------Qty Trend - Last Month--------");
 		int lastMonthExpectedValue = Integer.parseInt(lastMonthSalesTrend);
-		String marchMonthSalesTrendVal = salesPage.getMarchMonthWiseSalesTrend();
-		int marchMonthSalesTrendValActualValue = Integer.parseInt(marchMonthSalesTrendVal);
-		testUtil.assertEquals(marchMonthSalesTrendValActualValue, lastMonthExpectedValue, "Qty Trend - Mar'2025");
+		String lastMonthSalesTrendVal = salesPage.getLastMonthWiseSalesTrend();
+		int lastMonthSalesTrendValActualValue = Integer.parseInt(lastMonthSalesTrendVal);
+		testUtil.assertEquals(lastMonthSalesTrendValActualValue, lastMonthExpectedValue, "Qty Trend - Last Month");
 	}
 
 	// @Test(priority = 9, enabled=false)

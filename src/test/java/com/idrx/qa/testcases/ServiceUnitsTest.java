@@ -27,6 +27,7 @@ public class ServiceUnitsTest extends TestBase {
         homePage = new HomePage();
         servicePage = new ServicePage();
         serviceUnitsPage = new ServiceUnitsPage();
+        testUtil = new TestUtil();
         loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
         Thread.sleep(10000);
         TestUtil.switchToFrame();
