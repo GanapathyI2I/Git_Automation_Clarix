@@ -36,6 +36,7 @@ public class DiscountPageTest extends TestBase {
 		TestUtil.switchToFrame();
 		homePage.clickSalesTab();
 		salesPage.clickDiscountTab();
+		Thread.sleep(5000);
 	}
 
 	@Test(priority = 1, enabled = true)

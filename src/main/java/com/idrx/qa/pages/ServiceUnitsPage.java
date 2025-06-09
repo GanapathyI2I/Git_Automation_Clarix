@@ -51,7 +51,7 @@ public class ServiceUnitsPage extends TestBase {
     }
 
     public String getNoOfVehicleOutflowLastMonth() {
-        WebElement noOfVehicleOutflowLastMonth = this.monthwiseOutflowWebElements.get(13);
+        WebElement noOfVehicleOutflowLastMonth = this.monthwiseOutflowWebElements.get(10);
         return noOfVehicleOutflowLastMonth.getText();
     }
 
