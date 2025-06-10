@@ -18,8 +18,12 @@ public class PartsStocksPage extends TestBase {
     List<WebElement> stockValue;
 
     @FindBys({
-            @FindBy(xpath = "//*[@class = \"labelContainerGraphicsContext\"]//*[@class=\"label-container\"]//*[@class=\"label-tspan\"]") })
-    List<WebElement> monthWiseTrend;
+            @FindBy(xpath = "//*[text()='Parts Qty Trend']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='svg' and @class='cartesianChart']//*[local-name()='svg' and @class='svgScrollable']//*[local-name()='g' and @class='labelContainerGraphicsContext']//*[local-name()='g']//*[local-name()='text']//*[local-name()='tspan']") })
+    List<WebElement> monthWisePartsQtyTrend;
+
+    @FindBys({
+            @FindBy(xpath = "//*[text()='Parts Value Trend']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='svg' and @class='cartesianChart']//*[local-name()='svg' and @class='svgScrollable']//*[local-name()='g' and @class='labelContainerGraphicsContext']//*[local-name()='g']//*[local-name()='text']//*[local-name()='tspan']") })
+    List<WebElement> monthWisePartsValueTrend;
 
     @FindBys({
             @FindBy(xpath = "//*[@role='gridcell' and text() ='Total']//following-sibling::div[@column-index='2' and @aria-colindex='4']") })
@@ -56,22 +60,22 @@ public class PartsStocksPage extends TestBase {
     }
 
     public String getCurrentMonthPartsQtyTrend() {
-        WebElement currentMonthPartsQtyTrend = this.monthWiseTrend.get(2);
+        WebElement currentMonthPartsQtyTrend = this.monthWisePartsQtyTrend.get(1);
         return currentMonthPartsQtyTrend.getText();
     }
 
     public String getCurrentMonthPartsValueTrend() {
-        WebElement currentMonthPartsValueTrend = this.monthWiseTrend.get(4);
+        WebElement currentMonthPartsValueTrend = this.monthWisePartsValueTrend.get(1);
         return currentMonthPartsValueTrend.getText();
     }
 
     public String getLastMonthPartsQtyTrend() {
-        WebElement lastMonthPartsQtyTrend = this.monthWiseTrend.get(1);
+        WebElement lastMonthPartsQtyTrend = this.monthWisePartsQtyTrend.get(2);
         return lastMonthPartsQtyTrend.getText();
     }
 
     public String getLastMonthPartsValueTrend() {
-        WebElement lastMonthPartsValueTrend = this.monthWiseTrend.get(3);
+        WebElement lastMonthPartsValueTrend = this.monthWisePartsValueTrend.get(2);
         return lastMonthPartsValueTrend.getText();
     }
 
