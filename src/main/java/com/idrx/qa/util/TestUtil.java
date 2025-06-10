@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,6 +20,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.idrx.qa.base.TestBase;
 
@@ -161,4 +164,28 @@ public class TestUtil extends TestBase {
 	public static void scrollToElement(WebDriver driver, WebElement element) {
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
 	}
+
+	/**
+	 * Waits for the given WebElement to be visible on the page.
+	 *
+	 * @param driver           The WebDriver instance.
+	 * @param element          The WebElement to wait for.
+	 * @param timeoutInSeconds The maximum time to wait in seconds.
+	 */
+	public static void waitForVisible(WebDriver driver, WebElement element, int timeoutInSeconds) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
+		wait.until(ExpectedConditions.visibilityOf(element));
+	}
+
+	/**
+	 * Waits for the given WebElement to be visible on the page with a default
+	 * timeout of 10 seconds.
+	 *
+	 * @param driver  The WebDriver instance.
+	 * @param element The WebElement to wait for.
+	 */
+	public static void waitForVisible(WebDriver driver, WebElement element) {
+		waitForVisible(driver, element, 10);
+	}
+
 }

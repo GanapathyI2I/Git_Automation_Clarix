@@ -19,8 +19,12 @@ public class ProfitPage extends TestBase {
     WebElement profitPercentage;
 
     @FindBys({
-            @FindBy(xpath = "//*[@class = \"labelContainerGraphicsContext\"]//*[@class=\"label-container\"]//*[@class=\"label-tspan\"]") })
-    List<WebElement> monthWiseProfit;
+            @FindBy(xpath = "//*[text()='Profit Value']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='svg' and @class='cartesianChart']//*[local-name()='svg' and @class='svgScrollable']//*[local-name()='g' and @class='labelContainerGraphicsContext']//*[local-name()='g']//*[local-name()='text']//*[local-name()='tspan']") })
+    List<WebElement> monthWiseProfitValue;
+
+    @FindBys({
+            @FindBy(xpath = "//*[text()='Profit %']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='svg' and @class='cartesianChart']//*[local-name()='svg' and @class='svgScrollable']//*[local-name()='g' and @class='labelContainerGraphicsContext']//*[local-name()='g']//*[local-name()='text']//*[local-name()='tspan']") })
+    List<WebElement> monthWiseProfitPercentage;
 
     public ProfitPage() {
         PageFactory.initElements(driver, this);
@@ -36,22 +40,22 @@ public class ProfitPage extends TestBase {
     }
 
     public String getCurrentMonthProfitValue() throws InterruptedException {
-        WebElement currentMonthProfitValue = this.monthWiseProfit.get(1);
+        WebElement currentMonthProfitValue = this.monthWiseProfitValue.get(1);
         return currentMonthProfitValue.getText();
     }
 
     public String getLastMonthProfitValue() {
-        WebElement lastMonthProfitValue = this.monthWiseProfit.get(5);
+        WebElement lastMonthProfitValue = this.monthWiseProfitValue.get(5);
         return lastMonthProfitValue.getText();
     }
 
     public String getCurrentMonthProfitPercentage() {
-        WebElement currentMonthProfitPercentage = this.monthWiseProfit.get(7);
+        WebElement currentMonthProfitPercentage = this.monthWiseProfitPercentage.get(1);
         return currentMonthProfitPercentage.getText();
     }
 
     public String getLastMonthProfitPercentage() {
-        WebElement lastMonthProfitPercentage = this.monthWiseProfit.get(11);
+        WebElement lastMonthProfitPercentage = this.monthWiseProfitPercentage.get(5);
         return lastMonthProfitPercentage.getText();
     }
 }
