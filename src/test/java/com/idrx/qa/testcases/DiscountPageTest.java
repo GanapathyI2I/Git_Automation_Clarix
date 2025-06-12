@@ -74,6 +74,7 @@ public class DiscountPageTest extends TestBase {
 		int totalDiscountQtyActualValue = Integer.parseInt(totalDiscountQtyVal);
 		System.out.println("Actual Value: " + totalDiscountQtyActualValue);
 		testUtil.assertEquals(totalDiscountQtyActualValue, totalDiscountQtyExpectedValue, "Total Discount Qty");
+
 	}
 
 	@Test(priority = 4, enabled = true)
