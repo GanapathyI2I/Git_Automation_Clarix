@@ -30,7 +30,7 @@ public class DiscountPage extends TestBase {
 	WebElement totalDiscountAmount;
 
 	@FindBys({
-			@FindBy(xpath = "//*[@class = \"labelContainerGraphicsContext\"]//*[@class=\"label-container\"]//*[@class=\"label-tspan\"]") })
+			@FindBy(xpath = "//*[@class='content text ui-role-button-text selected' and text()='Value']/ancestor::visual-modern/ancestor::visual-container/..//visual-container//*[local-name()='tspan' and @class='label-tspan']") })
 	List<WebElement> monthWiseDiscounts;
 
 	// Initializing the page objects
@@ -64,7 +64,7 @@ public class DiscountPage extends TestBase {
 	}
 
 	public String getPreviousMonthDiscount() {
-		WebElement previousMonthDiscount = this.monthWiseDiscounts.get(6);
+		WebElement previousMonthDiscount = this.monthWiseDiscounts.get(4);
 		return previousMonthDiscount.getText();
 	}
 

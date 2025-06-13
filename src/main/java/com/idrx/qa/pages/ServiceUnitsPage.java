@@ -16,7 +16,7 @@ public class ServiceUnitsPage extends TestBase {
     List<WebElement> serviceUnitsFlowWebElements;
 
     @FindBys({
-            @FindBy(xpath = "//*[@class = \"labelContainerGraphicsContext\"]//*[@class=\"label-container\"]//*[@class=\"label-tspan\"]") })
+            @FindBy(xpath = "//*[@class='content text ui-role-button-text selected' and text()='Outflow']/ancestor::visual-modern/ancestor::visual-container/..//visual-container//*[local-name()='tspan' and @class='label-tspan']") })
     List<WebElement> monthwiseOutflowWebElements;
 
     // Initializing the page objects
@@ -46,12 +46,12 @@ public class ServiceUnitsPage extends TestBase {
     }
 
     public String getNoOfVehicleOutflowCurrentMonth() {
-        WebElement noOfVehicleOutflowCurrentMonth = this.monthwiseOutflowWebElements.get(9);
+        WebElement noOfVehicleOutflowCurrentMonth = this.monthwiseOutflowWebElements.get(1);
         return noOfVehicleOutflowCurrentMonth.getText();
     }
 
     public String getNoOfVehicleOutflowLastMonth() {
-        WebElement noOfVehicleOutflowLastMonth = this.monthwiseOutflowWebElements.get(10);
+        WebElement noOfVehicleOutflowLastMonth = this.monthwiseOutflowWebElements.get(2);
         return noOfVehicleOutflowLastMonth.getText();
     }
 

@@ -18,11 +18,11 @@ public class PartsStocksPage extends TestBase {
     List<WebElement> stockValue;
 
     @FindBys({
-            @FindBy(xpath = "//*[text()='Parts Qty Trend']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='svg' and @class='cartesianChart']//*[local-name()='svg' and @class='svgScrollable']//*[local-name()='g' and @class='labelContainerGraphicsContext']//*[local-name()='g']//*[local-name()='text']//*[local-name()='tspan']") })
+            @FindBy(xpath = "//*[text()='Parts Qty Trend']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='tspan']") })
     List<WebElement> monthWisePartsQtyTrend;
 
     @FindBys({
-            @FindBy(xpath = "//*[text()='Parts Value Trend']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='svg' and @class='cartesianChart']//*[local-name()='svg' and @class='svgScrollable']//*[local-name()='g' and @class='labelContainerGraphicsContext']//*[local-name()='g']//*[local-name()='text']//*[local-name()='tspan']") })
+            @FindBy(xpath = "//*[text()='Parts Value Trend']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='tspan']") })
     List<WebElement> monthWisePartsValueTrend;
 
     @FindBys({

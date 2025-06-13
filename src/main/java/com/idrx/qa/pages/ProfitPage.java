@@ -19,11 +19,11 @@ public class ProfitPage extends TestBase {
     WebElement profitPercentage;
 
     @FindBys({
-            @FindBy(xpath = "//*[text()='Profit Value']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='svg' and @class='cartesianChart']//*[local-name()='svg' and @class='svgScrollable']//*[local-name()='g' and @class='labelContainerGraphicsContext']//*[local-name()='g']//*[local-name()='text']//*[local-name()='tspan']") })
+            @FindBy(xpath = "//*[text()='Profit Value']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='tspan']") })
     List<WebElement> monthWiseProfitValue;
 
     @FindBys({
-            @FindBy(xpath = "//*[text()='Profit %']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='svg' and @class='cartesianChart']//*[local-name()='svg' and @class='svgScrollable']//*[local-name()='g' and @class='labelContainerGraphicsContext']//*[local-name()='g']//*[local-name()='text']//*[local-name()='tspan']") })
+            @FindBy(xpath = "//*[text()='Profit %']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='tspan']") })
     List<WebElement> monthWiseProfitPercentage;
 
     public ProfitPage() {

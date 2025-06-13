@@ -25,6 +25,7 @@ public class PartsStocksTest extends TestBase {
         homePage = new HomePage();
         vehicleStocksPage = new VehicleStocksPage();
         partsStocksPage = new PartsStocksPage();
+        testUtil = new TestUtil();
         loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
         Thread.sleep(10000);
         TestUtil.switchToFrame();

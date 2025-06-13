@@ -25,6 +25,7 @@ public class ServiceRevenueTest extends TestBase {
         homePage = new HomePage();
         servicePage = new ServicePage();
         serviceRevenuePage = new ServiceRevenuePage();
+        testUtil = new TestUtil();
         loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
         Thread.sleep(10000);
         TestUtil.switchToFrame();
