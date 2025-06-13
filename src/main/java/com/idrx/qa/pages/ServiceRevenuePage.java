@@ -18,7 +18,7 @@ public class ServiceRevenuePage extends TestBase {
     WebElement avgRevPerVehicle;
 
     @FindBys({
-            @FindBy(xpath = "//*[@class = \"labelContainerGraphicsContext\"]//*[@class=\"label-container\"]//*[@class=\"label-tspan\"]") })
+            @FindBy(xpath = "//*[@class='content text ui-role-button-text selected' and text()='Revenue']/ancestor::visual-modern/ancestor::visual-container/..//visual-container//*[local-name()='tspan' and @class='label-tspan']") })
     List<WebElement> monthWiseRevenue;
 
     // Initializing the page objects
@@ -41,7 +41,7 @@ public class ServiceRevenuePage extends TestBase {
     }
 
     public String getPreviousMonthRevenue() {
-        WebElement previousMonthRevenue = this.monthWiseRevenue.get(5);
+        WebElement previousMonthRevenue = this.monthWiseRevenue.get(2);
         return previousMonthRevenue.getText();
     }
 

@@ -20,7 +20,7 @@ public class PayablesPage extends TestBase {
     List<WebElement> pendingPayables;
 
     @FindBys({
-            @FindBy(xpath = "//*[text()='Payables Trend']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='svg' and @class='cartesianChart']//*[local-name()='svg' and @class='svgScrollable']//*[local-name()='g' and @class='labelContainerGraphicsContext']//*[local-name()='g']//*[local-name()='text']//*[local-name()='tspan']") })
+            @FindBy(xpath = "//*[text()='Payables Trend']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='tspan']") })
     List<WebElement> monthwisePayablesTrend;
 
     public PayablesPage() {

@@ -23,7 +23,7 @@ public class VehicleStocksPage extends TestBase {
     List<WebElement> stockQty;
 
     @FindBys({
-            @FindBy(xpath = "//*[@class = \"labelContainerGraphicsContext\"]//*[@class=\"label-container\"]//*[@class=\"label-tspan\"]") })
+            @FindBy(xpath = "//*[@class='content text ui-role-button-text selected' and text()='Units']/ancestor::visual-modern/ancestor::visual-container/..//visual-container//*[local-name()='tspan' and @class='label-tspan']") })
     List<WebElement> monthWiseStock;
 
     @FindBy(xpath = "//*[@class='content text ui-role-button-text selected' and text() = 'Value']/ancestor::div[@class='contentOuterContainer']/..//*[@class='tileSVG']//*//*[@class='tile']//*[@class='fill ui-role-button-fill sub-selectable']")
@@ -60,7 +60,7 @@ public class VehicleStocksPage extends TestBase {
     }
 
     public String getLastMonthStock() {
-        WebElement lastMonthStock = this.monthWiseStock.get(2);
+        WebElement lastMonthStock = this.monthWiseStock.get(4);
         return lastMonthStock.getText();
     }
 

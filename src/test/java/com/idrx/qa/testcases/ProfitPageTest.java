@@ -22,6 +22,7 @@ public class ProfitPageTest extends TestBase {
         loginPage = new LoginPage();
         homePage = new HomePage();
         profitPage = new ProfitPage();
+        testUtil = new TestUtil();
         loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
         Thread.sleep(10000);
         TestUtil.switchToFrame();
