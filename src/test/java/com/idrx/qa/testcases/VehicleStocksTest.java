@@ -26,6 +26,7 @@ public class VehicleStocksTest extends TestBase {
         loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
         Thread.sleep(10000);
         TestUtil.switchToFrame();
+        Thread.sleep(5000);
         homePage.clickStocksTab();
     }
 
@@ -43,7 +44,7 @@ public class VehicleStocksTest extends TestBase {
 
     @Test(priority = 2, enabled = true)
     public void getTotalStockValueTest() throws Exception {
-        String totalStockValueExpectedValue = DBUtil.totalStockValueGetDBValue();
+        String totalStockValueExpectedValue = DBUtil.stockValueGetDBValue();
         System.out.println("--------Total Stock Value--------");
         System.out.println("Expected Value: " + totalStockValueExpectedValue);
         String totalStockValueActualValue = vehicleStocksPage.getStockValue();
