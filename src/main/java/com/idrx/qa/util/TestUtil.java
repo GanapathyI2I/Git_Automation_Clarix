@@ -140,6 +140,27 @@ public class TestUtil extends TestBase {
 		}
 	}
 
+	public static String numberToShortIndianFormatThreeDigits(double num) {
+		if (num >= 10000000) {
+			double value = num / 10000000.0;
+			String finalValueCr = String.format("%.1f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
+			System.out.println("finalValueCr: " + finalValueCr);
+			return finalValueCr;
+		} else if (num >= 100000) {
+			double value = num / 100000.0;
+			String finalValueL = String.format("%.1f L", value).replaceAll("\\.?0+L$", "L");
+			System.out.println("finalValueL: " + finalValueL);
+			return finalValueL;
+		} else if (num >= 1000) {
+			double value = num / 1000.0;
+			String finalValueK = String.format("%.1f k", value).replaceAll("\\.?0+k$", "k");
+			System.out.println("finalValueK: " + finalValueK);
+			return finalValueK;
+		} else {
+			return String.valueOf(num);
+		}
+	}
+
 	/**
 	 * Scrolls down the page to the bottom using JavaScriptExecutor.
 	 * 

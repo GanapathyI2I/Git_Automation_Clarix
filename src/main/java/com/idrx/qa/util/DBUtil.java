@@ -621,25 +621,31 @@ public class DBUtil {
     // VehicleStocks Page DB Values
 
     public static String vehicleQtyGetDbValue() throws Exception {
-        String sql = "SELECT (COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_date >= date_trunc('month', CURRENT_DATE) AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty = 1), 0) + COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty IN (-1, 0)), 0)) AS net_qty;";
+        String sql = "SELECT count(qty) AS net_qty " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Vehicles' " +
+                "AND created_date = ( " +
+                "SELECT MAX(created_date) " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Vehicles' " +
+                ");";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
     }
 
     public static String stockValueGetDBValue() throws Exception {
         String sql = "SELECT " +
-                "(COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
-                +
-                "AND qty = 1), 0) - " +
-                "COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
-                +
-                "AND qty = -1), 0)) AS net_qty;";
+                "( " +
+                "COALESCE(SUM(veh_value), 0) + " +
+                "COALESCE(SUM(charge_amount), 0) " +
+                ") AS net_qty " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Vehicles' " +
+                "AND created_date = ( " +
+                "SELECT MAX(created_date) " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Vehicles' " +
+                ");";
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
@@ -648,19 +654,14 @@ public class DBUtil {
     }
 
     public static String accessoriesAndPartsGetDBValue() throws Exception {
-        String sql = "SELECT " +
-                "(COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
-                +
-                "AND qty = 1), 0) - " +
-                "COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
-                +
-                "AND qty = -1), 0)) AS net_qty;";
+        String sql = "SELECT SUM(veh_value) AS net_qty " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Parts and Accessories' " +
+                "AND created_date in ( " +
+                "SELECT MAX(created_date) " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Parts and Accessories' " +
+                ");";
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
@@ -723,81 +724,99 @@ public class DBUtil {
     }
 
     public static String currentMonthStocksUnitsGetDbValue() throws Exception {
-        String sql = "SELECT (COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_date >= date_trunc('month', CURRENT_DATE) AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty = 1), 0) + COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty IN (-1, 0)), 0)) AS net_qty;";
+        String sql = "SELECT count(qty) AS net_qty " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Vehicles' " +
+                "AND created_date = ( " +
+                "SELECT MAX(created_date) " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Vehicles' " +
+                ");";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
     }
 
     public static String lastMonthStocksUnitsGetDbValue() throws Exception {
-        String sql = "SELECT (COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_date >= date_trunc('month', CURRENT_DATE) AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty = 1), 0) + COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty IN (-1, 0)), 0)) AS net_qty;";
+        String sql = "SELECT count(qty) AS net_qty " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Vehicles' " +
+                "AND created_date = ( " +
+                "SELECT MAX(created_date) " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Vehicles' " +
+                "AND created_date BETWEEN DATE_TRUNC('month', CURRENT_DATE - INTERVAL '1 month') " +
+                "AND DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 second' " +
+                ");";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
     }
 
     public static String currentMonthStockValueGetDBValue() throws Exception {
         String sql = "SELECT " +
-                "(COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
-                +
-                "AND qty = 1), 0) - " +
-                "COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
-                +
-                "AND qty = -1), 0)) AS net_qty;";
+                "( " +
+                "COALESCE(SUM(veh_value), 0) + " +
+                "COALESCE(SUM(charge_amount), 0) " +
+                ") AS net_qty " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Vehicles' " +
+                "AND created_date = ( " +
+                "SELECT MAX(created_date) " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Vehicles' " +
+                ");";
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        String numConversion = TestUtil.numberToShortIndianFormatThreeDigits(num);
         return numConversion;
     }
 
     public static String lastMonthStockValueGetDBValue() throws Exception {
         String sql = "SELECT " +
-                "(COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
-                +
-                "AND qty = 1), 0) - " +
-                "COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
-                +
-                "AND qty = -1), 0)) AS net_qty;";
+                "( " +
+                "COALESCE(SUM(veh_value), 0) + " +
+                "COALESCE(SUM(charge_amount), 0) " +
+                ") AS net_qty " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Vehicles' " +
+                "AND created_date = ( " +
+                "SELECT MAX(created_date) " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Vehicles' " +
+                "AND created_date BETWEEN DATE_TRUNC('month', CURRENT_DATE - INTERVAL '1 month') " +
+                "AND DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 second' " +
+                ");";
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        String numConversion = TestUtil.numberToShortIndianFormatThreeDigits(num);
         return numConversion;
     }
 
     // PartStocks Page DB Values
 
     public static String partsQtyGetDbValue() throws Exception {
-        String sql = "SELECT (COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_date >= date_trunc('month', CURRENT_DATE) AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty = 1), 0) + COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty IN (-1, 0)), 0)) AS net_qty;";
+        String sql = "SELECT count(qty) AS net_qty " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Parts and Accessories' " +
+                "AND created_date = ( " +
+                "SELECT MAX(created_date) " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Parts and Accessories' " +
+                ");";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
     }
 
     public static String totalStockValueGetDBValue() throws Exception {
-        String sql = "SELECT " +
-                "(COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
-                +
-                "AND qty = 1), 0) - " +
-                "COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
-                +
-                "AND qty = -1), 0)) AS net_qty;";
+        String sql = "SELECT SUM(veh_value) AS net_qty " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Parts and Accessories' " +
+                "AND created_date in ( " +
+                "SELECT MAX(created_date) " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Parts and Accessories' " +
+                ");";
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
@@ -806,19 +825,14 @@ public class DBUtil {
     }
 
     public static String accessoriesAndPartsValueGetDBValue() throws Exception {
-        String sql = "SELECT " +
-                "(COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
-                +
-                "AND qty = 1), 0) - " +
-                "COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
-                +
-                "AND qty = -1), 0)) AS net_qty;";
+        String sql = "SELECT SUM(veh_value) AS net_qty " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Parts and Accessories' " +
+                "AND created_date in ( " +
+                "SELECT MAX(created_date) " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Parts and Accessories' " +
+                ");";
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
@@ -854,31 +868,42 @@ public class DBUtil {
     }
 
     public static String currentMonthPartsQtyTrendGetDBValue() throws Exception {
-        String sql = "SELECT (COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_date >= date_trunc('month', CURRENT_DATE) AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty = 1), 0) + COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty IN (-1, 0)), 0)) AS net_qty;";
+        String sql = "SELECT count(qty) AS net_qty " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Parts and Accessories' " +
+                "AND created_date = ( " +
+                "SELECT MAX(created_date) " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Parts and Accessories' " +
+                ");";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
     }
 
     public static String lastMonthPartsQtyTrendGetDBValue() throws Exception {
-        String sql = "SELECT (COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_date >= date_trunc('month', CURRENT_DATE) AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty = 1), 0) + COALESCE((SELECT SUM(qty) FROM commondatamodel.vehicles_sales WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' AND qty IN (-1, 0)), 0)) AS net_qty;";
+        String sql = "SELECT count(qty) AS net_qty " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Parts and Accessories' " +
+                "AND created_date = ( " +
+                "SELECT MAX(created_date) " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Parts and Accessories' " +
+                "AND created_date BETWEEN DATE_TRUNC('month', CURRENT_DATE - INTERVAL '1 month') " +
+                "AND DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 second' " +
+                ");";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
     }
 
     public static String currentMonthPartsValueTrendGetDBValue() throws Exception {
-        String sql = "SELECT " +
-                "(COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
-                +
-                "AND qty = 1), 0) - " +
-                "COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
-                +
-                "AND qty = -1), 0)) AS net_qty;";
+        String sql = "SELECT SUM(veh_value) AS net_qty " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Parts and Accessories' " +
+                "AND created_date in ( " +
+                "SELECT MAX(created_date) " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Parts and Accessories' " +
+                ");";
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
@@ -888,18 +913,19 @@ public class DBUtil {
 
     public static String lastMonthPartsValueTrendGetDBValue() throws Exception {
         String sql = "SELECT " +
-                "(COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
-                +
-                "AND qty = 1), 0) - " +
-                "COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
-                +
-                "AND qty = -1), 0)) AS net_qty;";
+                "( " +
+                "COALESCE(SUM(veh_value), 0) + " +
+                "COALESCE(SUM(charge_amount), 0) " +
+                ") AS net_qty " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Parts and Accessories' " +
+                "AND created_date = ( " +
+                "SELECT MAX(created_date) " +
+                "FROM commondatamodel.inventory " +
+                "WHERE item_type = 'Parts and Accessories' " +
+                "AND created_date BETWEEN DATE_TRUNC('month', CURRENT_DATE - INTERVAL '1 month') " +
+                "AND DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 second' " +
+                ");";
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);

@@ -29,6 +29,7 @@ public class PartsStocksTest extends TestBase {
         loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
         Thread.sleep(10000);
         TestUtil.switchToFrame();
+        Thread.sleep(5000);
         homePage.clickStocksTab();
         vehicleStocksPage.clickPartsStocksTab();
     }

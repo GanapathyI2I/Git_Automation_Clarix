@@ -22,6 +22,7 @@ public class PayablesTest extends TestBase {
         loginPage = new LoginPage();
         homePage = new HomePage();
         payablesPage = new PayablesPage();
+        testUtil = new TestUtil();
         loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
         Thread.sleep(10000);
         TestUtil.switchToFrame();
