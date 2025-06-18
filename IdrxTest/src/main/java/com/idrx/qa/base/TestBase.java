@@ -20,26 +20,28 @@ public class TestBase {
 	public final static Logger logger = LogManager.getLogger(TestUtil.class);
 
 	public TestBase() {
-		
+
 		try {
 			prop = new Properties();
-			FileInputStream ip = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/com/idrx/qa/config/config.properties");
+			FileInputStream ip = new FileInputStream(
+					System.getProperty("user.dir") + "/src/main/java/com/idrx/qa/config/config.properties");
 			prop.load(ip);
-		
-	} catch(FileNotFoundException e) {
-		e.printStackTrace();
-	} catch(IOException e) {
-		e.printStackTrace();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-}
+
 	public static void initialization() {
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless=new");
 		driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
-		driver.manage().deleteAllCookies();	
-		
-		logger.info("🌐 Launching URL: {}", prop.getProperty("url"));		
+		driver.manage().deleteAllCookies();
+
+		logger.info("🌐 Launching URL: {}", prop.getProperty("url"));
 		driver.get(prop.getProperty("url"));
 		logger.info("✅ URL launched successfully");
 	}

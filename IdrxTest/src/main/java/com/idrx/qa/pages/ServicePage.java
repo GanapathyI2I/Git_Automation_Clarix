@@ -14,24 +14,32 @@ public class ServicePage extends TestBase {
 
     TestUtil testUtil = new TestUtil();
 
-    @FindBys({@FindBy(xpath = "//*[@class='tileSVG']//*[@class='tile']")})
+    @FindBys({ @FindBy(xpath = "//*[@class='tileSVG']//*[@class='tile']") })
     List<WebElement> serviceTile;
 
-    //Initializing the page objects
+    @FindBys({ @FindBy(xpath = "//*[@class='tileSVG']") })
+    List<WebElement> menuTabs;
+
+    // Initializing the page objects
     public ServicePage() {
         PageFactory.initElements(driver, this);
     }
 
     // public void clickOnServiceTile(String tileName) {
-    //     for (WebElement tile : serviceTile) {
-    //         if (tile.getText().equals(tileName)) {
-    //             tile.click();
-    //         }
-    //     }
+    // for (WebElement tile : serviceTile) {
+    // if (tile.getText().equals(tileName)) {
+    // tile.click();
     // }
-    
+    // }
+    // }
+
     public void clickPartsSalesTile(String tileName) {
         testUtil.clickElement(serviceTile.get(12), "Parts Sales Tile");
+    }
+
+    public void clickServiceRevenueTab() {
+        WebElement serviceRevenueTab = this.menuTabs.get(8);
+        serviceRevenueTab.click();
     }
 
 }
