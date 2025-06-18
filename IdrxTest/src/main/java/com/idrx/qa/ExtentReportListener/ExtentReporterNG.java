@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 import org.testng.IReporter;
 import org.testng.IResultMap;
@@ -25,6 +27,17 @@ public class ExtentReporterNG implements IReporter {
 			String outputDirectory) {
 		extent = new ExtentReports(outputDirectory + File.separator
 				+ "Extent.html", true);
+
+		try {
+			extent.addSystemInfo("Host Name", InetAddress.getLocalHost().getHostName());
+		} catch (UnknownHostException e) {
+			extent.addSystemInfo("Host Name", "Unknown");
+		}
+		extent.addSystemInfo("OS", System.getProperty("os.name"));
+		extent.addSystemInfo("User Name", System.getProperty("user.name"));
+		extent.addSystemInfo("Environment", "SKS");
+		extent.addSystemInfo("Browser", "Chrome");
+		
 
 		for (ISuite suite : suites) {
 			Map<String, ISuiteResult> result = suite.getResults();

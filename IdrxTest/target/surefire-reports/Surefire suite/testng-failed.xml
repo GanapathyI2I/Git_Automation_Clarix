@@ -3,15 +3,13 @@
 <suite name="Failed suite [Surefire suite]" verbose="0">
   <test thread-count="5" name="Surefire test(failed)" verbose="0">
     <classes>
-      <class name="com.idrx.qa.testcases.LoginPageTest">
+      <class name="com.idrx.qa.testcases.BookingsPageTest">
         <methods>
-          <include name="vehicleInvoicedThisMonthTest"/>
+          <include name="bookingYesterdayTest"/>
           <include name="tearDown"/>
           <include name="setUp"/>
-          <include name="vehicleInvoicedButNotDeliveredTest"/>
-          <include name="vehicleBookedYesterdayTest"/>
         </methods>
-      </class> <!-- com.idrx.qa.testcases.LoginPageTest -->
+      </class> <!-- com.idrx.qa.testcases.BookingsPageTest -->
     </classes>
   </test> <!-- Surefire test(failed) -->
 </suite> <!-- Failed suite [Surefire suite] -->

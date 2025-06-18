@@ -3,6 +3,7 @@ package com.idrx.qa.testcases;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.annotations.Listeners;
 
 import com.idrx.qa.base.TestBase;
 import com.idrx.qa.pages.BookingsPage;
@@ -12,6 +13,7 @@ import com.idrx.qa.pages.SalesPage;
 import com.idrx.qa.util.DBUtil;
 import com.idrx.qa.util.TestUtil;
 
+@Listeners(com.idrx.qa.ExtentReportListener.ExtentReportListener.class)
 public class BookingsPageTest extends TestBase {
     LoginPage loginPage;
     HomePage homePage;
@@ -36,12 +38,12 @@ public class BookingsPageTest extends TestBase {
         Thread.sleep(10000);
         TestUtil.switchToFrame();
         homePage.clickSalesTab();
-        salesPage.clickBookingsTab();
+        salesPage.clickBookingTab();
     }
 
     @Test(priority = 1, enabled=true)
 	public void bookingYesterdayTest() throws Exception {
-		String vehicleBookedYesterday = DBUtil.vehicleBookedYesterdayTestDBValue();
+		String vehicleBookedYesterday = DBUtil.yesterdayBookingsGetDBValue();
 		System.out.println("--------Bookings/No of Bookings Yesterday--------");
 		int vehicleBookedYesterdayExpectedValue = Integer.parseInt(vehicleBookedYesterday);
 		String vehicleBookedYesterdayVal = bookingsPage.getYesterdayBooking();
@@ -51,7 +53,7 @@ public class BookingsPageTest extends TestBase {
 
     @Test(priority = 2, enabled=true)
     public void bookingThisMonthTest() throws Exception {
-        String vehicleBookedThisMonth = DBUtil.bookingsThisMonthTestDBValue();
+        String vehicleBookedThisMonth = DBUtil.thisMonthBookingsGetDBValue();
         System.out.println("--------Bookings/No of Bookings This Month--------");
         int vehicleBookedThisMonthExpectedValue = Integer.parseInt(vehicleBookedThisMonth);
         String vehicleBookedThisMonthVal = bookingsPage.getThisMonthBooking();
@@ -61,7 +63,7 @@ public class BookingsPageTest extends TestBase {
 
     @Test(priority = 3, enabled=true)
     public void pendingBookingsTest() throws Exception {
-        String pendingBookings = DBUtil.pendingBookingsTestDBValue();
+        String pendingBookings = DBUtil.pendingBookingsGetDBValue();
         System.out.println("--------Bookings/Pending Bookings--------");
         int pendingBookingsExpectedValue = Integer.parseInt(pendingBookings);
         String pendingBookingsVal = bookingsPage.getPendingBookings();
@@ -71,7 +73,7 @@ public class BookingsPageTest extends TestBase {
 
     @Test(priority = 4, enabled=true)
     public void previousMonthTest() throws Exception {
-        String previousMonth = DBUtil.previousMonthTestDBValue();
+        String previousMonth = DBUtil.previousMonthTestGetDBValue();
         System.out.println("--------Bookings/Previous Month--------");
         int previousMonthExpectedValue = Integer.parseInt(previousMonth);
         String previousMonthVal = bookingsPage.getPreviousMonth();
@@ -81,7 +83,7 @@ public class BookingsPageTest extends TestBase {
 
     @Test(priority = 5, enabled=true)
     public void currentMonthTest() throws Exception {
-        String currentMonth = DBUtil.thisMonthTestDBValue();
+        String currentMonth = DBUtil.thisMonthBookingsTestGetDBValue();
         System.out.println("--------Bookings/Current Month--------");
         int currentMonthExpectedValue = Integer.parseInt(currentMonth);
         String currentMonthVal = bookingsPage.getCurrentMonth();
@@ -91,7 +93,7 @@ public class BookingsPageTest extends TestBase {
 
     @Test(priority = 6, enabled=true)
     public void salesmanWisePendingBookingsTest() throws Exception {
-        String salesmanWisePendingBookings = DBUtil.salesmanWisePendingBookingsTestDBValue();
+        String salesmanWisePendingBookings = DBUtil.salesmanWisePendingBookingsTestGetDBValue();
         System.out.println("--------Bookings/Salesman Wise Pending Bookings--------");
         int salesmanWisePendingBookingsExpectedValue = Integer.parseInt(salesmanWisePendingBookings);
         String salesmanWisePendingBookingsVal = bookingsPage.getSalesmanWisePendingBookings();

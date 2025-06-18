@@ -1,11 +1,37 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="Idrx Test Automation Suite">
     <listeners>
-        <listener class-name="com.idrx.qa.ExtentReportListener.ExtentReporterNG"/>
+        <listener class-name="com.idrx.qa.ExtentReportListener.ExtentReportListener"/>
     </listeners>
 
-    <test name="Login Test">
+    <test name="Retail Test">
         <classes>
-            <class name="com.idrx.qa.testcases.LoginPageTest"></class>
+            <class name="com.idrx.qa.testcases.RetailPageTest"/>
+        </classes>
+    </test>
+    <test name="Bookings Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.BookingsPageTest"/>
+        </classes>
+    </test>
+    <test name="Delivery Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.DeliveryPageTest"/>
+        </classes>
+    </test>
+    <test name="Discount Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.DiscountPageTest"/>
+        </classes>
+    </test>
+    <test name="Finance Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.FinancePageTest"/>
+        </classes>
+    </test>
+    <test name="Parts Sales Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.PartsSalesTest"/>
         </classes>
     </test>
 </suite>    

@@ -34,6 +34,23 @@ public class SalesPage extends TestBase{
 	
 	@FindBys({@FindBy(xpath = "//*[@class = \"labelContainerGraphicsContext\"]//*[@class=\"label-container\"]//*[@class=\"label-tspan\"]")})
 	List<WebElement> monthWiseSalesTrend;
+
+	//Clicking Bookings tile
+	@FindBy(xpath = "//*[@class='tileSVG']")
+	List<WebElement> bookingTile;
+
+	//Clicking Delivery tile
+	@FindBy(xpath = "//*[@class='tileSVG']")
+	List<WebElement> deliveryTile;
+
+	//Clicking Discount tile
+	@FindBy(xpath = "//*[@class='tileSVG']")
+	List<WebElement> discountTile;
+
+	//Clicking Finance tile
+	@FindBy(xpath = "//*[@class='tileSVG']")
+	List<WebElement> financeTile;
+
 	
 	// Initializing the page objects
 			public SalesPage() {
@@ -75,14 +92,34 @@ public class SalesPage extends TestBase{
 				return salesTargetAchieved;
 			}
 			
-			public String getAprilMonthWiseSalesTrend() {
-				WebElement aprilMonthSales = this.monthWiseSalesTrend.get(1);		
-				return aprilMonthSales.getText();
+			public String getCurrentMonthWiseSalesTrend() {
+				WebElement currentMonthSales = this.monthWiseSalesTrend.get(1);		
+				return currentMonthSales.getText();
 			}
 			
-			public String getMarchMonthWiseSalesTrend() {
-				WebElement aprilMonthSales = this.monthWiseSalesTrend.get(5);			
-				return aprilMonthSales.getText();
+			public String getLastMonthWiseSalesTrend() {
+				WebElement lastMonthSales = this.monthWiseSalesTrend.get(3);			
+				return lastMonthSales.getText();
+			}
+
+			public void clickBookingTab() {
+				WebElement bookingTab = this.bookingTile.get(1);
+				bookingTab.click();
+			}
+
+			public void clickDeliveryTab() {
+				WebElement deliveryTab = this.deliveryTile.get(3);
+				deliveryTab.click();
+			}
+
+			public void clickDiscountTab() {
+				WebElement discountTab = this.discountTile.get(5);
+				discountTab.click();
+			}
+
+			public void clickFinanceTab() {
+				WebElement financeTab = this. financeTile.get(6);
+				financeTab.click();
 			}
 
 }

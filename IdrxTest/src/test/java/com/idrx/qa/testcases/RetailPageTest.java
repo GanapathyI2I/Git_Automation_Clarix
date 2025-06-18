@@ -1,10 +1,6 @@
 package com.idrx.qa.testcases;
 
-
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
 import com.idrx.qa.base.TestBase;
 import com.idrx.qa.pages.HomePage;
 import com.idrx.qa.pages.LoginPage;
@@ -112,18 +108,18 @@ public class RetailPageTest extends TestBase{
         String currentMonth =DBUtil.currentMonthTestDBValue();
 		System.out.println("--------Qty Trend - Apr'2025--------");
 		int currentMonthExpectedValue = Integer.parseInt(currentMonth);	
-		String aprilMonthSalesTrendVal = salesPage.getAprilMonthWiseSalesTrend();
+		String aprilMonthSalesTrendVal = salesPage.getCurrentMonthWiseSalesTrend();
 		int aprilMonthSalesTrendValActualValue = Integer.parseInt(aprilMonthSalesTrendVal);	
 		testUtil.assertEquals(aprilMonthSalesTrendValActualValue, currentMonthExpectedValue, "Qty Trend - Apr'2025");
 	}
 	
 	@Test(priority = 8, enabled=true)
-	public void marchMonthSalesTrendTest() throws Exception {
+	public void lastMonthSalesTrendTest() throws Exception {
 		
 		String lastMonthSalesTrend = DBUtil.lastMonthTestDBValue();
 		System.out.println("--------Qty Trend - Mar'2025--------");
 		int lastMonthExpectedValue = Integer.parseInt(lastMonthSalesTrend);
-		String marchMonthSalesTrendVal = salesPage.getMarchMonthWiseSalesTrend();
+		String marchMonthSalesTrendVal = salesPage.getLastMonthWiseSalesTrend();
 		int marchMonthSalesTrendValActualValue = Integer.parseInt(marchMonthSalesTrendVal);		
 		testUtil.assertEquals(marchMonthSalesTrendValActualValue, lastMonthExpectedValue, "Qty Trend - Mar'2025");
 	}

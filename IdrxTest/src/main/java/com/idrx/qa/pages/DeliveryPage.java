@@ -19,10 +19,10 @@ public class DeliveryPage extends TestBase {
     @FindBy(xpath = "//*[local-name()='svg' and contains(@aria-label,'')]//*[local-name()='tspan']")
     List<WebElement> pendingDeliveries;
 
-    @FindBy(xpath = "//*[@class = 'labelContainerGraphicsContext']//*[@class='label-container']//*[@class='label-tspan']")
+    @FindBy(xpath = "//*[text()='Delivery Trend']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='svg' and @class='cartesianChart']//*[local-name()='svg' and @class='svgScrollable']//*[local-name()='g' and @class='labelContainerGraphicsContext']//*[local-name()='g']//*[local-name()='text']//*[local-name()='tspan']")
     List<WebElement> previousMonth;
 
-    @FindBy(xpath = "//*[@class = 'labelContainerGraphicsContext']//*[@class='label-container']//*[@class='label-tspan']")
+    @FindBy(xpath = "//*[text()='Delivery Trend']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='svg' and @class='cartesianChart']//*[local-name()='svg' and @class='svgScrollable']//*[local-name()='g' and @class='labelContainerGraphicsContext']//*[local-name()='g']//*[local-name()='text']//*[local-name()='tspan']")
     List<WebElement> currentMonth;
 
     @FindBy(xpath = "//div[@class='scrollable-cells-viewport ']//div[text()='Total']/../div")
@@ -54,7 +54,7 @@ public class DeliveryPage extends TestBase {
     }
 
     public String getCurrentMonth() {
-        String currentMonth = this.currentMonth.get(3).getText();
+        String currentMonth = this.currentMonth.get(1).getText();
         return currentMonth;
     }
 

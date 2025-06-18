@@ -1,9 +1,8 @@
 package com.idrx.qa.testcases;
 
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.idrx.qa.base.TestBase;
@@ -15,6 +14,7 @@ import com.idrx.qa.pages.SalesPage;
 import com.idrx.qa.util.DBUtil;
 import com.idrx.qa.util.TestUtil;
 
+@Listeners(com.idrx.qa.ExtentReportListener.ExtentReportListener.class)
 public class DeliveryPageTest extends TestBase {
     LoginPage loginPage;
     HomePage homePage;
@@ -34,6 +34,7 @@ public class DeliveryPageTest extends TestBase {
         loginPage = new LoginPage();
         homePage = new HomePage();
         bookingsPage = new BookingsPage();
+        salesPage = new SalesPage();
         deliveryPage = new DeliveryPage();
         testUtil = new TestUtil();
         loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
@@ -75,7 +76,7 @@ public class DeliveryPageTest extends TestBase {
 
     @Test(priority = 4, enabled=true)
     public void deliveryPreviousMonthTest() throws Exception {
-        String deliveryPreviousMonth = DBUtil.previousMonthTestDBValue();
+        String deliveryPreviousMonth = DBUtil.deliveriesPreviousMonthTestDBValue();
         System.out.println("--------Delivery/Previous Month--------");
         int deliveryPreviousMonthExpectedValue = Integer.parseInt(deliveryPreviousMonth);
         String deliveryPreviousMonthVal = deliveryPage.getPreviousMonth();
@@ -85,7 +86,7 @@ public class DeliveryPageTest extends TestBase {
 
     @Test(priority = 5, enabled=true)
     public void deliveryCurrentMonthTest() throws Exception {
-        String deliveryCurrentMonth = DBUtil.currentMonthTestDBValue();
+        String deliveryCurrentMonth = DBUtil.deliveriesCurrentMonthTestDBValue();
         System.out.println("--------Delivery/Current Month--------");
         int deliveryCurrentMonthExpectedValue = Integer.parseInt(deliveryCurrentMonth);
         String deliveryCurrentMonthVal = deliveryPage.getCurrentMonth();

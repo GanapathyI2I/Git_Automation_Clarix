@@ -15,9 +15,14 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import java.io.File;
+import java.nio.file.Files;
 
 import com.idrx.qa.base.TestBase;
 
@@ -115,4 +120,76 @@ public class TestUtil extends TestBase{
 	        logger.info("✅ URL launched successfully");
 	 }
 
+	 //-----this method is used to convert the number to short indian format with 2 decimal places--------
+	 public static String numberToShortIndianFormat(double num) {
+		if (num >= 10000000) {
+		double value = num / 10000000.0;
+		String finalValueCr = String.format("%.2f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
+		System.out.println("finalValueCr: " + finalValueCr);
+		return finalValueCr;
+	} else if (num >= 100000) {
+		double value = num / 100000.0;
+		String finalValueL = String.format("%.2f L", value).replaceAll("\\.?0+L$", "L");
+		System.out.println("finalValueL: " + finalValueL);
+		return finalValueL;
+	} else if (num >= 1000) {
+		double value = num / 1000.0;
+		String finalValueK = String.format("%.2f k", value).replaceAll("\\.?0+k$", "k");
+		System.out.println("finalValueK: " + finalValueK);
+		return finalValueK;
+	} else {
+		return String.valueOf(num);
+	}
+
+}
+//-----this method is used to convert the number to short indian format with 1 decimal place--------
+public static String numberToShortIndianFormatOneDecimal(double num) {
+	if (num >= 10000000) {
+	double value = num / 10000000.0;
+	String finalValueCr = String.format("%.1f Cr", value).replaceAll("\\.?0+Cr$", "Cr");
+	System.out.println("finalValueCr: " + finalValueCr);
+	return finalValueCr;
+} else if (num >= 100000) {
+	double value = num / 100000.0;
+	String finalValueL = String.format("%.1f L", value).replaceAll("\\.?0+L$", "L");
+	System.out.println("finalValueL: " + finalValueL);
+	return finalValueL;
+} else if (num >= 1000) {
+	double value = num / 1000.0;
+	String finalValueK = String.format("%.1f k", value).replaceAll("\\.?0+k$", "k");
+	System.out.println("finalValueK: " + finalValueK);
+	return finalValueK;
+} else {
+	return String.valueOf(num);
+}
+
+}
+
+
+
+//-----this method is used to convert the number to short indian format with 1 decimal place in Cr--------
+public static String numberToShortIndianFormatInCr(double num) {
+    double value = num / 10000000.0;
+    String finalValueCr = String.format("%.1f Cr", value).replaceAll("\\.?0+ Cr$", " Cr");
+    return finalValueCr;
+}
+
+//-----Scroll to particular element-----
+public static void scrollToElement(WebDriver driver, WebElement element) {
+    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+}
+
+public static String takeScreenshot(WebDriver driver, String screenshotName) {
+    try {
+        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        String path = "test-output/screenshots/" + screenshotName + "_" + System.currentTimeMillis() + ".png";
+        File dest = new File(path);
+        dest.getParentFile().mkdirs(); // Ensure directory exists
+        Files.copy(src.toPath(), dest.toPath());
+        return dest.getAbsolutePath();
+    } catch (Exception e) {
+        e.printStackTrace();
+        return null;
+    }
+}
 }

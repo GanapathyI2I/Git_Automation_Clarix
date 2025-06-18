@@ -11,19 +11,19 @@ import com.idrx.qa.base.TestBase;
 public class BookingsPage extends TestBase {
         
 
-    @FindBy(xpath = "//*[local-name()='svg' and contains(@aria-label, \"Yesterday's Booking\")]//*[local-name()='tspan']")
+    @FindBy(xpath = "//*[local-name()='svg' and contains(@aria-label, \"Yesterday\'s Booking\")]")
     WebElement yesterdayBooking;
 
-    @FindBy(xpath = "//*[local-name()='svg' and contains(@aria-label,'')]//*[local-name()='tspan']")
-    List<WebElement> thisMonthBooking;
+    @FindBy(xpath = "//*[local-name()='svg' and contains(@aria-label,'This Month Bookings')]//*[local-name()='tspan']")
+    WebElement thisMonthBooking;
 
-    @FindBy(xpath = "//*[local-name()='svg' and contains(@aria-label,'')]//*[local-name()='tspan']")
-    List<WebElement> pendingBookings;
+    @FindBy(xpath = "//*[local-name()='svg' and contains(@aria-label, 'Pending Bookings count')]")
+    WebElement pendingBookings;
 
-    @FindBy(xpath = "//*[@class = 'labelContainerGraphicsContext']//*[@class='label-container']//*[@class='label-tspan']")
+    @FindBy(xpath = "//*[text()='Bookings Trend']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='svg' and @class='cartesianChart']//*[local-name()='svg' and @class='svgScrollable']//*[local-name()='g' and @class='labelContainerGraphicsContext']//*[local-name()='g']//*[local-name()='text']//*[local-name()='tspan']")
     List<WebElement> previousMonth;
 
-    @FindBy(xpath = "//*[@class = 'labelContainerGraphicsContext']//*[@class='label-container']//*[@class='label-tspan']")
+    @FindBy(xpath = "//*[text()='Bookings Trend']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='svg' and @class='cartesianChart']//*[local-name()='svg' and @class='svgScrollable']//*[local-name()='g' and @class='labelContainerGraphicsContext']//*[local-name()='g']//*[local-name()='text']//*[local-name()='tspan']")
     List<WebElement> currentMonth;
 
     //Need to change xpath to get the correct value
@@ -47,12 +47,12 @@ public class BookingsPage extends TestBase {
     }
 
     public String getThisMonthBooking() {
-        String thisMonthBooking = this.thisMonthBooking.get(3).getText();
+        String thisMonthBooking = this.thisMonthBooking.getText();
         return thisMonthBooking;
     }
 
     public String getPendingBookings() {
-        String pendingBookings = this.pendingBookings.get(4).getText();
+        String pendingBookings = this.pendingBookings.getText();
         return pendingBookings;
     }
     
@@ -62,7 +62,7 @@ public class BookingsPage extends TestBase {
     }
 
     public String getCurrentMonth() {
-        String currentMonth = this.currentMonth.get(2).getText();
+        String currentMonth = this.currentMonth.get(1).getText();
         return currentMonth;
     }
     

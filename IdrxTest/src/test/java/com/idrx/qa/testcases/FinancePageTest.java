@@ -1,8 +1,6 @@
 package com.idrx.qa.testcases;
 
 
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.idrx.qa.base.TestBase;
@@ -13,12 +11,6 @@ import com.idrx.qa.util.DBUtil;
 import com.idrx.qa.util.TestUtil;
 import com.idrx.qa.pages.DiscountPage;
 import com.idrx.qa.pages.FinancePage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -49,7 +41,7 @@ public class FinancePageTest extends TestBase{
 		salesPage.clickFinanceTab();
 	}	
 	
-	@Test(priority = 1, enabled=false)
+	@Test(priority = 1, enabled=true)
 	public void noOfFinanceQtyTest() throws Exception {
 		
 		String noOfFinanceQty = DBUtil.noOfFinanceQtyGetDBValue();
@@ -62,7 +54,7 @@ public class FinancePageTest extends TestBase{
 		testUtil.assertEquals(noOfFinanceQtyActualValue, noOfFinanceQtyExpectedValue, "No. of Finance Qty");
 	}
 
-	@Test(priority = 2, enabled=false)
+	@Test(priority = 2, enabled=true)
 	public void financePenetrationTest() throws Exception {
 
 		System.out.println("--------Finance Penetration--------");
@@ -73,7 +65,7 @@ public class FinancePageTest extends TestBase{
 		testUtil.assertEquals(financePenetrationActualValue, financePenetrationExpectedValue, "Finance Penetration");
 	}
 	
-	@Test(priority = 3, enabled=false)
+	@Test(priority = 3, enabled=true)
 	public void cashVsFinanceTotalTest() throws Exception {
 		
 		String cashVsFinanceTotal = DBUtil.cashVsFinanceTotalGetDBValue();
@@ -86,7 +78,7 @@ public class FinancePageTest extends TestBase{
 		testUtil.assertEquals(cashVsFinanceTotalActualValue, cashVsFinanceTotalExpectedValue, "Cash vs Finance Total");
 	}
 
-	@Test(priority = 4, enabled=false)
+	@Test(priority = 4, enabled=true)
 	public void currentMonthFinanceTrendTest() throws Exception {
 		
 		String currentMonthFinanceTrend = DBUtil.currentMonthFinanceTrendGetDBValue();
@@ -99,7 +91,7 @@ public class FinancePageTest extends TestBase{
 		testUtil.assertEquals(currentMonthFinanceTrendActualValue, currentMonthFinanceTrendExpectedValue, "Current Month Finance Trend");
 	}
 
-    @Test(priority = 5, enabled=false)
+    @Test(priority = 5, enabled=true)
 	public void previousMonthFinanceTrendTest() throws Exception {
 		
 		String previousMonthFinanceTrend = DBUtil.previousMonthFinanceTrendGetDBValue();
@@ -113,7 +105,7 @@ public class FinancePageTest extends TestBase{
 	}
 
 	
-	@Test(priority = 6, enabled=false)
+	@Test(priority = 6, enabled=true)
 	public void currentMonthFinancePenetrationTrendTest() throws Exception {
 
 		System.out.println("--------Current Month Finance Penetration Trend--------");
@@ -124,7 +116,7 @@ public class FinancePageTest extends TestBase{
 		testUtil.assertEquals(currentMonthFinancePenetrationTrendActualValue, currentMonthFinancePenetrationTrendExpectedValue, "Current Month Finance Penetration Trend");
 	}
 
-	@Test(priority = 7, enabled=false)
+	@Test(priority = 7, enabled=true)
 	public void previousMonthFinancePenetrationTrendTest() throws Exception {
 
 		System.out.println("--------Previous Month Finance Penetration Trend--------");

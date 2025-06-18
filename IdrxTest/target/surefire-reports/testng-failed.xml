@@ -1,17 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Surefire suite]" verbose="0">
-  <test thread-count="5" name="Surefire test(failed)" verbose="0">
+<suite name="Failed suite [Idrx Test Automation Suite]" guice-stage="DEVELOPMENT" verbose="0">
+  <listeners>
+    <listener class-name="com.idrx.qa.ExtentReportListener.ExtentReportListener"/>
+  </listeners>
+  <test thread-count="5" name="Discount Test(failed)" verbose="0">
     <classes>
-      <class name="com.idrx.qa.testcases.LoginPageTest">
+      <class name="com.idrx.qa.testcases.DiscountPageTest">
         <methods>
-          <include name="vehicleInvoicedThisMonthTest"/>
+          <include name="tearDown"/>
+          <include name="noOfDiscountUnitsTest"/>
+          <include name="currentMonthValueTest"/>
+          <include name="previousMonthUnitsTest"/>
+          <include name="totalDiscountQtyTest"/>
+          <include name="setUp"/>
+          <include name="totalDiscountAmountTest"/>
+          <include name="previousMonthValueTest"/>
+          <include name="totalDiscountValueTest"/>
+          <include name="currentMonthUnitsTest"/>
+        </methods>
+      </class> <!-- com.idrx.qa.testcases.DiscountPageTest -->
+    </classes>
+  </test> <!-- Discount Test(failed) -->
+  <test thread-count="5" name="Finance Test(failed)" verbose="0">
+    <classes>
+      <class name="com.idrx.qa.testcases.FinancePageTest">
+        <methods>
+          <include name="financePenetrationTest"/>
+          <include name="tearDown"/>
+          <include name="currentMonthFinanceTrendTest"/>
+          <include name="currentMonthFinancePenetrationTrendTest"/>
+          <include name="setUp"/>
+          <include name="noOfFinanceQtyTest"/>
+          <include name="cashVsFinanceTotalTest"/>
+          <include name="previousMonthFinanceTrendTest"/>
+          <include name="previousMonthFinancePenetrationTrendTest"/>
+        </methods>
+      </class> <!-- com.idrx.qa.testcases.FinancePageTest -->
+    </classes>
+  </test> <!-- Finance Test(failed) -->
+  <test thread-count="5" name="Parts Sales Test(failed)" verbose="0">
+    <classes>
+      <class name="com.idrx.qa.testcases.PartsSalesTest">
+        <methods>
+          <include name="noofQtyTest"/>
+          <include name="partsSalesTest"/>
           <include name="tearDown"/>
           <include name="setUp"/>
-          <include name="vehicleInvoicedButNotDeliveredTest"/>
-          <include name="vehicleBookedYesterdayTest"/>
         </methods>
-      </class> <!-- com.idrx.qa.testcases.LoginPageTest -->
+      </class> <!-- com.idrx.qa.testcases.PartsSalesTest -->
     </classes>
-  </test> <!-- Surefire test(failed) -->
-</suite> <!-- Failed suite [Surefire suite] -->
+  </test> <!-- Parts Sales Test(failed) -->
+</suite> <!-- Failed suite [Idrx Test Automation Suite] -->
