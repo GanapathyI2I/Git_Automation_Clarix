@@ -20,6 +20,21 @@ public class DBUtil {
         }
     }
 
+    public static String getTallyExpectedValue(String sql, String column) throws Exception {
+        String dbUrl = TestBase.prop.getProperty("db.url_tally");
+        String dbUser = TestBase.prop.getProperty("db.user");
+        String dbPass = TestBase.prop.getProperty("db.pass");
+        try (Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPass);
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)) {
+            if (rs.next()) {
+                return rs.getString(column);
+            } else {
+                throw new Exception("No expected data found in DB for the given condition.");
+            }
+        }
+    }
+
     public static String numberToShortIndianFormat(long num) {
         if (num >= 10000000) {
             double value = num / 10000000.0;
@@ -1208,23 +1223,54 @@ public class DBUtil {
     // Payables Page DB Values
 
     public static String totalPayablesGetDBValue() throws Exception {
-        String sql = "SELECT " +
-                "(COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+        String sql = "WITH RECURSIVE date_ranges AS ( " +
+                "    SELECT CAST(DATE '2024-04-01' AS DATE) AS start_date, " +
+                "           CAST(DATE_TRUNC('month', DATE '2024-04-01' + INTERVAL '1 month') - INTERVAL '1 day' AS DATE) AS end_date "
                 +
-                "AND qty = 1), 0) - " +
-                "COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                "    UNION ALL " +
+                "    SELECT CAST(DATE '2024-04-01' AS DATE), " +
+                "           CAST(DATE_TRUNC('month', end_date + INTERVAL '1 day' + INTERVAL '1 month') - INTERVAL '1 day' AS DATE) "
                 +
-                "AND qty = -1), 0)) AS net_qty;";
+                "    FROM date_ranges " +
+                "    WHERE end_date < DATE '2026-03-31' " +
+                "), " +
+                "null_date_totals AS ( " +
+                "    SELECT 0 AS total_null_date_positive, 0 AS total_null_date_negative " +
+                "), " +
+                "monthly_totals AS ( " +
+                "    SELECT TO_CHAR(end_date, 'Mon YYYY') AS month, " +
+                "           (COALESCE(( " +
+                "                SELECT SUM(total_amount) " +
+                "                FROM ( " +
+                "                    SELECT ledger, SUM(amount) AS total_amount " +
+                "                    FROM ( " +
+                "                        SELECT ledger, amount " +
+                "                        FROM common_view " +
+                "                        WHERE group_ IN ('Sundry Creditors', 'Sundry Debtors') " +
+                "                          AND date BETWEEN start_date AND end_date " +
+                "                        UNION ALL " +
+                "                        SELECT ledger, amount " +
+                "                        FROM common_view " +
+                "                        WHERE group_ IN ('Sundry Creditors', 'Sundry Debtors') " +
+                "                          AND date IS NULL " +
+                "                    ) AS combined_data " +
+                "                    GROUP BY ledger " +
+                "                    HAVING SUM(amount) > 0 " +
+                "                ) AS final_data " +
+                "            ), 0) " +
+                "            + (SELECT total_null_date_positive FROM null_date_totals) " +
+                "           ) AS total_positive, " +
+                "           start_date " +
+                "    FROM date_ranges " +
+                ") " +
+                "SELECT total_positive AS net_qty " +
+                "FROM monthly_totals " +
+                "WHERE month = TO_CHAR(CURRENT_DATE, 'Mon YYYY') " +
+                "ORDER BY start_date;";
 
-        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        String dbValue = DBUtil.getTallyExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        String numConversion = TestUtil.numberToShortIndianFormatOneDecimal(num);
         return numConversion;
     }
 
@@ -1376,44 +1422,106 @@ public class DBUtil {
     }
 
     public static String currentMonthPayablesTrendGetDBValue() throws Exception {
-        String sql = "SELECT " +
-                "(COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+        String sql = "WITH RECURSIVE date_ranges AS ( " +
+                "    SELECT CAST(DATE '2024-04-01' AS DATE) AS start_date, " +
+                "           CAST(DATE_TRUNC('month', DATE '2024-04-01' + INTERVAL '1 month') - INTERVAL '1 day' AS DATE) AS end_date "
                 +
-                "AND qty = 1), 0) - " +
-                "COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                "    UNION ALL " +
+                "    SELECT CAST(DATE '2024-04-01' AS DATE), " +
+                "           CAST(DATE_TRUNC('month', end_date + INTERVAL '1 day' + INTERVAL '1 month') - INTERVAL '1 day' AS DATE) "
                 +
-                "AND qty = -1), 0)) AS net_qty;";
+                "    FROM date_ranges " +
+                "    WHERE end_date < DATE '2026-03-31' " +
+                "), " +
+                "null_date_totals AS ( " +
+                "    SELECT 0 AS total_null_date_positive, 0 AS total_null_date_negative " +
+                "), " +
+                "monthly_totals AS ( " +
+                "    SELECT TO_CHAR(end_date, 'Mon YYYY') AS month, " +
+                "           (COALESCE(( " +
+                "                SELECT SUM(total_amount) " +
+                "                FROM ( " +
+                "                    SELECT ledger, SUM(amount) AS total_amount " +
+                "                    FROM ( " +
+                "                        SELECT ledger, amount " +
+                "                        FROM common_view " +
+                "                        WHERE group_ IN ('Sundry Creditors', 'Sundry Debtors') " +
+                "                          AND date BETWEEN start_date AND end_date " +
+                "                        UNION ALL " +
+                "                        SELECT ledger, amount " +
+                "                        FROM common_view " +
+                "                        WHERE group_ IN ('Sundry Creditors', 'Sundry Debtors') " +
+                "                          AND date IS NULL " +
+                "                    ) AS combined_data " +
+                "                    GROUP BY ledger " +
+                "                    HAVING SUM(amount) > 0 " +
+                "                ) AS final_data " +
+                "            ), 0) " +
+                "            + (SELECT total_null_date_positive FROM null_date_totals) " +
+                "           ) AS total_positive, " +
+                "           start_date " +
+                "    FROM date_ranges " +
+                ") " +
+                "SELECT total_positive AS net_qty " +
+                "FROM monthly_totals " +
+                "WHERE month = TO_CHAR(CURRENT_DATE, 'Mon YYYY') " +
+                "ORDER BY start_date;";
 
-        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        String dbValue = DBUtil.getTallyExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        String numConversion = TestUtil.numberToShortIndianFormatThreeDigits(num);
         return numConversion;
     }
 
     public static String lastMonthPayablesTrendGetDBValue() throws Exception {
-        String sql = "SELECT " +
-                "(COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+        String sql = "WITH RECURSIVE date_ranges AS ( " +
+                "    SELECT CAST(DATE '2024-04-01' AS DATE) AS start_date, " +
+                "           CAST(DATE_TRUNC('month', DATE '2024-04-01' + INTERVAL '1 month') - INTERVAL '1 day' AS DATE) AS end_date "
                 +
-                "AND qty = 1), 0) - " +
-                "COALESCE((SELECT SUM(invoice_amount) " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_cancellation_date >= date_trunc('month', CURRENT_DATE) " +
-                "AND invoice_cancellation_date < date_trunc('month', CURRENT_DATE) + INTERVAL '15 days' + INTERVAL '23 hours 59 minutes 59 seconds' "
+                "    UNION ALL " +
+                "    SELECT CAST(DATE '2024-04-01' AS DATE), " +
+                "           CAST(DATE_TRUNC('month', end_date + INTERVAL '1 day' + INTERVAL '1 month') - INTERVAL '1 day' AS DATE) "
                 +
-                "AND qty = -1), 0)) AS net_qty;";
+                "    FROM date_ranges " +
+                "    WHERE end_date < DATE '2026-03-31' " +
+                "), " +
+                "null_date_totals AS ( " +
+                "    SELECT 0 AS total_null_date_positive, 0 AS total_null_date_negative " +
+                "), " +
+                "monthly_totals AS ( " +
+                "    SELECT TO_CHAR(end_date, 'Mon YYYY') AS month, " +
+                "           (COALESCE(( " +
+                "                SELECT SUM(total_amount) " +
+                "                FROM ( " +
+                "                    SELECT ledger, SUM(amount) AS total_amount " +
+                "                    FROM ( " +
+                "                        SELECT ledger, amount " +
+                "                        FROM common_view " +
+                "                        WHERE group_ IN ('Sundry Creditors', 'Sundry Debtors') " +
+                "                          AND date BETWEEN start_date AND end_date " +
+                "                        UNION ALL " +
+                "                        SELECT ledger, amount " +
+                "                        FROM common_view " +
+                "                        WHERE group_ IN ('Sundry Creditors', 'Sundry Debtors') " +
+                "                          AND date IS NULL " +
+                "                    ) AS combined_data " +
+                "                    GROUP BY ledger " +
+                "                    HAVING SUM(amount) > 0 " +
+                "                ) AS final_data " +
+                "            ), 0) " +
+                "            + (SELECT total_null_date_positive FROM null_date_totals) " +
+                "           ) AS total_positive, " +
+                "           start_date " +
+                "    FROM date_ranges " +
+                ") " +
+                "SELECT total_positive AS net_qty " +
+                "FROM monthly_totals " +
+                "WHERE month = TO_CHAR(DATE_TRUNC('month', CURRENT_DATE - INTERVAL '1 month'), 'Mon YYYY') " +
+                "ORDER BY start_date;";
 
-        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        String dbValue = DBUtil.getTallyExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        String numConversion = TestUtil.numberToShortIndianFormatThreeDigits(num);
         return numConversion;
     }
 
@@ -1477,7 +1585,7 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        String numConversion = TestUtil.numberToShortIndianFormatThreeDigits(num);
         return numConversion;
     }
 
