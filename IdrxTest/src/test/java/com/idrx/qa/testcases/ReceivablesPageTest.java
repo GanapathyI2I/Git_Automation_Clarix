@@ -45,7 +45,7 @@ public class ReceivablesPageTest extends TestBase {
         System.out.println("Actual Value: " + creditOutstandingActual);
         testUtil.assertEquals(creditOutstandingActual, creditOutstandingExpected, "Credit Outstanding");
     }
-
+//----------------------------------On hold for now----------------------------------
     // @Test(priority = 2, enabled=true)
     // public void mahindraTest() throws Exception {
     //     String mahindra = DBUtil.mahindraDBValue();
@@ -101,27 +101,27 @@ public class ReceivablesPageTest extends TestBase {
     //     testUtil.assertEquals(othersActual, othersExpected, "Others");
     // }
 
-    // @Test(priority = 7, enabled=true)
-    // public void receivablesTrentCurrentMonthTest() throws Exception {
-    //     String receivablesTrentCurrentMonth = DBUtil.receivablesTrentCurrentMonthDBValue();
-    //     System.out.println("---------Receivables/ Receivables Trent Current Month----------");
-    //     String receivablesTrentCurrentMonthExpected = "₹ " + receivablesTrentCurrentMonth;
-    //     System.out.println("Expected Value: " + receivablesTrentCurrentMonthExpected);
-    //     String receivablesTrentCurrentMonthActual = receivablesPages.getReceivablesTrendCurrentMonth();
-    //     System.out.println("Actual Value: " + receivablesTrentCurrentMonthActual);
-    //     testUtil.assertEquals(receivablesTrentCurrentMonthActual, receivablesTrentCurrentMonthExpected, "Receivables Trent Current Month");
-    // }
+    @Test(priority = 7, enabled=true)
+    public void receivablesTrentCurrentMonthTest() throws Exception {
+        String receivablesTrentCurrentMonth = DBUtil.receivablesTrentCurrentMonthDBValue();
+        System.out.println("---------Receivables/ Receivables Trent Current Month----------");
+        String receivablesTrentCurrentMonthExpected = "₹ " + receivablesTrentCurrentMonth;
+        System.out.println("Expected Value: " + receivablesTrentCurrentMonthExpected);
+        String receivablesTrentCurrentMonthActual = receivablesPages.getReceivablesTrendCurrentMonth();
+        System.out.println("Actual Value: " + receivablesTrentCurrentMonthActual);
+        testUtil.assertEquals(receivablesTrentCurrentMonthActual, receivablesTrentCurrentMonthExpected, "Receivables Trent Current Month");
+    }
 
-    // @Test(priority = 8, enabled=true)
-    // public void receivablesTrentPastMonthTest() throws Exception {
-    //     String receivablesTrentPastMonth = DBUtil.receivablesTrentPastMonthDBValue();
-    //     System.out.println("---------Receivables/ Receivables Trent Past Month----------");
-    //     String receivablesTrentPastMonthExpected = "₹ " + receivablesTrentPastMonth;
-    //     System.out.println("Expected Value: " + receivablesTrentPastMonthExpected);
-    //     String receivablesTrentPastMonthActual = receivablesPages.getReceivablesTrendPastMonth();
-    //     System.out.println("Actual Value: " + receivablesTrentPastMonthActual);
-    //     testUtil.assertEquals(receivablesTrentPastMonthActual, receivablesTrentPastMonthExpected, "Receivables Trent Past Month");
-    // }
+    @Test(priority = 8, enabled=true)
+    public void receivablesTrentPastMonthTest() throws Exception {
+        String receivablesTrentPastMonth = DBUtil.receivablesTrentPastMonthDBValue();
+        System.out.println("---------Receivables/ Receivables Trent Past Month----------");
+        String receivablesTrentPastMonthExpected = "₹ " + receivablesTrentPastMonth;
+        System.out.println("Expected Value: " + receivablesTrentPastMonthExpected);
+        String receivablesTrentPastMonthActual = receivablesPages.getReceivablesTrendPastMonth();
+        System.out.println("Actual Value: " + receivablesTrentPastMonthActual);
+        testUtil.assertEquals(receivablesTrentPastMonthActual, receivablesTrentPastMonthExpected, "Receivables Trent Past Month");
+    }
 
     // @Test(priority = 9, enabled=true)
     // public void riskyReceivablesGreaterThan60DaysTest() throws Exception {
