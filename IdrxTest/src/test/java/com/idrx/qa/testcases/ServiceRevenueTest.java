@@ -49,7 +49,7 @@ public class ServiceRevenueTest extends TestBase {
     public void avgRevPerVehicleTest() throws Exception {
         String avgRevPerVehicle = DBUtil.avgRevPerVehicleGetDBValue();
         System.out.println("--------Average Revenue Per Vehicle--------");
-        String avgRevPerVehicleExpectedValue = "₹ " + avgRevPerVehicle;
+        String avgRevPerVehicleExpectedValue = avgRevPerVehicle;
         System.out.println("Expected Value: " + avgRevPerVehicleExpectedValue);
         String avgRevPerVehicleActualValue = serviceRevenuePage.getAvgRevPerVehicle();
         System.out.println("Actual Value: " + avgRevPerVehicleActualValue);

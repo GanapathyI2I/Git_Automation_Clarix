@@ -650,7 +650,7 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        String numConversion = TestUtil.numberToShortIndianFormatTwoDecimal(num);
         return numConversion;
     }
 
