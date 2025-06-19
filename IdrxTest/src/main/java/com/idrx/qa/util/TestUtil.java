@@ -3,6 +3,8 @@ package com.idrx.qa.util;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -239,4 +241,23 @@ public class TestUtil extends TestBase {
 		}
 	}
 
+	public static String numberToShortIndianFormatTwoDecimal(double num) {
+		if (num >= 1_00_00_000) { // 1 crore
+			BigDecimal value = BigDecimal.valueOf(num / 1_00_00_000.0)
+					.setScale(2, RoundingMode.CEILING);
+			return value + "Cr";
+		} else if (num >= 1_00_000) { // 1 lakh
+			BigDecimal value = BigDecimal.valueOf(num / 1_00_000.0)
+					.setScale(2, RoundingMode.CEILING);
+			return value + "L";
+		} else if (num >= 1000) { // 1 thousand
+			BigDecimal value = BigDecimal.valueOf(num / 1000.0)
+					.setScale(2, RoundingMode.CEILING);
+			return value + "K";
+		} else {
+			BigDecimal value = BigDecimal.valueOf(num)
+					.setScale(2, RoundingMode.CEILING);
+			return value.toString();
+		}
+	}
 }

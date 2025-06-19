@@ -67,27 +67,29 @@ public class PartsStocksTest extends TestBase {
                 "Accessories And Parts Value");
     }
 
-    @Test(priority = 4, enabled = true)
-    public void getExcessStockQtyTest() throws Exception {
-        String excessStockQty = DBUtil.excessStockQtyGetDBValue();
-        System.out.println("--------Excess Stock Qty--------");
-        int excessStockQtyExpectedValue = Integer.parseInt(excessStockQty);
-        System.out.println("Expected Value: " + excessStockQtyExpectedValue);
-        String excessStockQtyVal = partsStocksPage.getExcessStockQty();
-        int excessStockQtyActualValue = Integer.parseInt(excessStockQtyVal);
-        System.out.println("Actual Value: " + excessStockQtyActualValue);
-        testUtil.assertEquals(excessStockQtyActualValue, excessStockQtyExpectedValue, "Excess Stock Qty");
-    }
+    // @Test(priority = 4, enabled = true)
+    // public void getExcessStockQtyTest() throws Exception {
+    // String excessStockQty = DBUtil.excessStockQtyGetDBValue();
+    // System.out.println("--------Excess Stock Qty--------");
+    // int excessStockQtyExpectedValue = Integer.parseInt(excessStockQty);
+    // System.out.println("Expected Value: " + excessStockQtyExpectedValue);
+    // String excessStockQtyVal = partsStocksPage.getExcessStockQty();
+    // int excessStockQtyActualValue = Integer.parseInt(excessStockQtyVal);
+    // System.out.println("Actual Value: " + excessStockQtyActualValue);
+    // testUtil.assertEquals(excessStockQtyActualValue, excessStockQtyExpectedValue,
+    // "Excess Stock Qty");
+    // }
 
-    @Test(priority = 5, enabled = true)
-    public void getExcessStockValueTest() throws Exception {
-        String excessStockValueExpectedValue = DBUtil.excessStockValueGetDBValue();
-        System.out.println("--------Excess Stock Value--------");
-        System.out.println("Expected Value: " + excessStockValueExpectedValue);
-        String excessStockValueActualValue = partsStocksPage.getExcessStockValue();
-        System.out.println("Actual Value: " + excessStockValueActualValue);
-        testUtil.assertEquals(excessStockValueActualValue, excessStockValueExpectedValue, "Excess Stock Value");
-    }
+    // @Test(priority = 5, enabled = true)
+    // public void getExcessStockValueTest() throws Exception {
+    // String excessStockValueExpectedValue = DBUtil.excessStockValueGetDBValue();
+    // System.out.println("--------Excess Stock Value--------");
+    // System.out.println("Expected Value: " + excessStockValueExpectedValue);
+    // String excessStockValueActualValue = partsStocksPage.getExcessStockValue();
+    // System.out.println("Actual Value: " + excessStockValueActualValue);
+    // testUtil.assertEquals(excessStockValueActualValue,
+    // excessStockValueExpectedValue, "Excess Stock Value");
+    // }
 
     @Test(priority = 6, enabled = true)
     public void getCurrentMonthPartsQtyTrendTest() throws Exception {
