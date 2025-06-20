@@ -7,7 +7,7 @@ import com.idrx.qa.base.TestBase;
 public class DBUtil {
     public static String getExpectedValue(String sql, String column) throws Exception {
         String dbUrl = TestBase.prop.getProperty("db.url");
-     //   String dbUrlTally = TestBase.prop.getProperty("db.url_tally");
+        // String dbUrlTally = TestBase.prop.getProperty("db.url_tally");
         String dbUser = TestBase.prop.getProperty("db.user");
         String dbPass = TestBase.prop.getProperty("db.pass");
         try (Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPass);
@@ -514,7 +514,7 @@ public class DBUtil {
                 "SELECT qty " +
                 "FROM commondatamodel.vehicles_sales " +
                 "WHERE invoice_date BETWEEN date_trunc('month', current_date - INTERVAL '1 month') " +
-                "AND date_trunc('month', current_date) - INTERVAL '1 second" +
+                "AND date_trunc('month', current_date) - INTERVAL '1 second' " +
                 "AND qty = 1 " +
                 "AND financier != 'CASH' " +
 
@@ -522,8 +522,8 @@ public class DBUtil {
 
                 "SELECT qty " +
                 "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_cancellation_date BETWEEN date_trunc('month', current_date - INTERVAL '1 month') " +
-                "AND date_trunc('month', current_date) - INTERVAL '1 second" +
+                "   WHERE invoice_cancellation_date BETWEEN date_trunc('month', current_date - INTERVAL '1 month') " +
+                "AND date_trunc('month', current_date) - INTERVAL '1 second' " +
                 "AND financier != 'CASH' " +
                 ") AS combined;";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
@@ -575,14 +575,14 @@ public class DBUtil {
 
     public static String previousMonthFinancePenetrationTrendGetDBValue() throws Exception {
         String sql = "SELECT " +
-                "ROUND(100.0 * filtered.total_qty::NUMERIC / NULLIF(total.total_qty, 0), 0) AS net_qty " +
+                "ROUND(100.0 * filtered.total_qty::NUMERIC / NULLIF(total.total_qty, 0), 0) AS percentage " +
                 "FROM ( " +
                 "SELECT SUM(qty) AS total_qty " +
                 "FROM ( " +
                 "SELECT qty " +
                 "FROM commondatamodel.vehicles_sales " +
                 "WHERE invoice_date BETWEEN date_trunc('month', current_date - INTERVAL '1 month') " +
-                "AND date_trunc('month', current_date) - INTERVAL '1 second" +
+                "AND date_trunc('month', current_date) - INTERVAL '1 second' " +
                 "AND qty = 1 " +
                 "AND financier != 'CASH' " +
 
@@ -591,7 +591,7 @@ public class DBUtil {
                 "SELECT qty " +
                 "FROM commondatamodel.vehicles_sales " +
                 "WHERE invoice_cancellation_date BETWEEN date_trunc('month', current_date - INTERVAL '1 month') " +
-                "AND date_trunc('month', current_date) - INTERVAL '1 second" +
+                "AND date_trunc('month', current_date) - INTERVAL '1 second' " +
                 "AND financier != 'CASH' " +
                 ") AS combined " +
                 ") AS filtered, " +
@@ -601,7 +601,7 @@ public class DBUtil {
                 "SELECT qty " +
                 "FROM commondatamodel.vehicles_sales " +
                 "WHERE invoice_date BETWEEN date_trunc('month', current_date - INTERVAL '1 month') " +
-                "AND date_trunc('month', current_date) - INTERVAL '1 second" +
+                "AND date_trunc('month', current_date) - INTERVAL '1 second' " +
                 "AND qty = 1 " +
 
                 "UNION ALL " +
@@ -609,11 +609,11 @@ public class DBUtil {
                 "SELECT qty " +
                 "FROM commondatamodel.vehicles_sales " +
                 "WHERE invoice_cancellation_date BETWEEN date_trunc('month', current_date - INTERVAL '1 month') " +
-                "AND date_trunc('month', current_date) - INTERVAL '1 second" +
+                "AND date_trunc('month', current_date) - INTERVAL '1 second' " +
                 "AND qty = -1 " +
                 ") AS combined " +
                 ") AS total;";
-        String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
+        String dbValue = DBUtil.getExpectedValue(sql, "percentage");
         int rounded = (int) Math.round(Double.parseDouble(dbValue));
         return String.valueOf(rounded) + "%";
     }
@@ -814,20 +814,20 @@ public class DBUtil {
     }
 
     public static String totalValuePastMonthDBValue() throws Exception {
-        String sql = "SELECT  "+
-"("+
-  "(SELECT COALESCE(SUM(total_part_value), 0) "+
-   "FROM commondatamodel.purchase "+
-   "WHERE grn_date >= date_trunc('month', CURRENT_DATE - INTERVAL '1 month') "+
-     "AND grn_date < date_trunc('month', CURRENT_DATE) "+
-     "AND item_type != 'Vehicles') "+
-  "+ "+
-  "(SELECT COALESCE(SUM(total_part_value), 0) "+
-   "FROM commondatamodel.purchase "+
-   "WHERE invoice_date >= date_trunc('month', CURRENT_DATE - INTERVAL '1 month') "+
-     "AND invoice_date < date_trunc('month', CURRENT_DATE) "+
-     "AND item_type = 'Vehicles') "+
-") AS net_qty;";
+        String sql = "SELECT  " +
+                "(" +
+                "(SELECT COALESCE(SUM(total_part_value), 0) " +
+                "FROM commondatamodel.purchase " +
+                "WHERE grn_date >= date_trunc('month', CURRENT_DATE - INTERVAL '1 month') " +
+                "AND grn_date < date_trunc('month', CURRENT_DATE) " +
+                "AND item_type != 'Vehicles') " +
+                "+ " +
+                "(SELECT COALESCE(SUM(total_part_value), 0) " +
+                "FROM commondatamodel.purchase " +
+                "WHERE invoice_date >= date_trunc('month', CURRENT_DATE - INTERVAL '1 month') " +
+                "AND invoice_date < date_trunc('month', CURRENT_DATE) " +
+                "AND item_type = 'Vehicles') " +
+                ") AS net_qty;";
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);

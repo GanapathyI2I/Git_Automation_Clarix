@@ -27,7 +27,7 @@ public class ExtentReportListener implements ITestListener, ISuiteListener {
         extent = new ExtentReports();
         extent.attachReporter(htmlReporter);
         extent.setSystemInfo("OS", System.getProperty("os.name"));
-        extent.setSystemInfo("Tester", "Vimal");
+        extent.setSystemInfo("Tester", "Automation Team");
     }
 
     @Override
@@ -55,7 +55,7 @@ public class ExtentReportListener implements ITestListener, ISuiteListener {
         String screenshotPath = takeScreenshot(driver, result.getMethod().getMethodName());
         if (screenshotPath != null) {
             test.get().fail(result.getThrowable(),
-                MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+                    MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
         } else {
             test.get().fail(result.getThrowable());
         }
@@ -63,12 +63,12 @@ public class ExtentReportListener implements ITestListener, ISuiteListener {
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        WebDriver driver = TestBase.driver;  // Use thread-safe getter
+        WebDriver driver = TestBase.driver; // Use thread-safe getter
         String screenshotPath = takeScreenshot(driver, result.getMethod().getMethodName());
         if (screenshotPath != null) {
             try {
                 test.get().skip("Test Skipped: " + result.getThrowable(),
-                    MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+                        MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
             } catch (Exception e) {
                 test.get().skip("Test Skipped: " + result.getThrowable());
             }
@@ -83,10 +83,12 @@ public class ExtentReportListener implements ITestListener, ISuiteListener {
     }
 
     @Override
-    public void onStart(ITestContext context) {}
+    public void onStart(ITestContext context) {
+    }
 
     @Override
-    public void onFinish(ITestContext context) {}
+    public void onFinish(ITestContext context) {
+    }
 
     public static String takeScreenshot(WebDriver driver, String screenshotName) {
         try {
