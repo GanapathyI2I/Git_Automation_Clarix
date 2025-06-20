@@ -101,27 +101,27 @@ public class ExpensesPageTest extends TestBase {
     //     testUtil.assertEquals(othersActual, othersExpected, "Others");
     // }
 
-    // @Test(priority = 7, enabled=true)
-    // public void expensesTrendCurrentMonthTest() throws Exception {
-    //     String expensesTrendCurrentMonth = DBUtil.totalExpensesTrendCurrentMonthDBValue();
-    //     System.out.println("---------Expenses/ Expenses Trend Current Month----------");
-    //     String expensesTrendCurrentMonthExpected = "₹ " + expensesTrendCurrentMonth;
-    //     System.out.println("Expected Value: " + expensesTrendCurrentMonthExpected);
-    //     String expensesTrendCurrentMonthActual = expensesPage.getExpensesTrendCurrentMonth();
-    //     System.out.println("Actual Value: " + expensesTrendCurrentMonthActual);
-    //     testUtil.assertEquals(expensesTrendCurrentMonthActual, expensesTrendCurrentMonthExpected, "Expenses Trend Current Month");
-    // }
+    @Test(priority = 7, enabled=true)
+    public void expensesTrendCurrentMonthTest() throws Exception {
+        String expensesTrendCurrentMonth = DBUtil.totalExpensesTrendCurrentMonthDBValue();
+        System.out.println("---------Expenses/ Expenses Trend Current Month----------");
+        String expensesTrendCurrentMonthExpected = "₹ " + expensesTrendCurrentMonth;
+        System.out.println("Expected Value: " + expensesTrendCurrentMonthExpected);
+        String expensesTrendCurrentMonthActual = expensesPage.getExpensesTrendCurrentMonth();
+        System.out.println("Actual Value: " + expensesTrendCurrentMonthActual);
+        testUtil.assertEquals(expensesTrendCurrentMonthActual, expensesTrendCurrentMonthExpected, "Expenses Trend Current Month");
+    }
 
-    // @Test(priority = 8, enabled=true)
-    // public void expensesTrendPastMonthTest() throws Exception {
-    //     String expensesTrendPastMonth = DBUtil.totalExpensesTrendPastMonthDBValue();
-    //     System.out.println("---------Expenses/ Expenses Trend Past Month----------");
-    //     String expensesTrendPastMonthExpected = "₹ " + expensesTrendPastMonth;
-    //     System.out.println("Expected Value: " + expensesTrendPastMonthExpected);
-    //     String expensesTrendPastMonthActual = expensesPage.getExpensesTrendPastMonth();
-    //     System.out.println("Actual Value: " + expensesTrendPastMonthActual);
-    //     testUtil.assertEquals(expensesTrendPastMonthActual, expensesTrendPastMonthExpected, "Expenses Trend Past Month");
-    // }
+    @Test(priority = 8, enabled=true)
+    public void expensesTrendPastMonthTest() throws Exception {
+        String expensesTrendPastMonth = DBUtil.totalExpensesTrendPastMonthDBValue();
+        System.out.println("---------Expenses/ Expenses Trend Past Month----------");
+        String expensesTrendPastMonthExpected = "₹ " + expensesTrendPastMonth;
+        System.out.println("Expected Value: " + expensesTrendPastMonthExpected);
+        String expensesTrendPastMonthActual = expensesPage.getExpensesTrendPastMonth();
+        System.out.println("Actual Value: " + expensesTrendPastMonthActual);
+        testUtil.assertEquals(expensesTrendPastMonthActual, expensesTrendPastMonthExpected, "Expenses Trend Past Month");
+    }
     
     
     
