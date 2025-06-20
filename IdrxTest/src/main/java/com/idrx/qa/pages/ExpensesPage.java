@@ -28,10 +28,10 @@ public class ExpensesPage extends TestBase {
     @FindBy(xpath = "//span[@class='textRun']/ancestor::visual-container[1]/..//visual-modern//*[local-name()='svg' and contains(@aria-label,'Expense Total amount')]")
     List<WebElement> others;
 
-    @FindBy(xpath = "//*[@class = 'labelContainerGraphicsContext']//*[@class='label-container']//*[@class='label-tspan']")
+    @FindBy(xpath = "//*[text()='Expenses Trend']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='tspan']")
     List<WebElement> expensesTrendCurrentMonth;
 
-    @FindBy(xpath = "//*[@class = 'labelContainerGraphicsContext']//*[@class='label-container']//*[@class='label-tspan']")
+    @FindBy(xpath = "//*[text()='Expenses Trend']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='tspan']")
     List<WebElement> expensesTrendPastMonth;
 
     //Initializing the page objects

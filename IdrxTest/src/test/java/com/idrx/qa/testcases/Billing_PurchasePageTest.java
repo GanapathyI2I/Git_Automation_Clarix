@@ -31,7 +31,9 @@ public class Billing_PurchasePageTest extends TestBase {
         loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
         Thread.sleep(5000);
         TestUtil.switchToFrame();
+        Thread.sleep(5000);
         homePage.clickBillingPurchaseTile();
+        
 
     }
 

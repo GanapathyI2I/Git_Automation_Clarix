@@ -181,6 +181,14 @@ public class TestUtil extends TestBase {
 		return finalValueCr;
 	}
 
+	// -----this method is used to convert the number to short indian format with 1
+	// decimal place in L--------
+	public static String numberToShortIndianFormatInLakh(double num) {
+		double value = num / 100000.0;
+		String finalValueL = String.format("%.1f L", value).replaceAll("\\.?0+ L$", " L");
+		return finalValueL;
+	}
+
 	// -----Scroll to particular element-----
 	public static void scrollToElement(WebDriver driver, WebElement element) {
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);

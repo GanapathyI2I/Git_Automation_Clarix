@@ -28,7 +28,7 @@ public class Billing_PurchasePages extends TestBase {
     @FindBy(xpath = "//*[@class = 'labelContainerGraphicsContext']//*[@class='label-container']//*[@class='label-tspan']")
     List<WebElement> totalValueCurrentMonth;
 
-    @FindBy(xpath = "//*[@class = 'labelContainerGraphicsContext']//*[@class='label-container']//*[@class='label-tspan']")
+    @FindBy(xpath = "//*[@class='content text ui-role-button-text selected' and text()='Units']/ancestor::visual-modern/ancestor::visual-container/..//visual-container//*[local-name()='tspan' and @class='label-tspan']")
     List<WebElement> totalValuePastMonth;
 
     @FindBy(xpath = "//div[h3[text()='Top Vehicle']]//following::div[@role='grid']//div[@role='columnheader' and text()='Qty']/ancestor::div[@role='grid']/div[@class='bot-viewport']//div[@column-index='1'][1]")
@@ -73,7 +73,7 @@ public class Billing_PurchasePages extends TestBase {
         }
 
         public String getUnitsPastMonth() {
-            String unitsPastMonth = this.unitsPastMonth.get(12).getText();
+            String unitsPastMonth = this.unitsPastMonth.get(11).getText();
             return unitsPastMonth;
         }
 
@@ -88,7 +88,7 @@ public class Billing_PurchasePages extends TestBase {
         }
 
         public String getTotalValuePastMonth() {
-            String totalValuePastMonth = this.totalValuePastMonth.get(12).getText();
+            String totalValuePastMonth = this.totalValuePastMonth.get(10).getText();
             return totalValuePastMonth;
         }
 
