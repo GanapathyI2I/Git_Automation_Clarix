@@ -721,7 +721,7 @@ public class DBUtil {
                 ");";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        String numConversion = TestUtil.numberToShortIndianFormatInCr(num);
+        String numConversion = TestUtil.numberToShortIndianFormatOneDecimal(num);
         return numConversion;
     }
 

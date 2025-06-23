@@ -51,7 +51,7 @@ public class HomePage extends TestBase {
 	}
 
 	public void clickBillingPurchaseTile() {
-		// testUtil.clickElement(billingAndPurchase.get(17), "billingAndPurchase");
+		// testUtil.clickElement(billingAndPurchase.get(16), "billingAndPurchase");
 		WebElement billingPurchaseTile = this.billingAndPurchase.get(16);
 		billingPurchaseTile.click();
 	}
