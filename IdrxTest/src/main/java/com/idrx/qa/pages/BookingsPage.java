@@ -57,7 +57,7 @@ public class BookingsPage extends TestBase {
     }
     
     public String getPreviousMonth() {
-        String previousMonth = this.previousMonth.get(5).getText();
+        String previousMonth = this.previousMonth.get(3).getText();
         return previousMonth;
     }
 
