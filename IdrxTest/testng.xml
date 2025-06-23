@@ -34,5 +34,60 @@
             <class name="com.idrx.qa.testcases.PartsSalesTest"/>
         </classes>
     </test>
+    <test name="Parts Stocks Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.PartsStocksTest"/>
+        </classes>
+    </test>
+    <test name="Vehicle Stocks Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.VehicleStocksTest"/>
+        </classes>
+    </test>
+    <test name="Service Revenue Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.ServiceRevenueTest"/>
+        </classes>
+    </test>
+    <test name="Service Units Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.ServiceUnitsTest"/>
+        </classes>
+    </test>
+    <test name="Billing Purchase Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.Billing_PurchasePageTest"/>
+        </classes>
+    </test>
+    <test name="Payables Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.PayablesTest"/>
+        </classes>
+    </test>
+    <test name="Receivables Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.ReceivablesPageTest"/>
+        </classes>
+    </test>
+    <!-- <test name="New Order Vehicles Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.NewOrderVehiclesPageTest"/>
+        </classes>
+    </test>
+    <test name="New Order P&A Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.NewOrderP_APageTest"/>
+        </classes>
+    </test> -->
+    <test name="Expenses Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.ExpensesPageTest"/>
+        </classes>
+    </test>
+    <!-- <test name="Profit Test">
+        <classes>
+            <class name="com.idrx.qa.testcases.ProfitPageTest"/>
+        </classes>
+    </test> -->
 </suite>    
     
