@@ -53,7 +53,7 @@ public class PartsSalesTest extends TestBase {
     public void partsSalesTest() throws Exception {
         String partsSales = DBUtil.partsSalesTestDBValue();
         System.out.println("--------Parts Sales/Parts Sales--------");
-        String partsSalesExpectedValue = "₹ " + partsSales;
+        String partsSalesExpectedValue = "₹" + partsSales;
         System.out.println("Expected Value: " + partsSalesExpectedValue);
         String partsSalesActualValue = partsSalesPage.getPartsSales();
         System.out.println("Actual Value: " + partsSalesActualValue);
