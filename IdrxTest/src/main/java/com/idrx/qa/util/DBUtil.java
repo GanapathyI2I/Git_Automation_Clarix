@@ -687,9 +687,9 @@ public class DBUtil {
                 "FROM commondatamodel.parts_sales " +
                 "WHERE doc_date >= date_trunc('month', CURRENT_DATE) " +
                 "AND doc_date < date_trunc('month', CURRENT_DATE + INTERVAL '1 month') " +
-                "AND doc_type IN ( " +
-                "'Workshop Issue', 'Stock Transfer Issue', " +
-                "'Counter Sale-Credit', 'Counter Sale-Cheque', 'Counter Sale-Cash' " +
+                "AND doc_type not IN ( " +
+                "'Bin To Bin Transfer Issue', 'Delivery Challan - Returnable', " +
+                "'Delivery Challan - Non Returnable' " +
                 ");";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
@@ -700,9 +700,9 @@ public class DBUtil {
                 "FROM commondatamodel.parts_sales " +
                 "WHERE doc_date >= date_trunc('month', CURRENT_DATE) " +
                 "AND doc_date < date_trunc('month', CURRENT_DATE + INTERVAL '1 month') " +
-                "AND doc_type IN ( " +
-                "'Workshop Issue', 'Stock Transfer Issue', " +
-                "'Counter Sale-Credit', 'Counter Sale-Cheque', 'Counter Sale-Cash' " +
+                "AND doc_type not IN ( " +
+                "'Bin To Bin Transfer Issue', 'Delivery Challan - Returnable', " +
+                "'Delivery Challan - Non Returnable' " +
                 ");";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
@@ -1287,7 +1287,7 @@ public class DBUtil {
                 "AND date < DATE_TRUNC('month', CURRENT_DATE + INTERVAL '1 month');";
         String dbValue = DBUtil.getTallyExpectedValue(sql, "net_qty");
         double num = Math.abs(Double.parseDouble(dbValue));
-        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        String numConversion = TestUtil.numberToShortIndianFormatOneDecimal(num);
         return numConversion;
     }
 
