@@ -144,7 +144,7 @@ public class DBUtil {
 
     public static String vehicleBookedYesterdayTestDBValue() throws Exception {
         // need to change the query to get the correct value
-        String sql = "SELECT COUNT(*) AS net_qty FROM commondatamodel.booking WHERE booking_date = CURRENT_DATE - INTERVAL '1 day' AND booking_status = 'Booked' AND category_type = 'Booking Register'";
+        String sql = "SELECT COUNT(*) AS net_qty FROM commondatamodel.booking WHERE booking_date = CURRENT_DATE - INTERVAL '1 day' AND category_type = 'Booking Register'";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
     }
@@ -247,36 +247,60 @@ public class DBUtil {
     // Discount Page DB Values
     public static String noOfDiscountUnitsGetDBValue() throws Exception {
         String sql = "SELECT " +
-                "SUM(qty) AS net_qty " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_date BETWEEN date_trunc('month', current_date) AND current_date " +
-                "AND qty = '1' " +
-                "AND GREATEST( " +
-                "COALESCE(total_corporate_disc, 0), " +
-                "COALESCE(dealer_disc, 0), " +
-                "COALESCE(oem_scheme_discount, 0), " +
-                "COALESCE(cpc_csd_disc_amount, 0) " +
-                ") > 0;";
+                "COALESCE(( " +
+                "  SELECT SUM(qty) " +
+                "  FROM commondatamodel.vehicles_sales " +
+                "  WHERE invoice_date BETWEEN date_trunc('month', current_date) AND current_date " +
+                "    AND qty = '1' " +
+                "    AND GREATEST( " +
+                "          COALESCE(corporate_disc_amount, 0), " +
+                "          COALESCE(dealer_disc, 0), " +
+                "          COALESCE(oem_scheme_discount, 0), " +
+                "          COALESCE(cpc_csd_disc_amount, 0), " +
+                "          COALESCE(exchange_disc_amount, 0) " +
+                "        ) > 0 " +
+                "), 0) " +
+                "+ " +
+                "COALESCE(( " +
+                "  SELECT COUNT(id) " +
+                "  FROM commondatamodel.vehicles_sales " +
+                "  WHERE invoice_cancellation_date BETWEEN date_trunc('month', current_date) AND current_date " +
+                "    AND GREATEST( " +
+                "          COALESCE(corporate_disc_amount, 0), " +
+                "          COALESCE(dealer_disc, 0), " +
+                "          COALESCE(oem_scheme_discount, 0), " +
+                "          COALESCE(cpc_csd_disc_amount, 0), " +
+                "          COALESCE(exchange_disc_amount, 0) " +
+                "        ) > 0 " +
+                "), 0) AS net_qty;";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
     }
 
     public static String totalDiscountValueGetDBValue() throws Exception {
-        String sql = "SELECT SUM( " +
-                "COALESCE(total_corporate_disc, 0) + " +
-                "COALESCE(dealer_disc, 0) + " +
-                "COALESCE(oem_scheme_discount, 0) + " +
-                "COALESCE(cpc_csd_disc_amount, 0) " +
-                ") AS net_qty " +
+        String sql = "SELECT " +
+                "COALESCE(active.total_discount, 0) - COALESCE(cancelled.total_discount, 0) AS net_qty " +
+                "FROM " +
+                "( " +
+                "SELECT " +
+                "COALESCE(SUM(exchange_disc_amount), 0) + " +
+                "COALESCE(SUM(dealer_disc), 0) + " +
+                "COALESCE(SUM(oem_scheme_discount), 0) + " +
+                "COALESCE(SUM(cpc_csd_disc_amount), 0) + " +
+                "COALESCE(SUM(corporate_disc_amount), 0) AS total_discount " +
                 "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_date BETWEEN date_trunc('month', current_date) AND current_date " +
-                "AND qty = '1' " +
-                "AND GREATEST( " +
-                "COALESCE(total_corporate_disc, 0), " +
-                "COALESCE(dealer_disc, 0), " +
-                "COALESCE(oem_scheme_discount, 0), " +
-                "COALESCE(cpc_csd_disc_amount, 0) " +
-                ") > 0;";
+                "WHERE invoice_cancellation_date BETWEEN date_trunc('month', CURRENT_DATE) AND CURRENT_DATE " +
+                ") AS cancelled, " +
+                "( " +
+                "SELECT " +
+                "COALESCE(SUM(exchange_disc_amount), 0) + " +
+                "COALESCE(SUM(dealer_disc), 0) + " +
+                "COALESCE(SUM(oem_scheme_discount), 0) + " +
+                "COALESCE(SUM(cpc_csd_disc_amount), 0) + " +
+                "COALESCE(SUM(corporate_disc_amount), 0) AS total_discount " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date BETWEEN date_trunc('month', CURRENT_DATE) AND CURRENT_DATE " +
+                ") AS active;";
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
@@ -286,36 +310,60 @@ public class DBUtil {
 
     public static String totalDiscountQtyGetDBValue() throws Exception {
         String sql = "SELECT " +
-                "SUM(qty) AS net_qty " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_date BETWEEN date_trunc('month', current_date) AND current_date " +
-                "AND qty = '1' " +
-                "AND GREATEST( " +
-                "COALESCE(total_corporate_disc, 0), " +
-                "COALESCE(dealer_disc, 0), " +
-                "COALESCE(oem_scheme_discount, 0), " +
-                "COALESCE(cpc_csd_disc_amount, 0) " +
-                ") > 0;";
+                "COALESCE(( " +
+                "  SELECT SUM(qty) " +
+                "  FROM commondatamodel.vehicles_sales " +
+                "  WHERE invoice_date BETWEEN date_trunc('month', current_date) AND current_date " +
+                "    AND qty = '1' " +
+                "    AND GREATEST( " +
+                "          COALESCE(corporate_disc_amount, 0), " +
+                "          COALESCE(dealer_disc, 0), " +
+                "          COALESCE(oem_scheme_discount, 0), " +
+                "          COALESCE(cpc_csd_disc_amount, 0), " +
+                "          COALESCE(exchange_disc_amount, 0) " +
+                "        ) > 0 " +
+                "), 0) " +
+                "+ " +
+                "COALESCE(( " +
+                "  SELECT COUNT(id) " +
+                "  FROM commondatamodel.vehicles_sales " +
+                "  WHERE invoice_cancellation_date BETWEEN date_trunc('month', current_date) AND current_date " +
+                "    AND GREATEST( " +
+                "          COALESCE(corporate_disc_amount, 0), " +
+                "          COALESCE(dealer_disc, 0), " +
+                "          COALESCE(oem_scheme_discount, 0), " +
+                "          COALESCE(cpc_csd_disc_amount, 0), " +
+                "          COALESCE(exchange_disc_amount, 0) " +
+                "        ) > 0 " +
+                "), 0) AS net_qty;";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
     }
 
     public static String totalDiscountAmountGetDBValue() throws Exception {
-        String sql = "SELECT SUM( " +
-                "COALESCE(total_corporate_disc, 0) + " +
-                "COALESCE(dealer_disc, 0) + " +
-                "COALESCE(oem_scheme_discount, 0) + " +
-                "COALESCE(cpc_csd_disc_amount, 0) " +
-                ") AS net_qty " +
+        String sql = "SELECT " +
+                "COALESCE(active.total_discount, 0) - COALESCE(cancelled.total_discount, 0) AS net_qty " +
+                "FROM " +
+                "( " +
+                "SELECT " +
+                "COALESCE(SUM(exchange_disc_amount), 0) + " +
+                "COALESCE(SUM(dealer_disc), 0) + " +
+                "COALESCE(SUM(oem_scheme_discount), 0) + " +
+                "COALESCE(SUM(cpc_csd_disc_amount), 0) + " +
+                "COALESCE(SUM(corporate_disc_amount), 0) AS total_discount " +
                 "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_date BETWEEN date_trunc('month', current_date) AND current_date " +
-                "AND qty = '1' " +
-                "AND GREATEST( " +
-                "COALESCE(total_corporate_disc, 0), " +
-                "COALESCE(dealer_disc, 0), " +
-                "COALESCE(oem_scheme_discount, 0), " +
-                "COALESCE(cpc_csd_disc_amount, 0) " +
-                ") > 0;";
+                "WHERE invoice_cancellation_date BETWEEN date_trunc('month', CURRENT_DATE) AND CURRENT_DATE " +
+                ") AS cancelled, " +
+                "( " +
+                "SELECT " +
+                "COALESCE(SUM(exchange_disc_amount), 0) + " +
+                "COALESCE(SUM(dealer_disc), 0) + " +
+                "COALESCE(SUM(oem_scheme_discount), 0) + " +
+                "COALESCE(SUM(cpc_csd_disc_amount), 0) + " +
+                "COALESCE(SUM(corporate_disc_amount), 0) AS total_discount " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date BETWEEN date_trunc('month', CURRENT_DATE) AND CURRENT_DATE " +
+                ") AS active;";
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
@@ -325,53 +373,94 @@ public class DBUtil {
 
     public static String currentMonthUnitsGetDBValue() throws Exception {
         String sql = "SELECT " +
-                "SUM(qty) AS net_qty " +
-                "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_date BETWEEN date_trunc('month', current_date) AND current_date " +
-                "AND qty = '1' " +
-                "AND GREATEST( " +
-                "COALESCE(total_corporate_disc, 0), " +
-                "COALESCE(dealer_disc, 0), " +
-                "COALESCE(oem_scheme_discount, 0), " +
-                "COALESCE(cpc_csd_disc_amount, 0) " +
-                ") > 0;";
+                "COALESCE(( " +
+                "  SELECT SUM(qty) " +
+                "  FROM commondatamodel.vehicles_sales " +
+                "  WHERE invoice_date BETWEEN date_trunc('month', current_date) AND current_date " +
+                "    AND qty = '1' " +
+                "    AND GREATEST( " +
+                "          COALESCE(corporate_disc_amount, 0), " +
+                "          COALESCE(dealer_disc, 0), " +
+                "          COALESCE(oem_scheme_discount, 0), " +
+                "          COALESCE(cpc_csd_disc_amount, 0), " +
+                "          COALESCE(exchange_disc_amount, 0) " +
+                "        ) > 0 " +
+                "), 0) " +
+                "+ " +
+                "COALESCE(( " +
+                "  SELECT COUNT(id) " +
+                "  FROM commondatamodel.vehicles_sales " +
+                "  WHERE invoice_cancellation_date BETWEEN date_trunc('month', current_date) AND current_date " +
+                "    AND GREATEST( " +
+                "          COALESCE(corporate_disc_amount, 0), " +
+                "          COALESCE(dealer_disc, 0), " +
+                "          COALESCE(oem_scheme_discount, 0), " +
+                "          COALESCE(cpc_csd_disc_amount, 0), " +
+                "          COALESCE(exchange_disc_amount, 0) " +
+                "        ) > 0 " +
+                "), 0) AS net_qty;";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
     }
 
     public static String previousMonthUnitsGetDBValue() throws Exception {
         String sql = "SELECT " +
-                "SUM(qty) AS net_qty " +
+                "COALESCE(( " +
+                "SELECT SUM(qty) " +
                 "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_date BETWEEN date_trunc('month', current_date - INTERVAL '1 month') " +
-                "AND date_trunc('month', current_date) - INTERVAL '1 day' " +
+                "WHERE invoice_date BETWEEN date_trunc('month', current_date - interval '1 month') " +
+                "AND date_trunc('month', current_date) - interval '1 second' " +
                 "AND qty = '1' " +
                 "AND GREATEST( " +
-                "COALESCE(total_corporate_disc, 0), " +
+                "COALESCE(corporate_disc_amount, 0), " +
                 "COALESCE(dealer_disc, 0), " +
                 "COALESCE(oem_scheme_discount, 0), " +
-                "COALESCE(cpc_csd_disc_amount, 0) " +
-                ") > 0;";
+                "COALESCE(cpc_csd_disc_amount, 0), " +
+                "COALESCE(exchange_disc_amount, 0) " +
+                " ) > 0 " +
+                " ), 0) " +
+                "+ " +
+                "COALESCE(( " +
+                "SELECT COUNT(id) " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_cancellation_date BETWEEN date_trunc('month', current_date - interval '1 month') " +
+                "AND date_trunc('month', current_date) - interval '1 second' " +
+                "AND GREATEST( " +
+                "COALESCE(corporate_disc_amount, 0), " +
+                "COALESCE(dealer_disc, 0), " +
+                "COALESCE(oem_scheme_discount, 0), " +
+                "COALESCE(cpc_csd_disc_amount, 0), " +
+                "COALESCE(exchange_disc_amount, 0) " +
+                " ) > 0 " +
+                " ), 0) AS net_qty;";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
     }
 
     public static String currentMonthValueGetDBValue() throws Exception {
-        String sql = "SELECT SUM( " +
-                "COALESCE(total_corporate_disc, 0) + " +
-                "COALESCE(dealer_disc, 0) + " +
-                "COALESCE(oem_scheme_discount, 0) + " +
-                "COALESCE(cpc_csd_disc_amount, 0) " +
-                ") AS net_qty " +
+        String sql = "SELECT " +
+                "COALESCE(active.total_discount, 0) - COALESCE(cancelled.total_discount, 0) AS net_qty " +
+                "FROM " +
+                "( " +
+                "SELECT " +
+                "COALESCE(SUM(exchange_disc_amount), 0) + " +
+                "COALESCE(SUM(dealer_disc), 0) + " +
+                "COALESCE(SUM(oem_scheme_discount), 0) + " +
+                "COALESCE(SUM(cpc_csd_disc_amount), 0) + " +
+                "COALESCE(SUM(corporate_disc_amount), 0) AS total_discount " +
                 "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_date BETWEEN date_trunc('month', current_date) AND current_date " +
-                "AND qty = '1' " +
-                "AND GREATEST( " +
-                "COALESCE(total_corporate_disc, 0), " +
-                "COALESCE(dealer_disc, 0), " +
-                "COALESCE(oem_scheme_discount, 0), " +
-                "COALESCE(cpc_csd_disc_amount, 0) " +
-                ") > 0;";
+                "WHERE invoice_cancellation_date BETWEEN date_trunc('month', CURRENT_DATE) AND CURRENT_DATE " +
+                ") AS cancelled, " +
+                "( " +
+                "SELECT " +
+                "COALESCE(SUM(exchange_disc_amount), 0) + " +
+                "COALESCE(SUM(dealer_disc), 0) + " +
+                "COALESCE(SUM(oem_scheme_discount), 0) + " +
+                "COALESCE(SUM(cpc_csd_disc_amount), 0) + " +
+                "COALESCE(SUM(corporate_disc_amount), 0) AS total_discount " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE invoice_date BETWEEN date_trunc('month', CURRENT_DATE) AND CURRENT_DATE " +
+                ") AS active;";
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
@@ -380,22 +469,32 @@ public class DBUtil {
     }
 
     public static String previousMonthValueGetDBValue() throws Exception {
-        String sql = "SELECT SUM( " +
-                "COALESCE(total_corporate_disc, 0) + " +
-                "COALESCE(dealer_disc, 0) + " +
-                "COALESCE(oem_scheme_discount, 0) + " +
-                "COALESCE(cpc_csd_disc_amount, 0) " +
-                ") AS net_qty " +
+        String sql = "SELECT " +
+                "COALESCE(active.total_discount, 0) - COALESCE(cancelled.total_discount, 0) AS net_qty " +
+                "FROM " +
+                "( " +
+                "SELECT " +
+                "COALESCE(SUM(exchange_disc_amount), 0) + " +
+                "COALESCE(SUM(dealer_disc), 0) + " +
+                "COALESCE(SUM(oem_scheme_discount), 0) + " +
+                "COALESCE(SUM(cpc_csd_disc_amount), 0) + " +
+                "COALESCE(SUM(corporate_disc_amount), 0) AS total_discount " +
                 "FROM commondatamodel.vehicles_sales " +
-                "WHERE invoice_date BETWEEN date_trunc('month', current_date - INTERVAL '1 month') " +
-                "AND date_trunc('month', current_date) - INTERVAL '1 day' " +
-                "AND qty = '1' " +
-                "AND GREATEST( " +
-                "COALESCE(total_corporate_disc, 0), " +
-                "COALESCE(dealer_disc, 0), " +
-                "COALESCE(oem_scheme_discount, 0), " +
-                "COALESCE(cpc_csd_disc_amount, 0) " +
-                ") > 0;";
+                "WHERE invoice_cancellation_date BETWEEN date_trunc('month', current_date - interval '1 month') " +
+                "AND date_trunc('month', current_date) - interval '1 second' " +
+                ") AS cancelled, " +
+                "( " +
+                "SELECT " +
+                "COALESCE(SUM(exchange_disc_amount), 0) + " +
+                "COALESCE(SUM(dealer_disc), 0) + " +
+                "COALESCE(SUM(oem_scheme_discount), 0) + " +
+                "COALESCE(SUM(cpc_csd_disc_amount), 0) + " +
+                "COALESCE(SUM(corporate_disc_amount), 0) AS total_discount " +
+                "FROM commondatamodel.vehicles_sales " +
+                "WHERE qty = '1' " +
+                "AND invoice_date BETWEEN date_trunc('month', current_date - interval '1 month') " +
+                "AND date_trunc('month', current_date) - interval '1 second' " +
+                ") AS active;";
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
@@ -651,7 +750,7 @@ public class DBUtil {
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        String numConversion = TestUtil.numberToShortIndianFormatTwoDecimal(num);
+        String numConversion = TestUtil.numberToShortIndianFormatTwoDecimalRoundOff(num);
         return numConversion;
     }
 
@@ -1364,13 +1463,14 @@ public class DBUtil {
     // PartStocks Page DB Values
 
     public static String partsQtyGetDbValue() throws Exception {
-        String sql = "SELECT count(qty) AS net_qty " +
+        String sql = "SELECT SUM(ROUND(qty::numeric)) AS net_qty " +
                 "FROM commondatamodel.inventory " +
                 "WHERE item_type = 'Parts and Accessories' " +
-                "AND created_date = ( " +
-                "SELECT MAX(created_date) " +
+                "AND created_date::date = ( " +
+                "SELECT MAX(created_date)::date " +
                 "FROM commondatamodel.inventory " +
                 "WHERE item_type = 'Parts and Accessories' " +
+                "AND qty ~ '^\\d+(\\.\\d+)?$' " +
                 ");";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
@@ -1380,8 +1480,8 @@ public class DBUtil {
         String sql = "SELECT SUM(veh_value) AS net_qty " +
                 "FROM commondatamodel.inventory " +
                 "WHERE item_type = 'Parts and Accessories' " +
-                "AND created_date in ( " +
-                "SELECT MAX(created_date) " +
+                "AND created_date::date = ( " +
+                "SELECT MAX(created_date)::date " +
                 "FROM commondatamodel.inventory " +
                 "WHERE item_type = 'Parts and Accessories' " +
                 ");";
@@ -1396,8 +1496,8 @@ public class DBUtil {
         String sql = "SELECT SUM(veh_value) AS net_qty " +
                 "FROM commondatamodel.inventory " +
                 "WHERE item_type = 'Parts and Accessories' " +
-                "AND created_date in ( " +
-                "SELECT MAX(created_date) " +
+                "AND created_date::date = ( " +
+                "SELECT MAX(created_date)::date " +
                 "FROM commondatamodel.inventory " +
                 "WHERE item_type = 'Parts and Accessories' " +
                 ");";
@@ -1436,28 +1536,30 @@ public class DBUtil {
     }
 
     public static String currentMonthPartsQtyTrendGetDBValue() throws Exception {
-        String sql = "SELECT count(qty) AS net_qty " +
+        String sql = "SELECT SUM(ROUND(qty::numeric)) AS net_qty " +
                 "FROM commondatamodel.inventory " +
                 "WHERE item_type = 'Parts and Accessories' " +
-                "AND created_date = ( " +
-                "SELECT MAX(created_date) " +
+                "AND created_date::date = ( " +
+                "SELECT MAX(created_date)::date " +
                 "FROM commondatamodel.inventory " +
                 "WHERE item_type = 'Parts and Accessories' " +
+                "AND qty ~ '^\\d+(\\.\\d+)?$' " +
                 ");";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
     }
 
     public static String lastMonthPartsQtyTrendGetDBValue() throws Exception {
-        String sql = "SELECT count(qty) AS net_qty " +
+        String sql = "SELECT SUM(ROUND(qty::numeric)) AS net_qty " +
                 "FROM commondatamodel.inventory " +
                 "WHERE item_type = 'Parts and Accessories' " +
-                "AND created_date = ( " +
-                "SELECT MAX(created_date) " +
+                "AND created_date::date = ( " +
+                "SELECT MAX(created_date)::date " +
                 "FROM commondatamodel.inventory " +
                 "WHERE item_type = 'Parts and Accessories' " +
-                "AND created_date BETWEEN DATE_TRUNC('month', CURRENT_DATE - INTERVAL '1 month') " +
-                "AND DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 second' " +
+                "AND qty ~ '^\\d+(\\.\\d+)?$' " +
+                "AND created_date >= date_trunc('month', CURRENT_DATE - INTERVAL '1 month') " +
+                "AND created_date < date_trunc('month', CURRENT_DATE) " +
                 ");";
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         return dbValue;
@@ -1467,37 +1569,32 @@ public class DBUtil {
         String sql = "SELECT SUM(veh_value) AS net_qty " +
                 "FROM commondatamodel.inventory " +
                 "WHERE item_type = 'Parts and Accessories' " +
-                "AND created_date in ( " +
-                "SELECT MAX(created_date) " +
+                "AND created_date::date = ( " +
+                "SELECT MAX(created_date)::date " +
                 "FROM commondatamodel.inventory " +
                 "WHERE item_type = 'Parts and Accessories' " +
                 ");";
-
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        String numConversion = TestUtil.numberToShortIndianFormatThreeDigits(num);
         return numConversion;
     }
 
     public static String lastMonthPartsValueTrendGetDBValue() throws Exception {
-        String sql = "SELECT " +
-                "( " +
-                "COALESCE(SUM(veh_value), 0) + " +
-                "COALESCE(SUM(charge_amount), 0) " +
-                ") AS net_qty " +
+        String sql = "SELECT SUM(veh_value) AS net_qty " +
                 "FROM commondatamodel.inventory " +
                 "WHERE item_type = 'Parts and Accessories' " +
-                "AND created_date = ( " +
-                "SELECT MAX(created_date) " +
+                "AND created_date::date = ( " +
+                "SELECT MAX(created_date)::date " +
                 "FROM commondatamodel.inventory " +
                 "WHERE item_type = 'Parts and Accessories' " +
-                "AND created_date BETWEEN DATE_TRUNC('month', CURRENT_DATE - INTERVAL '1 month') " +
-                "AND DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 second' " +
+                "AND created_date >= date_trunc('month', current_date - interval '1 month') " +
+                "AND created_date < date_trunc('month', current_date) " +
                 ");";
 
         String dbValue = DBUtil.getExpectedValue(sql, "net_qty");
         double num = Double.parseDouble(dbValue);
-        String numConversion = TestUtil.numberToShortIndianFormat(num);
+        String numConversion = TestUtil.numberToShortIndianFormatThreeDigits(num);
         return numConversion;
     }
 
@@ -2043,8 +2140,8 @@ public class DBUtil {
         String sql = "SELECT SUM(veh_value) AS net_qty " +
                 "FROM commondatamodel.inventory " +
                 "WHERE item_type = 'Parts and Accessories' " +
-                "AND created_date in ( " +
-                "SELECT MAX(created_date) " +
+                "AND created_date::date = ( " +
+                "SELECT MAX(created_date)::date " +
                 "FROM commondatamodel.inventory " +
                 "WHERE item_type = 'Parts and Accessories' " +
                 ");";

@@ -268,4 +268,24 @@ public class TestUtil extends TestBase {
 			return value.toString();
 		}
 	}
+
+	public static String numberToShortIndianFormatTwoDecimalRoundOff(double num) {
+		if (num >= 1_00_00_000) { // 1 crore
+			BigDecimal value = BigDecimal.valueOf(num / 1_00_00_000.0)
+					.setScale(2, RoundingMode.HALF_UP);
+			return value + "Cr";
+		} else if (num >= 1_00_000) { // 1 lakh
+			BigDecimal value = BigDecimal.valueOf(num / 1_00_000.0)
+					.setScale(2, RoundingMode.HALF_UP);
+			return value + "L";
+		} else if (num >= 1000) { // 1 thousand
+			BigDecimal value = BigDecimal.valueOf(num / 1000.0)
+					.setScale(2, RoundingMode.HALF_UP);
+			return value + "K";
+		} else {
+			BigDecimal value = BigDecimal.valueOf(num)
+					.setScale(2, RoundingMode.HALF_UP);
+			return value.toString();
+		}
+	}
 }

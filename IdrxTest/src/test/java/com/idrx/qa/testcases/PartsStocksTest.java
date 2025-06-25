@@ -48,7 +48,7 @@ public class PartsStocksTest extends TestBase {
 
     @Test(priority = 2, enabled = true)
     public void getTotalStockValueTest() throws Exception {
-        String totalStockValueExpectedValue = DBUtil.totalStockValueGetDBValue();
+        String totalStockValueExpectedValue = "₹ " + DBUtil.totalStockValueGetDBValue();
         System.out.println("--------Total Stock Value--------");
         System.out.println("Expected Value: " + totalStockValueExpectedValue);
         String totalStockValueActualValue = partsStocksPage.getTotalStockValue();
@@ -58,7 +58,7 @@ public class PartsStocksTest extends TestBase {
 
     @Test(priority = 3, enabled = true)
     public void getAccessoriesAndPartsValueTest() throws Exception {
-        String accessoriesAndPartsValueExpectedValue = DBUtil.accessoriesAndPartsValueGetDBValue();
+        String accessoriesAndPartsValueExpectedValue = "₹ " + DBUtil.accessoriesAndPartsValueGetDBValue();
         System.out.println("--------Accessories And Parts Value--------");
         System.out.println("Expected Value: " + accessoriesAndPartsValueExpectedValue);
         String accessoriesAndPartsValueActualValue = partsStocksPage.getAccessoriesAndPartsValue();
@@ -119,7 +119,7 @@ public class PartsStocksTest extends TestBase {
 
     @Test(priority = 8, enabled = true)
     public void getCurrentMonthPartsValueTrendTest() throws Exception {
-        String currentMonthPartsValueTrendExpectedValue = DBUtil.currentMonthPartsValueTrendGetDBValue();
+        String currentMonthPartsValueTrendExpectedValue = "₹ " + DBUtil.currentMonthPartsValueTrendGetDBValue();
         System.out.println("--------Current Month Parts Value Trend--------");
         System.out.println("Expected Value: " + currentMonthPartsValueTrendExpectedValue);
         String currentMonthPartsValueTrendActualValue = partsStocksPage.getCurrentMonthPartsValueTrend();
@@ -130,7 +130,7 @@ public class PartsStocksTest extends TestBase {
 
     @Test(priority = 9, enabled = true)
     public void getLastMonthPartsValueTrendTest() throws Exception {
-        String lastMonthPartsValueTrendExpectedValue = DBUtil.lastMonthPartsValueTrendGetDBValue();
+        String lastMonthPartsValueTrendExpectedValue = "₹ " + DBUtil.lastMonthPartsValueTrendGetDBValue();
         System.out.println("--------Last Month Parts Value Trend--------");
         System.out.println("Expected Value: " + lastMonthPartsValueTrendExpectedValue);
         String lastMonthPartsValueTrendActualValue = partsStocksPage.getLastMonthPartsValueTrend();

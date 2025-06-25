@@ -19,16 +19,16 @@ public class DeliveryPage extends TestBase {
     @FindBy(xpath = "//*[local-name()='svg' and contains(@aria-label,'')]//*[local-name()='tspan']")
     List<WebElement> pendingDeliveries;
 
-    @FindBy(xpath = "//*[text()='Delivery Trend']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='svg' and @class='cartesianChart']//*[local-name()='svg' and @class='svgScrollable']//*[local-name()='g' and @class='labelContainerGraphicsContext']//*[local-name()='g']//*[local-name()='text']//*[local-name()='tspan']")
+    @FindBy(xpath = "//*[text()='Delivery Trend']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='tspan']")
     List<WebElement> previousMonth;
 
-    @FindBy(xpath = "//*[text()='Delivery Trend']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='svg' and @class='cartesianChart']//*[local-name()='svg' and @class='svgScrollable']//*[local-name()='g' and @class='labelContainerGraphicsContext']//*[local-name()='g']//*[local-name()='text']//*[local-name()='tspan']")
+    @FindBy(xpath = "//*[text()='Delivery Trend']/ancestor::div[@class='visualTitleArea']/following-sibling::visual-modern//*[local-name()='tspan']")
     List<WebElement> currentMonth;
 
     @FindBy(xpath = "//div[@class='scrollable-cells-viewport ']//div[text()='Total']/../div")
     List<WebElement> salesmanWisePendingDeliveries;
 
-    //Initilaizing the page objects
+    // Initilaizing the page objects
     public DeliveryPage() {
         PageFactory.initElements(driver, this);
     }
@@ -49,7 +49,7 @@ public class DeliveryPage extends TestBase {
     }
 
     public String getPreviousMonth() {
-        String previousMonth = this.previousMonth.get(5).getText();
+        String previousMonth = this.previousMonth.get(4).getText();
         return previousMonth;
     }
 
@@ -63,12 +63,4 @@ public class DeliveryPage extends TestBase {
         return salesmanWisePendingDeliveries;
     }
 
-    
-
-
-    
-
-
-    
-    
 }

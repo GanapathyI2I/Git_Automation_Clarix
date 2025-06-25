@@ -55,7 +55,7 @@ public class VehicleStocksTest extends TestBase {
 
     @Test(priority = 3, enabled = true)
     public void accessoriesAndPartsValueTest() throws Exception {
-        String accessoriesAndPartsValueExpectedValue = DBUtil.accessoriesAndPartsGetDBValue();
+        String accessoriesAndPartsValueExpectedValue = "₹ " + DBUtil.accessoriesAndPartsGetDBValue();
         System.out.println("--------Accessories And Parts Value--------");
         System.out.println("Expected Value: " + accessoriesAndPartsValueExpectedValue);
         String accessoriesAndPartsValueActualValue = vehicleStocksPage.getaccessoriesAndPartsValue();
