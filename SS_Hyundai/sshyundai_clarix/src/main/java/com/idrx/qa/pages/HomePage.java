@@ -42,7 +42,7 @@ public class HomePage extends TestBase {
 	}
 
 	public void clickSalesTab() {
-		WebElement salesTab = this.salesButton.get(6);
+		WebElement salesTab = this.salesButton.get(2);
 		salesTab.click();
 	}
 
@@ -87,4 +87,3 @@ public class HomePage extends TestBase {
 		profitTab.click();
 	}
 }
-
