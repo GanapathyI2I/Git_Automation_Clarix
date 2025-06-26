@@ -44,5 +44,34 @@ public class DBUtil {
         return dbValue;
     }
 
+    public static String testDriveGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("TestDrive_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Test Drive DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String bookingGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("Booking_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Booking DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String retailGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("Retail_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Retail DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String enquiriesToTdE2TGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("EnquiriesToTdE2T_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Enquiries To Td E2T DB Value: " + dbValue);
+        return dbValue;
+    }
+    
+    
     
 }
