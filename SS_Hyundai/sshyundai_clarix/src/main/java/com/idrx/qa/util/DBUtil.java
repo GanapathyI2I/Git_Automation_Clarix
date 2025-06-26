@@ -36,5 +36,13 @@ public class DBUtil {
         }
     }
 
+    //------------------Sales/ETBR DB values-----------------------
+    public static String enquiryGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("Enquiry_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Enquiry DB Value: " + dbValue);
+        return dbValue;
+    }
 
+    
 }
