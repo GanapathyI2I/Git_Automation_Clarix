@@ -43,4 +43,14 @@ public class ETBRTest extends TestBase {
         testUtil.assertEquals(enquiryActualValue, enquiryExpectedValue, "Enquiry");
     }
 
+    @Test(priority = 2, enabled = true)
+    public void testDriveTest() throws Exception {
+        String testDrive = DBUtil.testDriveGetDBValue();
+        System.out.println("Test Drive: " + testDrive);
+        String testDriveVal = etbrPages.getTestDrive();
+        int testDriveExpectedValue = Integer.parseInt(testDrive);
+        int testDriveActualValue = Integer.parseInt(testDriveVal);
+        testUtil.assertEquals(testDriveActualValue, testDriveExpectedValue, "Test Drive");
+    }
+
 }
