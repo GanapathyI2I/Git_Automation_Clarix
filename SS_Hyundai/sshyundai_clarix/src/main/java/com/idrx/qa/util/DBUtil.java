@@ -71,7 +71,34 @@ public class DBUtil {
         System.out.println("Enquiries To Td E2T DB Value: " + dbValue);
         return dbValue;
     }
-    
+
+    public static String enquiriesToBookingE2BGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("EnquiriesToBookingE2B_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Enquiries To Booking E2B DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String enquiriesToRetailE2RGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("EnquiriesToRetailE2R_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Enquiries To Retail E2R DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String testDriveToBookingT2BGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("TestDriveToBookingT2B_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Test Drive To Booking T2B DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String bookingToRetailB2RGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("BookingToRetailB2R_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Booking To Retail B2R DB Value: " + dbValue);
+        return dbValue;
+    }
     
     
 }
