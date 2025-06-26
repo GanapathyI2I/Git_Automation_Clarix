@@ -10,13 +10,13 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
 import com.idrx.qa.util.TestUtil;
 
 public class TestBase {
 
 	public static WebDriver driver;
 	public static Properties prop;
+	public static Properties dbProp;
 	public final static Logger logger = LogManager.getLogger(TestUtil.class);
 
 	public TestBase() {
@@ -26,7 +26,10 @@ public class TestBase {
 			FileInputStream ip = new FileInputStream(
 					System.getProperty("user.dir") + "/src/main/java/com/idrx/qa/config/config.properties");
 			prop.load(ip);
-
+			dbProp = new Properties();
+			FileInputStream ip1 = new FileInputStream(
+					System.getProperty("user.dir") + "/src/main/java/com/idrx/qa/config/DBUtilConfig.properties");
+			dbProp.load(ip1);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
