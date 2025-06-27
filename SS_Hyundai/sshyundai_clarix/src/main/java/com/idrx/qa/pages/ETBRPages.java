@@ -1,5 +1,7 @@
 package com.idrx.qa.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -34,6 +36,14 @@ public class ETBRPages extends TestBase {
 
     @FindBy(xpath = "//*[local-name()='svg' and contains(@aria-label,'B2R')]//*[local-name()='tspan']")
     WebElement BookingToRetailB2R;
+
+    //Clicking element for Bookings tile from ETBR tile
+    @FindBy(xpath = "//*[@class='tileSVG']")
+    List<WebElement> BookingsTile;
+
+    //Clicking element for Retails tile from ETBR tile
+    @FindBy(xpath = "//*[@class='tileSVG']")
+    List<WebElement> RetailsTile;
 
 
     //Initialize the page objects
@@ -77,6 +87,17 @@ public class ETBRPages extends TestBase {
     public String getBookingToRetailB2R() {
         return BookingToRetailB2R.getText();
     }
+
+    //Initializing object for Clicking element for Bookings tile from ETBR tile
+    public void clickBookingsTile() {
+        BookingsTile.get(3).click();
+    }
+
+    //Initializing object for Clicking element for Retails tile from ETBR tile
+    public void clickRetailsTile() {
+        RetailsTile.get(4).click();
+    }
+
     
     
     
