@@ -99,6 +99,99 @@ public class DBUtil {
         System.out.println("Booking To Retail B2R DB Value: " + dbValue);
         return dbValue;
     }
+
+    //------------------Sales/Bookings DB values-----------------------
+    public static String noOfBookingsYdayGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("No_of_Bookings_Y'day_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("No of Bookings Y'day DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String noOfBookingsThisMonthGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("No_of_Bookings_This_Month_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("No of Bookings This Month DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String noOfPendingBookingsGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("No_of_Pending_Bookings_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("No of Pending Bookings DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String currentMonthGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("Current_Month_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Current Month DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String pastMonthGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("Past_Month_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Past Month DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    //------------------Sales/Retail DB values-----------------------
+    public static String vehiclesSoldGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("Vehicles_Sold_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Vehicles Sold DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String avgSalesGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("Avg_Sales_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Avg Sales DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String enquiriesYdayGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("Enquiries_Y'day_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Enquiries Y'day DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String vehiclesBookedYdayGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("Vehicles_Booked_Y'day_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Vehicles Booked Y'day DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String vehiclesInvoicedYdayGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("Vehicles_Invoiced_Y'day_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Vehicles Invoiced Y'day DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String vehiclesInvoicedThisMonthGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("Vehicles_Invoiced_This_Month_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Vehicles Invoiced This Month DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String qtyTrendCurrentMonthGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("Qty_Trend_Current_Month_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Qty Trend Current Month DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String qtyTrendPreviousMonthGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("Qty_Trend_Previous_Month_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Qty Trend Previous Month DB Value: " + dbValue);
+        return dbValue;
+    }
     
     
 }
