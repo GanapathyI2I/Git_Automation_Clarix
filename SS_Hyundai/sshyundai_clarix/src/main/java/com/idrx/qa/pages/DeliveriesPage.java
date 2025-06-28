@@ -33,7 +33,7 @@ public class DeliveriesPage extends TestBase {
         PageFactory.initElements(driver, this);
     }
 
-    public String getYesterdayDelivery() {
+    public String getYesterdayDeliveries() {
         return yesterdayDelivery.getText();
     }
 

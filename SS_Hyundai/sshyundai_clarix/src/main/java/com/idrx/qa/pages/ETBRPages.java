@@ -45,6 +45,10 @@ public class ETBRPages extends TestBase {
     @FindBy(xpath = "//*[@class='tileSVG']")
     List<WebElement> RetailsTile;
 
+    //Clicking element for Deliveries tile from ETBR tile
+    @FindBy(xpath = "//*[@class='tileSVG']")
+    List<WebElement> DeliveriesTile;
+
 
     //Initialize the page objects
     public ETBRPages() {
@@ -97,6 +101,13 @@ public class ETBRPages extends TestBase {
     public void clickRetailsTile() {
         RetailsTile.get(4).click();
     }
+
+    //Initializing object for Clicking element for Deliveries tile from ETBR tile
+    public void clickDeliveriesTile() {
+        DeliveriesTile.get(5).click();
+    }
+
+
 
     
     
