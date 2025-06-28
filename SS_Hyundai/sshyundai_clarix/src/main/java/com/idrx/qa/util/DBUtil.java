@@ -192,6 +192,49 @@ public class DBUtil {
         System.out.println("Qty Trend Previous Month DB Value: " + dbValue);
         return dbValue;
     }
+
+    //------------------Sales/Deliveries DB values-----------------------
+    public static String deliveriesYesterdayGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("Deliveries_Yesterday_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Deliveries Yesterday DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String deliveriesThisMonthGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("Deliveries_This_Month_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Deliveries This Month DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String deliveriesPendingGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("Deliveries_Pending_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Deliveries Pending DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String deliveriesPreviousMonthGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("Deliveries_Previous_Month_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Deliveries Previous Month DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String deliveriesCurrentMonthGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("Deliveries_Current_Month_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Deliveries Current Month DB Value: " + dbValue);
+        return dbValue;
+    }
+
+    public static String deliveriesModelWisePendingGetDBValue() throws Exception {
+        String sql = TestBase.dbProp.getProperty("Deliveries_Model_Wise_Pending_DB_Value");
+        String dbValue = getExpectedValue(sql, "net_qty");
+        System.out.println("Deliveries Model Wise Pending DB Value: " + dbValue);
+        return dbValue;
+    }
     
     
 }
